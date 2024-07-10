@@ -64,111 +64,60 @@ struct CalcView: View {
     }
     
     func didTap(button: CalcButton) {
-            switch button {
-            case .add, .subtract, .multiply, .divide:
-                if currentOperation != .none {
-                    let runningValue = runningNumber
-                    let currentValue = Int(value) ?? 0
-                    switch currentOperation {
-                    case .add: runningNumber = runningValue + currentValue
-                    case .subtract: runningNumber = runningValue - currentValue
-                    case .multiply: runningNumber = runningValue * currentValue
-                    case .divide: runningNumber = runningValue / currentValue
-                    case .none: break
-                    }
-                    value = "\(runningNumber)"
-                } else {
-                    runningNumber = Int(value) ?? 0
-                }
-                
-                switch button {
-                case .add: currentOperation = .add
-                case .subtract: currentOperation = .subtract
-                case .multiply: currentOperation = .multiply
-                case .divide: currentOperation = .divide
-                default: break
-                }
-                isTypingNumber = false
-            case .equal:
+        switch button {
+        case .add, .subtract, .multiply, .divide:
+            if currentOperation != .none {
                 let runningValue = runningNumber
                 let currentValue = Int(value) ?? 0
                 switch currentOperation {
-                case .add: value = "\(runningValue + currentValue)"
-                case .subtract: value = "\(runningValue - currentValue)"
-                case .multiply: value = "\(runningValue * currentValue)"
-                case .divide: value = "\(runningValue / currentValue)"
+                case .add: runningNumber = runningValue + currentValue
+                case .subtract: runningNumber = runningValue - currentValue
+                case .multiply: runningNumber = runningValue * currentValue
+                case .divide: runningNumber = runningValue / currentValue
                 case .none: break
                 }
-                currentOperation = .none
-                runningNumber = 0
-            case .clear:
-                value = "0"
-                runningNumber = 0
-                currentOperation = .none
-            case .decimal, .negative, .percent:
-                break
-            default:
-                let number = button.rawValue
-                if isTypingNumber {
-                    value += number
-                } else {
-                    value = number
-                    isTypingNumber = true
-                }
+                value = "\(runningNumber)"
+            } else {
+                runningNumber = Int(value) ?? 0
+            }
+            
+            switch button {
+            case .add: currentOperation = .add
+            case .subtract: currentOperation = .subtract
+            case .multiply: currentOperation = .multiply
+            case .divide: currentOperation = .divide
+            default: break
+            }
+            isTypingNumber = false
+        case .equal:
+            let runningValue = runningNumber
+            let currentValue = Int(value) ?? 0
+            switch currentOperation {
+            case .add: value = "\(runningValue + currentValue)"
+            case .subtract: value = "\(runningValue - currentValue)"
+            case .multiply: value = "\(runningValue * currentValue)"
+            case .divide: value = "\(runningValue / currentValue)"
+            case .none: break
+            }
+            currentOperation = .none
+            runningNumber = 0
+        case .clear:
+            value = "0"
+            runningNumber = 0
+            currentOperation = .none
+            isTypingNumber = false
+        case .decimal, .negative, .percent:
+            break
+        default:
+            let number = button.rawValue
+            if isTypingNumber {
+                value += number
+            } else {
+                value = number
+                isTypingNumber = true
             }
         }
-
-    
-    
-    //        func didTap(button: CalcButton) {
-    //            switch button {
-    //            case .add, .subtract, .mutliply, .divide, .equal:
-    //                if button == .add {
-    //                    self.currentOperation = .add
-    //                    self.runningNumber = Int(self.value) ?? 0
-    //                }
-    //                else if button == .subtract {
-    //                    self.currentOperation = .subtract
-    //                    self.runningNumber = Int(self.value) ?? 0
-    //                }
-    //                else if button == .mutliply {
-    //                    self.currentOperation = .multiply
-    //                    self.runningNumber = Int(self.value) ?? 0
-    //                }
-    //                else if button == .divide {
-    //                    self.currentOperation = .divide
-    //                    self.runningNumber = Int(self.value) ?? 0
-    //                }
-    //                else if button == .equal {
-    //                    let runningValue = self.runningNumber
-    //                    let currentValue = Int(self.value) ?? 0
-    //                    switch self.currentOperation {
-    //                    case .add: self.value = "\(runningValue + currentValue)"
-    //                    case .subtract: self.value = "\(runningValue - currentValue)"
-    //                    case .multiply: self.value = "\(runningValue * currentValue)"
-    //                    case .divide: self.value = "\(runningValue / currentValue)"
-    //                    case .none:
-    //                        break
-    //                    }
-    //                }
-    //
-    //                if button != .equal {
-    //                    self.value = "0"
-    //                }
-    //            case .clear:
-    //                self.value = "0"
-    //            case .decimal, .negative, .percent:
-    //                break
-    //            default:
-    //                let number = button.rawValue
-    //                if self.value == "0" {
-    //                    value = number
-    //                }
-    //                else {
-    //                    self.value = "\(self.value)\(number)"
-    //                }
-    //            }
-    //        }
+    }
     
     func buttonWidth(item: CalcButton) -> CGFloat {
         if item == .zero {
