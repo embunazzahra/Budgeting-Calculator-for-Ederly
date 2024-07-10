@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		464952922C3EECEF00BC8305 /* BudgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952912C3EECEF00BC8305 /* BudgetViewModel.swift */; };
+		4649529A2C3EECFE00BC8305 /* CalculatorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952972C3EECFE00BC8305 /* CalculatorSheet.swift */; };
+		4649529B2C3EECFE00BC8305 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952982C3EECFE00BC8305 /* HistoryView.swift */; };
+		4649529C2C3EECFE00BC8305 /* ExpenseCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952992C3EECFE00BC8305 /* ExpenseCategoryView.swift */; };
+		4649529D2C3EECFE00BC8305 /* BudgetingSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952962C3EECFE00BC8305 /* BudgetingSettingView.swift */; };
+		4649529E2C3EECFE00BC8305 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952952C3EECFE00BC8305 /* TabBarView.swift */; };
+		4649529F2C3EECFE00BC8305 /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952932C3EECFE00BC8305 /* BudgetView.swift */; };
+		464952A02C3EECFE00BC8305 /* UpdateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952942C3EECFE00BC8305 /* UpdateAccountView.swift */; };
+		464952A22C3EED0500BC8305 /* ModelTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952A12C3EED0500BC8305 /* ModelTrack.swift */; };
 		71507E262C3E1657003D043C /* BudgetingCalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71507E252C3E1657003D043C /* BudgetingCalculatorApp.swift */; };
 		71507E282C3E1657003D043C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71507E272C3E1657003D043C /* ContentView.swift */; };
 		71507E2A2C3E1659003D043C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71507E292C3E1659003D043C /* Assets.xcassets */; };
@@ -15,6 +24,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		464952912C3EECEF00BC8305 /* BudgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewModel.swift; sourceTree = "<group>"; };
+		464952932C3EECFE00BC8305 /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
+		464952942C3EECFE00BC8305 /* UpdateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountView.swift; sourceTree = "<group>"; };
+		464952952C3EECFE00BC8305 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		464952962C3EECFE00BC8305 /* BudgetingSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingSettingView.swift; sourceTree = "<group>"; };
+		464952972C3EECFE00BC8305 /* CalculatorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorSheet.swift; sourceTree = "<group>"; };
+		464952982C3EECFE00BC8305 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		464952992C3EECFE00BC8305 /* ExpenseCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoryView.swift; sourceTree = "<group>"; };
+		464952A12C3EED0500BC8305 /* ModelTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTrack.swift; sourceTree = "<group>"; };
 		71507E222C3E1657003D043C /* BudgetingCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetingCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71507E252C3E1657003D043C /* BudgetingCalculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingCalculatorApp.swift; sourceTree = "<group>"; };
 		71507E272C3E1657003D043C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -34,6 +52,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4649528E2C3EEC9D00BC8305 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				464952A12C3EED0500BC8305 /* ModelTrack.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4649528F2C3EECA300BC8305 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				464952912C3EECEF00BC8305 /* BudgetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		464952902C3EECD300BC8305 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				464952932C3EECFE00BC8305 /* BudgetView.swift */,
+				464952942C3EECFE00BC8305 /* UpdateAccountView.swift */,
+				464952952C3EECFE00BC8305 /* TabBarView.swift */,
+				464952962C3EECFE00BC8305 /* BudgetingSettingView.swift */,
+				464952972C3EECFE00BC8305 /* CalculatorSheet.swift */,
+				464952982C3EECFE00BC8305 /* HistoryView.swift */,
+				464952992C3EECFE00BC8305 /* ExpenseCategoryView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		71507E192C3E1657003D043C = {
 			isa = PBXGroup;
 			children = (
@@ -53,6 +101,9 @@
 		71507E242C3E1657003D043C /* BudgetingCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				464952902C3EECD300BC8305 /* View */,
+				4649528F2C3EECA300BC8305 /* ViewModel */,
+				4649528E2C3EEC9D00BC8305 /* Model */,
 				71507E252C3E1657003D043C /* BudgetingCalculatorApp.swift */,
 				71507E272C3E1657003D043C /* ContentView.swift */,
 				71507E292C3E1659003D043C /* Assets.xcassets */,
@@ -141,8 +192,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				71507E282C3E1657003D043C /* ContentView.swift in Sources */,
+				464952A22C3EED0500BC8305 /* ModelTrack.swift in Sources */,
 				71507E262C3E1657003D043C /* BudgetingCalculatorApp.swift in Sources */,
+				4649529A2C3EECFE00BC8305 /* CalculatorSheet.swift in Sources */,
+				4649529B2C3EECFE00BC8305 /* HistoryView.swift in Sources */,
+				4649529C2C3EECFE00BC8305 /* ExpenseCategoryView.swift in Sources */,
+				4649529D2C3EECFE00BC8305 /* BudgetingSettingView.swift in Sources */,
+				4649529E2C3EECFE00BC8305 /* TabBarView.swift in Sources */,
+				4649529F2C3EECFE00BC8305 /* BudgetView.swift in Sources */,
+				464952A02C3EECFE00BC8305 /* UpdateAccountView.swift in Sources */,
 				71507E342C3E16B7003D043C /* CalcView.swift in Sources */,
+				464952922C3EECEF00BC8305 /* BudgetViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
