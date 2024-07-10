@@ -12,7 +12,8 @@ struct CalcView: View {
     @State var runningNumber = 0
     @State var currentOperation: Operation = .none
     @State var isTypingNumber = false
-    @State var calcHistory = ""
+    @State var calcHistory = "0"
+    @State private var showResultOnTop = false // Track whether result is below or above
     
     let buttons: [[CalcButton]] = [
         [.clear, .negative, .percent, .divide],
@@ -29,25 +30,26 @@ struct CalcView: View {
             VStack {
                 Spacer()
                 
-                // Text display result calculation
-                HStack {
-                    Spacer()
-                    Text(calcHistory)
-                        .bold()
-                        .font(.system(size: 50))
-                        .foregroundColor(.white)
+                VStack{
+                    ZStack{
+                        // Text display calculation history
+                        Text(calcHistory)
+                            .bold()
+                            .font(.system(size: showResultOnTop ? 30 : 80))
+                            .foregroundColor(.white)
+                            .padding()
+                            .offset(y: showResultOnTop ? -40 : 40) // Offset based on position
+                        
+                        // Text display result calculation
+                        Text(value)
+                            .bold()
+                            .font(.system(size: showResultOnTop ? 80 : 30))
+                            .foregroundColor(.white)
+                            .padding()
+                            .offset(y: showResultOnTop ? 40 : -40) // Offset based
+                    }
                 }
-                .padding()
-                
-                // Text display result calculation
-                HStack {
-                    Spacer()
-                    Text(value)
-                        .bold()
-                        .font(.system(size: 100))
-                        .foregroundColor(.white)
-                }
-                .padding()
+                Spacer()
                 
                 // Our buttons
                 ForEach(buttons, id: \.self) { row in
@@ -75,6 +77,9 @@ struct CalcView: View {
     }
     
     func didTap(button: CalcButton) {
+        if calcHistory == "0"{
+            calcHistory = ""
+        }
         calcHistory += button.rawValue
         switch button {
         case .add, .subtract, .multiply, .divide:
@@ -115,12 +120,17 @@ struct CalcView: View {
             }
             currentOperation = .none
             runningNumber = 0
+            withAnimation(.easeInOut(duration: 0.5)) {
+                showResultOnTop.toggle()
+            }
+            
         case .clear:
             value = "0"
             runningNumber = 0
             currentOperation = .none
             isTypingNumber = false
-            calcHistory = ""
+            calcHistory = "0"
+            showResultOnTop = false
         case .decimal, .negative, .percent:
             break
         default:
@@ -184,14 +194,14 @@ enum Operation {
     case add, subtract, multiply, divide, none
     
     var symbol: String {
-            switch self {
-            case .add: return "+"
-            case .subtract: return "-"
-            case .multiply: return "x"
-            case .divide: return "÷"
-            case .none: return ""
-            }
+        switch self {
+        case .add: return "+"
+        case .subtract: return "-"
+        case .multiply: return "x"
+        case .divide: return "÷"
+        case .none: return ""
         }
+    }
 }
 
 #Preview {
