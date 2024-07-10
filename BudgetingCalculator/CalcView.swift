@@ -12,6 +12,7 @@ struct CalcView: View {
     @State var runningNumber = 0
     @State var currentOperation: Operation = .none
     @State var isTypingNumber = false
+    @State var calcHistory = ""
     
     let buttons: [[CalcButton]] = [
         [.clear, .negative, .percent, .divide],
@@ -28,7 +29,17 @@ struct CalcView: View {
             VStack {
                 Spacer()
                 
-                // Text display
+                // Text display result calculation
+                HStack {
+                    Spacer()
+                    Text(calcHistory)
+                        .bold()
+                        .font(.system(size: 50))
+                        .foregroundColor(.white)
+                }
+                .padding()
+                
+                // Text display result calculation
                 HStack {
                     Spacer()
                     Text(value)
@@ -64,6 +75,7 @@ struct CalcView: View {
     }
     
     func didTap(button: CalcButton) {
+        calcHistory += button.rawValue
         switch button {
         case .add, .subtract, .multiply, .divide:
             if currentOperation != .none {
@@ -77,6 +89,8 @@ struct CalcView: View {
                 case .none: break
                 }
                 value = "\(runningNumber)"
+                
+                
             } else {
                 runningNumber = Int(value) ?? 0
             }
@@ -106,6 +120,7 @@ struct CalcView: View {
             runningNumber = 0
             currentOperation = .none
             isTypingNumber = false
+            calcHistory = ""
         case .decimal, .negative, .percent:
             break
         default:
@@ -167,6 +182,16 @@ enum CalcButton: String {
 
 enum Operation {
     case add, subtract, multiply, divide, none
+    
+    var symbol: String {
+            switch self {
+            case .add: return "+"
+            case .subtract: return "-"
+            case .multiply: return "x"
+            case .divide: return "÷"
+            case .none: return ""
+            }
+        }
 }
 
 #Preview {
