@@ -7,32 +7,30 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct UpdateAccountView: View {
-    @ObservedObject var viewModel: BudgetViewModel
-    @Environment(\.dismiss) var dismiss // Untuk menutup sheet
+    @ObservedObject var viewModel = BudgetViewModel()
+    @Environment(\.dismiss) var dismiss
 
-    @State private var newBalance: String = ""
+    @State private var amount: String = ""
 
     var body: some View {
         NavigationView {
-            VStack {
-                TextField("New Account Balance", text: $newBalance)
+            Form {
+                TextField("Amount", text: $amount)
                     .keyboardType(.decimalPad)
-                    .padding()
 
-                Button("Update") {
-                    if let newBalanceValue = Double(newBalance) {
-                        viewModel.accountBalance = Int(newBalanceValue)
-                        dismiss() // Tutup sheet setelah update
-                    }
+//                Button("Add Income") {
+//                    if let amountValue = Double(amount) {
+//                        viewModel.addIncome(amount: amountValue, source: "Dana Pensiun") // Panggil addIncome pada viewModel
+//                        dismiss()
+//                    }
                 }
-                .padding()
             }
             .navigationTitle("Update Account Balance")
-        }
+        
     }
 }
+
+
 
 

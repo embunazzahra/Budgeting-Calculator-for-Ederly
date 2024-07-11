@@ -1,15 +1,16 @@
 //
-//  ExpenseCategoryView.swift
-//  Calculator
+//  IncomeView.swift
+//  BudgetingCalculator
 //
 //  Created by Kevin Fairuz on 10/07/24.
 //
 
 import SwiftUI
 
-struct ExpenseCategoryView: View {
+struct IncomeView: View {
     let category: ExpenseCategory
-    @ObservedObject var viewModel: BudgetViewModel
+    let income: Int = 10000
+    @ObservedObject var viewModel: IncomeViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -23,7 +24,7 @@ struct ExpenseCategoryView: View {
                 .foregroundColor(.white)
         
             
-            Text("IDR \(viewModel.remainingBudgetForCategory(category), specifier: "%.2f")")
+            Text("IDR \(income)")
                 .font(.subheadline)
                 .foregroundColor(.white)
                 
@@ -74,16 +75,12 @@ struct ExpenseCategoryView: View {
             .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 4)
         }
         
-        .onTapGesture {
-            // self.$viewModel.selectedCategory.wrappedValue = category // Corrected access
-            viewModel.selectedCategory = category // Directly assign the value
-            viewModel.isCalculatorSheetPresented = true
-        }
+//        .onTapGesture {
+//            // self.$viewModel.selectedCategory.wrappedValue = category // Corrected access
+//            viewModel.selectedCategory = category // Directly assign the value
+//            viewModel.isCalculatorSheetPresented = true
+//        }
     }
 }
 
 
-
-#Preview {
-    ExpenseCategoryView(category: .household, viewModel: BudgetViewModel())
-}
