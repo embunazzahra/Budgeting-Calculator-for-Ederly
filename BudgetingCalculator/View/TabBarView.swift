@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @StateObject var viewModel = BudgetViewModel()
+    @StateObject var viewModel: BudgetViewModel = BudgetViewModel(dataSource: .shared)
 
     var body: some View {
         TabView {

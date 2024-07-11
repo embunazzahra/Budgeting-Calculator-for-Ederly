@@ -8,7 +8,8 @@
 import SwiftData
 import Foundation
 
-@Model final class Income {
+@Model 
+final class Income {
     @Attribute(.unique) var id: UUID = UUID() // Unique identifier
     var amount: Double
     var date: Date
@@ -19,7 +20,5 @@ import Foundation
         self.date = date
         self.source = source
     }
-    
-    
 }
 

@@ -85,5 +85,5 @@ struct ExpenseCategoryView: View {
 
 
 #Preview {
-    ExpenseCategoryView(category: .household, viewModel: BudgetViewModel())
+    ExpenseCategoryView(category: .household, viewModel: BudgetViewModel(dataSource: .shared))
 }

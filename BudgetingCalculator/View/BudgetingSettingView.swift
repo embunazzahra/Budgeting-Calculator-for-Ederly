@@ -41,5 +41,5 @@ struct BudgetSettingsView: View {
 }
 
 #Preview {
-    BudgetSettingsView(viewModel: BudgetViewModel())
+    BudgetSettingsView(viewModel: BudgetViewModel(dataSource: .shared))
 }
