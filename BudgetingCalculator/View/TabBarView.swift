@@ -25,7 +25,9 @@ struct TabBarView: View {
                     Label("Budget", systemImage: "dollarsign.circle.fill")
                 }
         }
+        
     }
+        
 }
 
 

@@ -16,6 +16,12 @@
 		4649529F2C3EECFE00BC8305 /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952932C3EECFE00BC8305 /* BudgetView.swift */; };
 		464952A02C3EECFE00BC8305 /* UpdateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952942C3EECFE00BC8305 /* UpdateAccountView.swift */; };
 		464952A22C3EED0500BC8305 /* ModelTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952A12C3EED0500BC8305 /* ModelTrack.swift */; };
+		464952A42C3EF54400BC8305 /* IncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952A32C3EF54400BC8305 /* IncomeView.swift */; };
+		464952A72C3EF59100BC8305 /* Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952A62C3EF59100BC8305 /* Rounded.swift */; };
+		464952A92C3EFFB000BC8305 /* Income.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952A82C3EFFB000BC8305 /* Income.swift */; };
+		464952AB2C3F011100BC8305 /* IncomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952AA2C3F011100BC8305 /* IncomeViewModel.swift */; };
+		464952AD2C3F0E9B00BC8305 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952AC2C3F0E9B00BC8305 /* Color.swift */; };
+		464952AF2C3F0EDC00BC8305 /* BudgetCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952AE2C3F0EDC00BC8305 /* BudgetCategory.swift */; };
 		71507E262C3E1657003D043C /* BudgetingCalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71507E252C3E1657003D043C /* BudgetingCalculatorApp.swift */; };
 		71507E282C3E1657003D043C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71507E272C3E1657003D043C /* ContentView.swift */; };
 		71507E2A2C3E1659003D043C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71507E292C3E1659003D043C /* Assets.xcassets */; };
@@ -33,6 +39,12 @@
 		464952982C3EECFE00BC8305 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		464952992C3EECFE00BC8305 /* ExpenseCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoryView.swift; sourceTree = "<group>"; };
 		464952A12C3EED0500BC8305 /* ModelTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTrack.swift; sourceTree = "<group>"; };
+		464952A32C3EF54400BC8305 /* IncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeView.swift; sourceTree = "<group>"; };
+		464952A62C3EF59100BC8305 /* Rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rounded.swift; sourceTree = "<group>"; };
+		464952A82C3EFFB000BC8305 /* Income.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Income.swift; sourceTree = "<group>"; };
+		464952AA2C3F011100BC8305 /* IncomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeViewModel.swift; sourceTree = "<group>"; };
+		464952AC2C3F0E9B00BC8305 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		464952AE2C3F0EDC00BC8305 /* BudgetCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategory.swift; sourceTree = "<group>"; };
 		71507E222C3E1657003D043C /* BudgetingCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetingCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71507E252C3E1657003D043C /* BudgetingCalculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingCalculatorApp.swift; sourceTree = "<group>"; };
 		71507E272C3E1657003D043C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +68,8 @@
 			isa = PBXGroup;
 			children = (
 				464952A12C3EED0500BC8305 /* ModelTrack.swift */,
+				464952A82C3EFFB000BC8305 /* Income.swift */,
+				464952AE2C3F0EDC00BC8305 /* BudgetCategory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -64,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				464952912C3EECEF00BC8305 /* BudgetViewModel.swift */,
+				464952AA2C3F011100BC8305 /* IncomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -78,8 +93,18 @@
 				464952972C3EECFE00BC8305 /* CalculatorSheet.swift */,
 				464952982C3EECFE00BC8305 /* HistoryView.swift */,
 				464952992C3EECFE00BC8305 /* ExpenseCategoryView.swift */,
+				464952A32C3EF54400BC8305 /* IncomeView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		464952A52C3EF58500BC8305 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				464952A62C3EF59100BC8305 /* Rounded.swift */,
+				464952AC2C3F0E9B00BC8305 /* Color.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		71507E192C3E1657003D043C = {
@@ -101,6 +126,7 @@
 		71507E242C3E1657003D043C /* BudgetingCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				464952A52C3EF58500BC8305 /* Extensions */,
 				464952902C3EECD300BC8305 /* View */,
 				4649528F2C3EECA300BC8305 /* ViewModel */,
 				4649528E2C3EEC9D00BC8305 /* Model */,
@@ -195,13 +221,19 @@
 				464952A22C3EED0500BC8305 /* ModelTrack.swift in Sources */,
 				71507E262C3E1657003D043C /* BudgetingCalculatorApp.swift in Sources */,
 				4649529A2C3EECFE00BC8305 /* CalculatorSheet.swift in Sources */,
+				464952AD2C3F0E9B00BC8305 /* Color.swift in Sources */,
 				4649529B2C3EECFE00BC8305 /* HistoryView.swift in Sources */,
+				464952AF2C3F0EDC00BC8305 /* BudgetCategory.swift in Sources */,
+				464952A72C3EF59100BC8305 /* Rounded.swift in Sources */,
 				4649529C2C3EECFE00BC8305 /* ExpenseCategoryView.swift in Sources */,
+				464952AB2C3F011100BC8305 /* IncomeViewModel.swift in Sources */,
+				464952A42C3EF54400BC8305 /* IncomeView.swift in Sources */,
 				4649529D2C3EECFE00BC8305 /* BudgetingSettingView.swift in Sources */,
 				4649529E2C3EECFE00BC8305 /* TabBarView.swift in Sources */,
 				4649529F2C3EECFE00BC8305 /* BudgetView.swift in Sources */,
 				464952A02C3EECFE00BC8305 /* UpdateAccountView.swift in Sources */,
 				71507E342C3E16B7003D043C /* CalcView.swift in Sources */,
+				464952A92C3EFFB000BC8305 /* Income.swift in Sources */,
 				464952922C3EECEF00BC8305 /* BudgetViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
