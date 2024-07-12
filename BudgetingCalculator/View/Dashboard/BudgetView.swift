@@ -18,20 +18,19 @@ struct BudgetView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(alignment: .leading) {
+                VStack {
                     // Account Balance Section
                     AccountBalanceView(viewModel: viewModel)
-                        .padding(.horizontal)
+                        .padding(.bottom, 8)
                     
                     // Expenses Section
                     NavigationLink(destination: CalcView()){
                         ExpenseCategoriesView(viewModel: viewModel)
                             .padding(.horizontal)
-                            .padding(.bottom) // Add padding to the bottom of the section
-                        
-                    }.buttonStyle(.plain)
-                    
-                    Spacer() // Push the content to the top
+                            .padding(.bottom, 8) // Add padding to the bottom of the section
+                    }
+                    .buttonStyle(.plain)
+                    .padding(.bottom, 8)
                 }
                 .padding()
                 .navigationTitle("SeniorBudget")

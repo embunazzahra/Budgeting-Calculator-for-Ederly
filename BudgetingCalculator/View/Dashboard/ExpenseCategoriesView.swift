@@ -13,9 +13,10 @@ struct ExpenseCategoriesView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Remaining Budget")
-                .font(.title3)
-                .fontWeight(.semibold)
-                .padding()
+                .font(.system(size: 22))
+                .fontWeight(.bold)
+                .padding(.bottom, 22)
+                
             
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 25) {
                 ForEach(ExpenseCategory.allCases) { category in
@@ -24,22 +25,20 @@ struct ExpenseCategoriesView: View {
                             viewModel.selectedCategory = category
                             viewModel.isCalculatorSheetPresented = true
                         }
-                    
                 }
             }
-                .padding(.bottom, 30)
-                .frame(maxWidth: .infinity)
-                .frame(height: 339)
-                .offset(x: 5.5)
-            
+            .padding(.bottom, 30)
+            .frame(maxWidth: .infinity)
+            .frame(height: 250)
         }
-        
-        .background(Color.backBlue) // Background color for the Expenses section
+        .padding(.horizontal, 20)
+        .padding(.vertical, 16)
+        .background(Color(.whiteBlue)) // Background color for the Expenses section
         .cornerRadius(10)
-        .padding(.bottom, 10) // Add padding to the bottom of the section
+
     }
 }
 
-//#Preview {
-//    ExpenseCategoriesView()
-//}
+#Preview {
+    ExpenseCategoriesView(viewModel: BudgetViewModel(dataSource: .shared))
+}

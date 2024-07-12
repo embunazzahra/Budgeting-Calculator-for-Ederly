@@ -24,11 +24,9 @@ struct TabBarView: View {
                     
                         Text("Dashboard")
                 }
-                    
                 
                 
-                
-                BudgetView(viewModel: viewModel)
+                BudgetSettingsView(viewModel: viewModel)
                     .tabItem {
                         Label("Budget", systemImage: "dollarsign.circle.fill") .font(.system(size: 100))
                         

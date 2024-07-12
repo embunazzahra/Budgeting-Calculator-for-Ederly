@@ -23,9 +23,51 @@ class BudgetViewModel: ObservableObject {
         self.dataSource = dataSource
         
         // Add dummy expenses to the SwiftData to see if fetching data is works
+        if let balance = dataSource.fetchBalance() {
+            self.accountBalance = balance.accountBalance
+        } else {
+            // If balance is not found, you might want to handle this case
+            print("Balance not found")
+        }
+        
+        initializeDummyBudgetCategories()
     }
     
+    private func initializeDummyBudgetCategories() {
+        // Check if there are existing categories to avoid duplication
+        if budgetCategories.isEmpty {
+            let dummyCategories = [
+                BudgetCategory(category: .household, allocatedAmount: 500.0),
+                BudgetCategory(category: .health, allocatedAmount: 200.0),
+                BudgetCategory(category: .other, allocatedAmount: 150.0),
+                BudgetCategory(category: .savings, allocatedAmount: 100.0)
+            ]
+            self.budgetCategories = dummyCategories
+        }
+    }
+    
+    func updateBalance(accountBalance: Int){
+        self.accountBalance = accountBalance
+        dataSource.updateAccountBalance(newBalance: accountBalance)
+    }
+    
+    func deleteExpense(at offsets: IndexSet) {
+//        for index in offsets {
+///           modelContext.delete(expenses[index])
+//        }
+    }
 
+    func addExpense(category: String, amount: Double) {
+        let expenseCategory = ExpenseCategory(rawValue: category) ?? .other
+        let newExpense = Expense(category: expenseCategory, amount: amount)
+    }
+
+    
+    func expensesForCategoryAndDate(category: ExpenseCategory, date: Date) -> [Expense] {
+            return expenses.filter {
+                $0.category == category && Calendar.current.isDate($0.date, inSameDayAs: date)
+            }
+        }
 
     var totalExpenses: Double {
         expenses.reduce(0) { $0 + $1.amount }

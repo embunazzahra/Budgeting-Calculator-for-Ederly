@@ -21,22 +21,7 @@ class ExpenseViewModel: ObservableObject {
     }
     
     
-    func addExpense(category: String, amount: Double) {
-        let expenseCategory = ExpenseCategory(rawValue: category) ?? .other
-        let newExpense = Expense(category: expenseCategory, amount: amount)
-    }
 
-    func deleteExpense(at offsets: IndexSet) {
-//        for index in offsets {
-///           modelContext.delete(expenses[index])
-//        }
-    }
-    
-    func expensesForCategoryAndDate(category: ExpenseCategory, date: Date) -> [Expense] {
-            return expenses.filter {
-                $0.category == category && Calendar.current.isDate($0.date, inSameDayAs: date)
-            }
-        }
     
 }
 
