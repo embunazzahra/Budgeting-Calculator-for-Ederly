@@ -7,12 +7,52 @@
 
 import SwiftUI
 
-struct EditBalance: View {
+struct EditBalanceView: View {
+    @EnvironmentObject var viewModel: BudgetViewModel
+    @State private var inputValue: String = ""
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            HStack {
+                Text("Edit Balance")
+                    .font(.system(size: 32))
+                    .fontWeight(.bold)
+                    .padding(.leading, 20)
+                    .padding(.top, 20)
+                Spacer()
+            }
+            
+            TextField("Enter a number", text: $inputValue)
+                .keyboardType(.numberPad)
+                .padding()
+            
+            Spacer()
+            
+            Button(action: {
+                if let newBalance = Int(inputValue) {
+                    viewModel.updateBalance(accountBalance: newBalance)
+                    print("Updated balance to \(newBalance)")
+                    print("\(viewModel.accountBalance)")
+                    
+                    self.presentationMode.wrappedValue.dismiss()
+                    
+                } else {
+                    print("Invalid input: \(inputValue)")
+                }
+             }) {
+                 Text("Confirm Update")
+                     .padding()
+                     .foregroundColor(.white)
+                     .background(Color.blue)
+                     .cornerRadius(8)
+             }
+            .padding()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
 #Preview {
-    EditBalance()
+    EditBalanceView()
 }
