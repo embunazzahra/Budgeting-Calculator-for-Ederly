@@ -14,11 +14,10 @@ struct CalcView: View {
     
     
     let buttons: [[CalcButton]] = [
-        [.del, .bracket, .percent, .subtract],
-        [.one, .two, .three, .multiply],
-        [.four, .five, .six, .subtract],
-        [.seven, .eight, .nine, .add],
-        [.zero, .doubleZero, .equal],
+        [.clear, .one, .four, .seven, .zero],
+        [.divide, .two, .five, .eight, .doubleZero],
+        [.multiply, .three, .six, .nine, .decimal],
+        [.del, .subtract, .add, .equal],
     ]
     
     var body: some View {
@@ -86,10 +85,10 @@ struct CalcView: View {
                 
                 //calculator
                 VStack{
-                    VStack{
+                    HStack{
                         // Our buttons
                         ForEach(buttons, id: \.self) { row in
-                            HStack(spacing: 12) {
+                            VStack(spacing: 12) {
                                 ForEach(row, id: \.self) { item in
                                     Button(action: {
                                         self.didTap(button: item)
@@ -97,12 +96,12 @@ struct CalcView: View {
                                         getTextOrImage(for: item)
                                             .font(.system(size: 40))
                                             .frame(
-                                                width: self.buttonWidth(item: item),
-                                                height: self.buttonHeight()
+                                                width: self.buttonWidth(),
+                                                height: self.buttonHeight(item: item)
                                             )
                                             .background(item.buttonColor)
                                             .foregroundColor(item.fontColor)
-                                            .cornerRadius(self.buttonWidth(item: item)/2)
+                                            .cornerRadius(self.buttonWidth()/2)
                                     })
                                 }
                             }
@@ -167,23 +166,33 @@ struct CalcView: View {
         }
     }
     
-    func buttonWidth(item: CalcButton) -> CGFloat {
-        if item == .equal {
-            return ((UIScreen.main.bounds.width - (4*12)) / 4) * 2
-        }
+    func buttonWidth() -> CGFloat {
+//        if item == .equal {
+//            return ((UIScreen.main.bounds.width - (4*12)) / 4) * 2
+//        }
         return (UIScreen.main.bounds.width - (5*12)) / 4
     }
     
-    func buttonHeight() -> CGFloat {
+    func buttonHeight(item: CalcButton) -> CGFloat {
+        if item == .equal{
+            return ((UIScreen.main.bounds.width - (4*12)) / 4)*2
+        }
         return (UIScreen.main.bounds.width - (5*12)) / 4
     }
     
     func getTextOrImage(for value: CalcButton) -> AnyView {
-        if value == .del {
+        switch value{
+        case .del, .divide, .multiply, .subtract, .add, .equal:
             return AnyView(Image(systemName: value.rawValue))
-        } else {
+        default:
             return AnyView(Text(value.rawValue))
         }
+        
+//        if value == .del {
+//            return AnyView(Image(systemName: value.rawValue))
+//        } else {
+//            return AnyView(Text(value.rawValue))
+//        }
     }
 }
 
@@ -198,17 +207,17 @@ enum CalcButton: String {
     case eight = "8"
     case nine = "9"
     case zero = "0"
-    case add = "+"
-    case subtract = "-"
-    case divide = "÷"
-    case multiply = "x"
-    case equal = "="
+    case add = "plus"
+    case subtract = "minus"
+    case divide = "divide"
+    case multiply = "multiply"
+    case equal = "equal"
     case clear = "AC"
     case doubleZero = "00"
     case del = "delete.left"
     case bracket = "()"
     case percent = "%"
-    //    case decimal = "."
+    case decimal = "."
     //    case percent = "%"
     //    case negative = "-/+"
     
@@ -234,7 +243,7 @@ enum CalcButton: String {
     
     var isText: Bool {
         switch self {
-        case .del:
+        case .del, .divide, .multiply, .subtract, .add, .equal:
             return false
         default:
             return true
