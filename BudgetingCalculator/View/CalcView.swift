@@ -25,8 +25,7 @@ struct CalcView: View {
         ZStack {
             Color.white.edgesIgnoringSafeArea(.all)
             
-            VStack {
-                Spacer()
+            VStack(spacing: 0){
                 
                 //display
                 VStack(alignment: .center, spacing: 0){
@@ -49,7 +48,7 @@ struct CalcView: View {
                             .foregroundColor(.black)
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)                .background(Color("yellowFFCF23"))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)                .background(Color("yellowFFCF23").opacity(0.2))
                 
                 
                 
@@ -80,8 +79,12 @@ struct CalcView: View {
                     }
                 }
                 .padding(.horizontal)
-                .padding(.top,5)
+                .padding(.vertical,10)
+                .background(Color("yellowFFCF23"))
                 
+                
+                
+                //calculator
                 VStack{
                     VStack{
                         // Our buttons
@@ -103,14 +106,16 @@ struct CalcView: View {
                                     })
                                 }
                             }
-//                            .padding(.bottom, 3)
+                            //                            .padding(.bottom, 3)
                         }
                     }
                 }
                 .padding()
                 .background(Color("grayF4F4F4"))
                 
+                
             }
+            
         }
     }
     
