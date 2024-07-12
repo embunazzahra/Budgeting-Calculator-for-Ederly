@@ -12,13 +12,6 @@ struct CalcView: View {
     @State var runningNumber = 0
     @State var currentOperation: Operation = .none
     
-    //        let buttons: [[CalcButton]] = [
-    //            [.clear, .negative, .percent, .divide],
-    //            [.seven, .eight, .nine, .mutliply],
-    //            [.four, .five, .six, .subtract],
-    //            [.one, .two, .three, .add],
-    //            [.zero, .decimal, .equal],
-    //        ]
     
     let buttons: [[CalcButton]] = [
         [.del, .bracket, .percent, .subtract],
@@ -41,31 +34,47 @@ struct CalcView: View {
                     Text(value)
                         .bold()
                         .font(.system(size: 100))
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                 }
                 .padding()
                 
-                // Our buttons
-                ForEach(buttons, id: \.self) { row in
-                    HStack(spacing: 12) {
-                        ForEach(row, id: \.self) { item in
-                            Button(action: {
-                                self.didTap(button: item)
-                            }, label: {
-                                getTextOrImage(for: item)
-                                    .font(.system(size: 40))
-                                    .frame(
-                                        width: self.buttonWidth(item: item),
-                                        height: self.buttonHeight()
-                                    )
-                                    .background(item.buttonColor)
-                                    .foregroundColor(item.fontColor)
-                                    .cornerRadius(self.buttonWidth(item: item)/2)
-                            })
+                VStack{
+                    VStack{
+                        // Our buttons
+                        ForEach(buttons, id: \.self) { row in
+                            HStack(spacing: 12) {
+                                ForEach(row, id: \.self) { item in
+                                    Button(action: {
+                                        self.didTap(button: item)
+                                    }, label: {
+                                        getTextOrImage(for: item)
+                                            .font(.system(size: 40))
+                                            .frame(
+                                                width: self.buttonWidth(item: item),
+                                                height: self.buttonHeight()
+                                            )
+                                            .background(item.buttonColor)
+                                            .foregroundColor(item.fontColor)
+                                            .cornerRadius(self.buttonWidth(item: item)/2)
+                                    })
+                                }
+                            }
+//                            .padding(.bottom, 3)
                         }
                     }
-                    .padding(.bottom, 3)
                 }
+                .padding()
+                .background(Color("grayF4F4F4"))
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
             }
         }
     }
@@ -130,12 +139,12 @@ struct CalcView: View {
     }
     
     func getTextOrImage(for value: CalcButton) -> AnyView {
-            if value == .del {
-                return AnyView(Image(systemName: value.rawValue))
-            } else {
-                return AnyView(Text(value.rawValue))
-            }
+        if value == .del {
+            return AnyView(Image(systemName: value.rawValue))
+        } else {
+            return AnyView(Text(value.rawValue))
         }
+    }
 }
 
 enum CalcButton: String {
@@ -159,9 +168,9 @@ enum CalcButton: String {
     case del = "delete.left"
     case bracket = "()"
     case percent = "%"
-//    case decimal = "."
-//    case percent = "%"
-//    case negative = "-/+"
+    //    case decimal = "."
+    //    case percent = "%"
+    //    case negative = "-/+"
     
     var buttonColor: Color {
         switch self {
