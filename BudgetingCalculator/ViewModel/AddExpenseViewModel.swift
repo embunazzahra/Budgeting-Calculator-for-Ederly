@@ -15,6 +15,90 @@ class AddExpenseViewModel: ObservableObject {
     @Published var calcHistory = ""
     @Published var isCalculating = false
     var convertedValue = "0"
+    @Published var progress = 0.7
+    private let dataSource: SwiftDataService
+    @Published var expenses: [Expense] = []
+    @Published var budgetCategories: [BudgetCategory] = []
+    
+    init(dataSource: SwiftDataService) {
+        self.dataSource = dataSource
+        initializeDummyExpensesCategories()
+        initializeDummyBudgetCategories()
+        initializeProgress(.household)
+    }
+    
+    private func initializeDummyExpensesCategories() {
+        if expenses.isEmpty {
+            let dummyExpenses = [
+                Expense(category: .household, amount: 300000.0),
+                Expense(category: .household, amount: 100000.0),
+                Expense(category: .health, amount:500000.0),
+                Expense(category: .other, amount:200000.0),
+                Expense(category: .savings, amount:20000.0),
+            ]
+            self.expenses = dummyExpenses
+        }
+    }
+    
+    private func initializeDummyBudgetCategories() {
+        // Check if there are existing categories to avoid duplication
+        if budgetCategories.isEmpty {
+            let dummyCategories = [
+                BudgetCategory(category: .household, allocatedAmount: 2600000.0),
+                BudgetCategory(category: .health, allocatedAmount: 2000000.0),
+                BudgetCategory(category: .other, allocatedAmount: 1500000.0),
+                BudgetCategory(category: .savings, allocatedAmount: 100000.0)
+            ]
+            self.budgetCategories = dummyCategories
+        }
+    }
+    
+    func totalExpensesForCategoryThisMonth(category: ExpenseCategory) -> Double {
+        let calendar = Calendar.current
+        let currentDate = Date()
+        let components = calendar.dateComponents([.year, .month], from: currentDate)
+        
+        let filteredExpenses = expenses.filter { expense in
+            let expenseComponents = calendar.dateComponents([.year, .month], from: expense.date)
+            return expense.category == category &&
+            expenseComponents.year == components.year &&
+            expenseComponents.month == components.month
+        }
+        
+        let total = filteredExpenses.reduce(0) { $0 + $1.amount }
+        return total
+    }
+    
+    func remainingBudgetForCategory(_ category: ExpenseCategory) -> Double {
+        let categoryBudget = budgetCategories.first(where: { $0.category == category })?.allocatedAmount ?? 0
+        let spent = expenses.filter { $0.category == category }.reduce(0) { $0 + $1.amount }
+        return max(0, categoryBudget - spent)
+    }
+    
+    func initializeProgress(_ category: ExpenseCategory) {
+        let budget = remainingBudgetForCategory(category)
+        let expense = totalExpensesForCategoryThisMonth(category: category)
+        
+        if budget <= 0.0{
+            self.progress = 0.5
+        }
+        else{
+            self.progress = (1-(expense/budget))
+        }
+        
+    }
+    
+    func updateProgress(value: Double, category: ExpenseCategory) {
+        let budget = remainingBudgetForCategory(category)
+        let expense = totalExpensesForCategoryThisMonth(category: category)
+        let newExpense = expense + value
+        if budget <= 0.0{
+            self.progress = 0.5
+        }
+        else{
+            self.progress = (1-(newExpense/budget))
+        }
+    }
     
     let buttons: [[CalcButton]] = [
         [.clear, .one, .four, .seven, .zero],
@@ -26,9 +110,7 @@ class AddExpenseViewModel: ObservableObject {
     func didTap(button: CalcButton) {
         var convertedIcon = ""
         
-        if value == "0"{
-            value = ""
-        }
+        
         
         switch button{
         case .add:
@@ -48,29 +130,77 @@ class AddExpenseViewModel: ObservableObject {
             convertedValue += convertedIcon
             value += convertedIcon
         case .clear:
-            value = ""
+            initializeProgress(.household)
+            value = "0"
             convertedValue = ""
             calcHistory = ""
         case .del:
             if !value.isEmpty {
                 value.removeLast()
+            }
+            if !convertedValue.isEmpty {
                 convertedValue.removeLast()
             }
+            
         case .equal:
-            calcHistory = value
-            value = calculateExpression(expression: convertedValue)
-            convertedValue = value
+            if !value.isEmpty {
+                value = calculateExpression(expression: convertedValue)
+                calcHistory = value
+                convertedValue = value
+            }
+            
         default:
+            if value == "0"{
+                value = ""
+            }
+            
             convertedValue += button.rawValue
             value += button.rawValue
         }
+        
+        if value.count >= 2 {
+            value = doubleOperatorChecker(expression: value)
+            convertedValue = doubleOperatorChecker(expression: convertedValue)
+            
+        }
+        
+        if value.isEmpty || convertedValue.isEmpty{
+            value = "0"
+            convertedValue = "0"
+        }
+        
         
         if(containsOperator(value)){
             isCalculating = true
         }else{
             isCalculating = false
+            if let convertedValue = Double(value){
+                self.updateProgress(value: convertedValue,category: .household)
+            }
+            
         }
         
+        
+    }
+    
+    func doubleOperatorChecker(expression: String) -> String {
+        var result = expression
+        
+        let lastChar = expression.last
+        if expression.count >= 2 {
+            let secondLastCharIndex = expression.index(expression.endIndex, offsetBy: -2)
+            let secondLastChar = expression[secondLastCharIndex]
+            
+            // Memeriksa apakah keduanya adalah operator
+            if let last = lastChar, let secondLast = secondLastChar as Character? {
+                if "+-*/x".contains(last) && "+-*/x".contains(secondLast) {
+                    // Hapus secondLastChar dari string result
+                    result.remove(at: secondLastCharIndex)
+                }
+            }
+        }
+        
+        return result
     }
     
     func calculateExpression(expression: String) -> String {
@@ -84,21 +214,21 @@ class AddExpenseViewModel: ObservableObject {
     }
     
     func sanitizeExpression(expression: String) -> String {
-            // Remove leading or trailing operators
-            let operators = CharacterSet(charactersIn: "+-*/")
-            var sanitizedExpression = expression.trimmingCharacters(in: operators)
-            
-            // Remove any invalid sequences
-            let pattern = "[0-9]+([+-/*][0-9]+)*"
-            let regex = try! NSRegularExpression(pattern: pattern)
-            if let match = regex.firstMatch(in: sanitizedExpression, options: [], range: NSRange(location: 0, length: sanitizedExpression.count)) {
-                if let range = Range(match.range, in: sanitizedExpression) {
-                    sanitizedExpression = String(sanitizedExpression[range])
-                }
+        // Remove leading or trailing operators
+        let operators = CharacterSet(charactersIn: "+-*/")
+        var sanitizedExpression = expression.trimmingCharacters(in: operators)
+        
+        // Remove any invalid sequences
+        let pattern = "[0-9]+([+-/*][0-9]+)*"
+        let regex = try! NSRegularExpression(pattern: pattern)
+        if let match = regex.firstMatch(in: sanitizedExpression, options: [], range: NSRange(location: 0, length: sanitizedExpression.count)) {
+            if let range = Range(match.range, in: sanitizedExpression) {
+                sanitizedExpression = String(sanitizedExpression[range])
             }
-            
-            return sanitizedExpression
         }
+        
+        return sanitizedExpression
+    }
     
     
     func getTextOrImage(for button: CalcButton) -> AnyView {
@@ -115,8 +245,8 @@ class AddExpenseViewModel: ObservableObject {
     }
     
     func containsOperator(_ value: String) -> Bool {
-            return value.contains("+") || value.contains("-") || value.contains("x") || value.contains("/")
-        }
+        return value.contains("+") || value.contains("-") || value.contains("x") || value.contains("/")
+    }
 }
 
 enum CalcButton: String {
