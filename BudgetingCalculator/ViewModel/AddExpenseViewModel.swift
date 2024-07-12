@@ -19,12 +19,14 @@ class AddExpenseViewModel: ObservableObject {
     private let dataSource: SwiftDataService
     @Published var expenses: [Expense] = []
     @Published var budgetCategories: [BudgetCategory] = []
+    @Published var runningExpense = 0.0
     
     init(dataSource: SwiftDataService) {
         self.dataSource = dataSource
         initializeDummyExpensesCategories()
         initializeDummyBudgetCategories()
         initializeProgress(.household)
+        self.runningExpense = totalExpensesForCategoryThisMonth(category: .household)
     }
     
     private func initializeDummyExpensesCategories() {
@@ -100,6 +102,12 @@ class AddExpenseViewModel: ObservableObject {
         }
     }
     
+    func updateRunningExpense(value: Double) {
+        let expense = totalExpensesForCategoryThisMonth(category: .household)
+        let newExpense = expense + value
+        self.runningExpense = newExpense
+    }
+    
     let buttons: [[CalcButton]] = [
         [.clear, .one, .four, .seven, .zero],
         [.divide, .two, .five, .eight, .doubleZero],
@@ -172,10 +180,12 @@ class AddExpenseViewModel: ObservableObject {
         
         if(containsOperator(value)){
             isCalculating = true
+            self.updateRunningExpense(value: 0.0)
         }else{
             isCalculating = false
             if let convertedValue = Double(value){
                 self.updateProgress(value: convertedValue,category: .household)
+                self.updateRunningExpense(value: convertedValue)
             }
             
         }
