@@ -25,9 +25,10 @@ struct CalcView: View {
             Color.white.edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 0){
-                
+
                 //display
                 VStack(alignment: .center, spacing: 0){
+
                     //history
                     HStack{
                         Text("200.000 x 2")
@@ -47,8 +48,7 @@ struct CalcView: View {
                             .foregroundColor(.black)
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)                .background(Color("yellowFFCF23").opacity(0.2))
-                
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)          .background(Color("yellowFFCF23").opacity(0.2))
                 
                 
                 //progress bar
@@ -116,6 +116,7 @@ struct CalcView: View {
             }
             
         }
+        .navigationBarHidden(true)
     }
     
     func didTap(button: CalcButton) {
@@ -167,9 +168,6 @@ struct CalcView: View {
     }
     
     func buttonWidth() -> CGFloat {
-//        if item == .equal {
-//            return ((UIScreen.main.bounds.width - (4*12)) / 4) * 2
-//        }
         return (UIScreen.main.bounds.width - (5*12)) / 4
     }
     
@@ -188,11 +186,6 @@ struct CalcView: View {
             return AnyView(Text(value.rawValue))
         }
         
-//        if value == .del {
-//            return AnyView(Image(systemName: value.rawValue))
-//        } else {
-//            return AnyView(Text(value.rawValue))
-//        }
     }
 }
 
@@ -215,16 +208,15 @@ enum CalcButton: String {
     case clear = "AC"
     case doubleZero = "00"
     case del = "delete.left"
-    case bracket = "()"
-    case percent = "%"
     case decimal = "."
-    //    case percent = "%"
-    //    case negative = "-/+"
+
     
     var buttonColor: Color {
         switch self {
-        case .divide, .multiply, .subtract, .add, .clear, .del, .bracket, .percent:
+        case .divide, .multiply, .subtract, .add:
             return Color("grayColor")
+        case .clear, .del:
+            return .red
         case .equal:
             return Color("orangeColor")
         default:
@@ -234,7 +226,7 @@ enum CalcButton: String {
     
     var fontColor: Color {
         switch self {
-        case .divide, .multiply, .subtract, .add, .clear, .del, .bracket, .percent:
+        case .divide, .multiply, .subtract, .add:
             return .black
         default:
             return .white
