@@ -28,6 +28,21 @@ class BudgetViewModel: ObservableObject {
             // If balance is not found, you might want to handle this case
             print("Balance not found")
         }
+        
+        initializeDummyBudgetCategories()
+    }
+    
+    private func initializeDummyBudgetCategories() {
+        // Check if there are existing categories to avoid duplication
+        if budgetCategories.isEmpty {
+            let dummyCategories = [
+                BudgetCategory(category: .household, allocatedAmount: 500.0),
+                BudgetCategory(category: .health, allocatedAmount: 200.0),
+                BudgetCategory(category: .other, allocatedAmount: 150.0),
+                BudgetCategory(category: .savings, allocatedAmount: 100.0)
+            ]
+            self.budgetCategories = dummyCategories
+        }
     }
     
     func addExpense(category: String, amount: Double) {
