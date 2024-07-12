@@ -19,7 +19,7 @@ class SwiftDataService {
     @MainActor
     private init() {
         // Change isStoredInMemoryOnly to false if you would like to see the data persistance after kill/exit the app
-        self.modelContainer = try! ModelContainer(for: Expense.self, Balance.self, BudgetCategory.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+        self.modelContainer = try! ModelContainer(for: Expense.self, Balance.self, BudgetCategory.self, configurations: ModelConfiguration(isStoredInMemoryOnly: false))
         self.modelContext = modelContainer.mainContext
     }
     

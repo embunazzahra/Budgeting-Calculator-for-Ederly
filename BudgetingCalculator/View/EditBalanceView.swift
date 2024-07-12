@@ -36,7 +36,7 @@ struct EditBalanceView: View {
             Spacer()
             
             Button(action: {
-                if let newBalance = Int(inputValue) {
+                if let newBalance = Int(numberSeperator.revertFormat(inputValue)) {
                     viewModel.updateBalance(accountBalance: newBalance)
                     print("Updated balance to \(newBalance)")
                     print("\(viewModel.accountBalance)")
@@ -44,7 +44,7 @@ struct EditBalanceView: View {
                     self.presentationMode.wrappedValue.dismiss()
                     
                 } else {
-                    print("Invalid input: \(inputValue)")
+                    print("Invalid Input")
                 }
              }) {
                  Text("Confirm Update")

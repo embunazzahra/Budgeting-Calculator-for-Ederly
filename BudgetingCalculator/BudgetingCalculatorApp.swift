@@ -11,7 +11,7 @@ struct BudgetingCalculatorApp: App {
     var body: some Scene {
         WindowGroup {
                     TabBarView()
-                        .modelContainer(for: [Expense.self, BudgetCategory.self], inMemory: false)
+                        
                 }
     }
 }
