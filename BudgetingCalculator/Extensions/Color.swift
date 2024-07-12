@@ -18,4 +18,5 @@ extension Color {
     static let lightRed = Color(red: 0.9804, green: 0.5490, blue: 0.7882) // #FA89CF
     static let lightcyan = Color(red: 0.4706, green: 0.9961, blue: 0.9882) // #77FFF9
     static let skyBlue = Color(red: 0.4902, green: 0.8431, blue: 1.0) // #7CD5FF
+    static let backBlue = Color(red: 226/255.0, green: 239/255.0, blue: 255/255.0)
 }
