@@ -10,47 +10,36 @@ import SwiftUI
 struct TabBarView: View {
     @StateObject var viewModel: BudgetViewModel = BudgetViewModel(dataSource: .shared)
     @State private var selectedTab = 0
+    @State var isPresentCategoryExpense = false
+    
+
 
     var body: some View {
         ZStack{
             TabView {
+                
                 BudgetView(viewModel: viewModel)
                     .tabItem {
                         Image(systemName: "creditcard")
                     
-                        Text("asdas")
-                    }
-                
-                HistoryView(viewModel: viewModel)
-                    .tabItem {
-                        Label("History", systemImage: "clock") .font(.system(size: 100))
-                        
-                    }.padding(.bottom)
-                    
-            }
-            
-            GeometryReader { geometry in
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Button(action: {
-//                                showingNewEntrySheet = true
-                        }) {
-                            Image(systemName: "plus.circle.fill")
-                                .padding()
-                                .clipShape(Circle())
-                                .shadow(color: .black.opacity(0.1), radius: 7.5, x: 0, y: 0)
-                        }
-                        .padding(.bottom, geometry.safeAreaInsets.bottom + 40)
-                        Spacer()
-                    }
+                        Text("Dashboard")
                 }
-            }
-            .edgesIgnoringSafeArea(.all)
+                    
+                
+                
+                
+                BudgetView(viewModel: viewModel)
+                    .tabItem {
+                        Label("Budget", systemImage: "dollarsign.circle.fill") .font(.system(size: 100))
+                        
+                    }.padding(.horizontal)
+                    
+            }.accentColor(.brightOrange)
+            .shadow(color: .black.opacity(1), radius: 0, x: 50, y: 50)
             
+            ExpenseButton(viewModel: viewModel)
         }
-        .shadow(radius: 10)
+
         }
         
         

@@ -15,6 +15,7 @@ class BudgetViewModel: ObservableObject {
     @Published var isDarkMode: Bool = false
     @Published var currentNumber: String = "0"
     @Published var isCalculatorSheetPresented = false
+    @Published var isPresentCategoryExpense = false
     @Published var accountBalance = 10000000 // Initial Account Balance
     @Published var selectedCategory: ExpenseCategory?
     
@@ -24,16 +25,7 @@ class BudgetViewModel: ObservableObject {
         // Add dummy expenses to the SwiftData to see if fetching data is works
     }
     
-    func addExpense(category: String, amount: Double) {
-        let expenseCategory = ExpenseCategory(rawValue: category) ?? .other
-        let newExpense = Expense(category: expenseCategory, amount: amount)
-    }
 
-    func deleteExpense(at offsets: IndexSet) {
-//        for index in offsets {
-///           modelContext.delete(expenses[index])
-//        }
-    }
 
     var totalExpenses: Double {
         expenses.reduce(0) { $0 + $1.amount }

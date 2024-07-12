@@ -19,7 +19,7 @@ struct BudgetSettingsView: View {
                 VStack(alignment: .center, spacing: 10){
                     VStack{
                         AmountBudget().padding(.bottom,20)
-                            
+                             
                         Divider()
                             .padding()
                     }

@@ -29,12 +29,12 @@ struct ExpenseCategoriesView: View {
             }
                 .padding(.bottom, 30)
                 .frame(maxWidth: .infinity)
-                .frame(height: 250)
+                .frame(height: 339)
                 .offset(x: 5.5)
             
         }
         
-        .background(Color(.systemGray6)) // Background color for the Expenses section
+        .background(Color.backBlue) // Background color for the Expenses section
         .cornerRadius(10)
         .padding(.bottom, 10) // Add padding to the bottom of the section
     }
