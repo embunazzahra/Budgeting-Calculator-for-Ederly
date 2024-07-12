@@ -22,6 +22,17 @@
 		464952AB2C3F011100BC8305 /* IncomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952AA2C3F011100BC8305 /* IncomeViewModel.swift */; };
 		464952AD2C3F0E9B00BC8305 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952AC2C3F0E9B00BC8305 /* Color.swift */; };
 		464952AF2C3F0EDC00BC8305 /* BudgetCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952AE2C3F0EDC00BC8305 /* BudgetCategory.swift */; };
+
+		464952B52C3FD87200BC8305 /* FormHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952B42C3FD87200BC8305 /* FormHistory.swift */; };
+		464952B72C3FDD5400BC8305 /* ButtonUpdateBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952B62C3FDD5400BC8305 /* ButtonUpdateBudget.swift */; };
+		464952B92C3FF61300BC8305 /* BudgetDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952B82C3FF61300BC8305 /* BudgetDetail.swift */; };
+		464952BB2C3FF72300BC8305 /* AmountBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952BA2C3FF72300BC8305 /* AmountBudget.swift */; };
+		464952CC2C41176500BC8305 /* ExpenseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952CB2C41176500BC8305 /* ExpenseButton.swift */; };
+		464952CE2C41180A00BC8305 /* ChooseCategorySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952CD2C41180A00BC8305 /* ChooseCategorySheet.swift */; };
+		464952D02C4119A400BC8305 /* CircleCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952CF2C4119A400BC8305 /* CircleCategory.swift */; };
+
+		7113359D2C4119990035AB15 /* AddExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113359C2C4119990035AB15 /* AddExpenseViewModel.swift */; };
+
 		71507E262C3E1657003D043C /* BudgetingCalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71507E252C3E1657003D043C /* BudgetingCalculatorApp.swift */; };
 		71507E282C3E1657003D043C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71507E272C3E1657003D043C /* ContentView.swift */; };
 		71507E2A2C3E1659003D043C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71507E292C3E1659003D043C /* Assets.xcassets */; };
@@ -53,6 +64,17 @@
 		464952AA2C3F011100BC8305 /* IncomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeViewModel.swift; sourceTree = "<group>"; };
 		464952AC2C3F0E9B00BC8305 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		464952AE2C3F0EDC00BC8305 /* BudgetCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCategory.swift; sourceTree = "<group>"; };
+
+		464952B42C3FD87200BC8305 /* FormHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormHistory.swift; sourceTree = "<group>"; };
+		464952B62C3FDD5400BC8305 /* ButtonUpdateBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonUpdateBudget.swift; sourceTree = "<group>"; };
+		464952B82C3FF61300BC8305 /* BudgetDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetail.swift; sourceTree = "<group>"; };
+		464952BA2C3FF72300BC8305 /* AmountBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountBudget.swift; sourceTree = "<group>"; };
+		464952CB2C41176500BC8305 /* ExpenseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseButton.swift; sourceTree = "<group>"; };
+		464952CD2C41180A00BC8305 /* ChooseCategorySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCategorySheet.swift; sourceTree = "<group>"; };
+		464952CF2C4119A400BC8305 /* CircleCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCategory.swift; sourceTree = "<group>"; };
+
+		7113359C2C4119990035AB15 /* AddExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewModel.swift; sourceTree = "<group>"; };
+
 		71507E222C3E1657003D043C /* BudgetingCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetingCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71507E252C3E1657003D043C /* BudgetingCalculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingCalculatorApp.swift; sourceTree = "<group>"; };
 		71507E272C3E1657003D043C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -96,6 +118,8 @@
 			children = (
 				464952912C3EECEF00BC8305 /* BudgetViewModel.swift */,
 				464952AA2C3F011100BC8305 /* IncomeViewModel.swift */,
+
+				7113359C2C4119990035AB15 /* AddExpenseViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -103,6 +127,7 @@
 		464952902C3EECD300BC8305 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				464952B22C3FD84600BC8305 /* Component */,
 				C2CE94352C41232B00BA084A /* Component */,
 				C2300CBC2C3FD23200AD5D52 /* Dashboard */,
 				464952962C3EECFE00BC8305 /* BudgetingSettingView.swift */,
@@ -114,6 +139,8 @@
 				464952A32C3EF54400BC8305 /* IncomeView.swift */,
 				464952952C3EECFE00BC8305 /* TabBarView.swift */,
 				464952942C3EECFE00BC8305 /* UpdateAccountView.swift */,
+				464952B82C3FF61300BC8305 /* BudgetDetail.swift */,
+				464952CD2C41180A00BC8305 /* ChooseCategorySheet.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -125,6 +152,18 @@
 				464952AC2C3F0E9B00BC8305 /* Color.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		464952B22C3FD84600BC8305 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				464952B42C3FD87200BC8305 /* FormHistory.swift */,
+				464952B62C3FDD5400BC8305 /* ButtonUpdateBudget.swift */,
+				464952BA2C3FF72300BC8305 /* AmountBudget.swift */,
+				464952CB2C41176500BC8305 /* ExpenseButton.swift */,
+				464952CF2C4119A400BC8305 /* CircleCategory.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		71507E192C3E1657003D043C = {
@@ -276,14 +315,22 @@
 				71507E282C3E1657003D043C /* ContentView.swift in Sources */,
 				464952A22C3EED0500BC8305 /* Expense.swift in Sources */,
 				71507E262C3E1657003D043C /* BudgetingCalculatorApp.swift in Sources */,
+				464952D02C4119A400BC8305 /* CircleCategory.swift in Sources */,
+				464952B92C3FF61300BC8305 /* BudgetDetail.swift in Sources */,
 				4649529A2C3EECFE00BC8305 /* CalculatorSheet.swift in Sources */,
 				464952AD2C3F0E9B00BC8305 /* Color.swift in Sources */,
 				4649529B2C3EECFE00BC8305 /* HistoryView.swift in Sources */,
+				464952B52C3FD87200BC8305 /* FormHistory.swift in Sources */,
+				464952BB2C3FF72300BC8305 /* AmountBudget.swift in Sources */,
 				C29C838E2C3FD44C00215D31 /* AccountBalanceView.swift in Sources */,
+				464952B72C3FDD5400BC8305 /* ButtonUpdateBudget.swift in Sources */,
 				C2A5EA192C3FF7A500F0CC42 /* Balance.swift in Sources */,
 				464952AF2C3F0EDC00BC8305 /* BudgetCategory.swift in Sources */,
+				464952CE2C41180A00BC8305 /* ChooseCategorySheet.swift in Sources */,
 				464952A72C3EF59100BC8305 /* Rounded.swift in Sources */,
+				464952D42C4143EE00BC8305 /* ExpenseViewModel.swift in Sources */,
 				4649529C2C3EECFE00BC8305 /* ExpenseCategoryView.swift in Sources */,
+				464952CC2C41176500BC8305 /* ExpenseButton.swift in Sources */,
 				464952AB2C3F011100BC8305 /* IncomeViewModel.swift in Sources */,
 				464952A42C3EF54400BC8305 /* IncomeView.swift in Sources */,
 				4649529D2C3EECFE00BC8305 /* BudgetingSettingView.swift in Sources */,
@@ -291,6 +338,7 @@
 				4649529E2C3EECFE00BC8305 /* TabBarView.swift in Sources */,
 				4649529F2C3EECFE00BC8305 /* BudgetView.swift in Sources */,
 				464952A02C3EECFE00BC8305 /* UpdateAccountView.swift in Sources */,
+				7113359D2C4119990035AB15 /* AddExpenseViewModel.swift in Sources */,
 				C29C838C2C3FD2F200215D31 /* ExpenseCategoriesView.swift in Sources */,
 				71507E342C3E16B7003D043C /* CalcView.swift in Sources */,
 				C2300CBB2C3FCE1700AD5D52 /* SwiftDataService.swift in Sources */,

@@ -15,6 +15,7 @@ class BudgetViewModel: ObservableObject {
     @Published var isDarkMode: Bool = false
     @Published var currentNumber: String = "0"
     @Published var isCalculatorSheetPresented = false
+    @Published var isPresentCategoryExpense = false
     @Published var accountBalance = 10000000 // Initial Account Balance
     @Published var selectedCategory: ExpenseCategory?
     
@@ -45,11 +46,6 @@ class BudgetViewModel: ObservableObject {
         }
     }
     
-    func addExpense(category: String, amount: Double) {
-        let expenseCategory = ExpenseCategory(rawValue: category) ?? .other
-        let newExpense = Expense(category: expenseCategory, amount: amount)
-    }
-
     func updateBalance(accountBalance: Int){
         self.accountBalance = accountBalance
         dataSource.updateAccountBalance(newBalance: accountBalance)
@@ -60,6 +56,18 @@ class BudgetViewModel: ObservableObject {
 ///           modelContext.delete(expenses[index])
 //        }
     }
+
+    func addExpense(category: String, amount: Double) {
+        let expenseCategory = ExpenseCategory(rawValue: category) ?? .other
+        let newExpense = Expense(category: expenseCategory, amount: amount)
+    }
+
+    
+    func expensesForCategoryAndDate(category: ExpenseCategory, date: Date) -> [Expense] {
+            return expenses.filter {
+                $0.category == category && Calendar.current.isDate($0.date, inSameDayAs: date)
+            }
+        }
 
     var totalExpenses: Double {
         expenses.reduce(0) { $0 + $1.amount }

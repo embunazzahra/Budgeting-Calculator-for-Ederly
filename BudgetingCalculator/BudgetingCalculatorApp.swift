@@ -6,12 +6,12 @@
 //
 
 import SwiftUI
-
 @main
 struct BudgetingCalculatorApp: App {
     var body: some Scene {
         WindowGroup {
-            BudgetView()
-        }
+                    TabBarView()
+                        .modelContainer(for: [Expense.self, BudgetCategory.self], inMemory: false)
+                }
     }
 }

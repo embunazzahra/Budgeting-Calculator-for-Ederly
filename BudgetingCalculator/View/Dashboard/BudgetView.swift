@@ -9,8 +9,10 @@ import SwiftUI
 import SwiftData
 
 struct BudgetView: View {
+    @State var isCalculatorSheetPresented = false
     @StateObject var viewModel: BudgetViewModel = BudgetViewModel(dataSource: .shared)
     @Environment(\.locale) var locale
+    
     @State private var isUpdateBalanceSheetPresented = false
 
     var body: some View {

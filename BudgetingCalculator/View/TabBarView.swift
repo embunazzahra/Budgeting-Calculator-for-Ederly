@@ -9,26 +9,40 @@ import SwiftUI
 
 struct TabBarView: View {
     @StateObject var viewModel: BudgetViewModel = BudgetViewModel(dataSource: .shared)
+    @State private var selectedTab = 0
+    @State var isPresentCategoryExpense = false
+    
+
 
     var body: some View {
-        TabView {
-            BudgetView(viewModel: viewModel)
-                .tabItem {
-                    Label("Dashboard", systemImage: "creditcard")
+        ZStack{
+            TabView {
+                
+                BudgetView(viewModel: viewModel)
+                    .tabItem {
+                        Image(systemName: "creditcard")
+                    
+                        Text("Dashboard")
                 }
-            HistoryView(viewModel: viewModel)
-                .tabItem {
-                    Label("History", systemImage: "clock")
-                }
-            BudgetSettingsView(viewModel: viewModel)
-                .tabItem {
-                    Label("Budget", systemImage: "dollarsign.circle.fill")
-                }
+                
+                
+                BudgetSettingsView(viewModel: viewModel)
+                    .tabItem {
+                        Label("Budget", systemImage: "dollarsign.circle.fill") .font(.system(size: 100))
+                        
+                    }.padding(.horizontal)
+                    
+            }.accentColor(.brightOrange)
+            .shadow(color: .black.opacity(1), radius: 0, x: 50, y: 50)
+            
+            ExpenseButton(viewModel: viewModel)
+        }
+
         }
         
-    }
         
 }
+
 
 
 #Preview {
