@@ -9,119 +9,184 @@ import SwiftUI
 
 struct CalcView: View {
     @State var value = "0"
-        @State var runningNumber = 0
-        @State var currentOperation: Operation = .none
+    @State var runningNumber = 0
+    @State var currentOperation: Operation = .none
+    
+    
+    let buttons: [[CalcButton]] = [
+        [.clear, .one, .four, .seven, .zero],
+        [.divide, .two, .five, .eight, .doubleZero],
+        [.multiply, .three, .six, .nine, .decimal],
+        [.del, .subtract, .add, .equal],
+    ]
+    
+    var body: some View {
+        ZStack {
+            Color.white.edgesIgnoringSafeArea(.all)
+            
+            VStack(spacing: 0){
 
-        let buttons: [[CalcButton]] = [
-            [.clear, .negative, .percent, .divide],
-            [.seven, .eight, .nine, .mutliply],
-            [.four, .five, .six, .subtract],
-            [.one, .two, .three, .add],
-            [.zero, .decimal, .equal],
-        ]
+                //display
+                VStack(alignment: .center, spacing: 0){
 
-        var body: some View {
-            ZStack {
-                Color.black.edgesIgnoringSafeArea(.all)
-
-                VStack {
-                    Spacer()
-
+                    //history
+                    HStack{
+                        Text("200.000 x 2")
+                            .font(.title)
+                            .foregroundColor(.gray)
+                    }
+                    
                     // Text display
-                    HStack {
-                        Spacer()
+                    HStack{
+                        Text("IDR")
+                            .bold()
+                            .font(.system(size: 48))
+                            .foregroundColor(.black)
                         Text(value)
                             .bold()
-                            .font(.system(size: 100))
-                            .foregroundColor(.white)
+                            .font(.system(size: 48))
+                            .foregroundColor(.black)
                     }
-                    .padding()
-
-                    // Our buttons
-                    ForEach(buttons, id: \.self) { row in
-                        HStack(spacing: 12) {
-                            ForEach(row, id: \.self) { item in
-                                Button(action: {
-                                    self.didTap(button: item)
-                                }, label: {
-                                    Text(item.rawValue)
-                                        .font(.system(size: 32))
-                                        .frame(
-                                            width: self.buttonWidth(item: item),
-                                            height: self.buttonHeight()
-                                        )
-                                        .background(item.buttonColor)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(self.buttonWidth(item: item)/2)
-                                })
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)          .background(Color("yellowFFCF23").opacity(0.2))
+                
+                
+                //progress bar
+                HStack{
+                    //remaining budget
+                    VStack(alignment: .leading){
+                        Text("Remaining budget")
+                            .font(.system(size: 15))
+                            .foregroundColor(Color("gray585858"))
+                        Text("Rp 2.600.000")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 20))
+                            .foregroundColor(Color("gray585858"))
+                    }
+                    
+                    Spacer()
+                    
+                    //expenses
+                    VStack(alignment: .leading){
+                        Text("Expenses")
+                            .font(.system(size: 15))
+                            .foregroundColor(Color("gray585858"))
+                        Text("Rp 400.000")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 20))
+                            .foregroundColor(Color("gray585858"))
+                    }
+                }
+                .padding(.horizontal)
+                .padding(.vertical,10)
+                .background(Color("yellowFFCF23"))
+                
+                
+                
+                //calculator
+                VStack{
+                    HStack{
+                        // Our buttons
+                        ForEach(buttons, id: \.self) { row in
+                            VStack(spacing: 12) {
+                                ForEach(row, id: \.self) { item in
+                                    Button(action: {
+                                        self.didTap(button: item)
+                                    }, label: {
+                                        getTextOrImage(for: item)
+                                            .font(.system(size: 40))
+                                            .frame(
+                                                width: self.buttonWidth(),
+                                                height: self.buttonHeight(item: item)
+                                            )
+                                            .background(item.buttonColor)
+                                            .foregroundColor(item.fontColor)
+                                            .cornerRadius(self.buttonWidth()/2)
+                                    })
+                                }
                             }
+                            //                            .padding(.bottom, 3)
                         }
-                        .padding(.bottom, 3)
                     }
+                }
+                .padding()
+                .background(Color("grayF4F4F4"))
+                
+                
+            }
+            
+        }
+        .navigationBarHidden(true)
+    }
+    
+    func didTap(button: CalcButton) {
+        switch button {
+        case .add, .subtract, .multiply, .divide, .equal:
+            if button == .add {
+                self.currentOperation = .add
+                self.runningNumber = Int(self.value) ?? 0
+            }
+            else if button == .subtract {
+                self.currentOperation = .subtract
+                self.runningNumber = Int(self.value) ?? 0
+            }
+            else if button == .multiply {
+                self.currentOperation = .multiply
+                self.runningNumber = Int(self.value) ?? 0
+            }
+            else if button == .divide {
+                self.currentOperation = .divide
+                self.runningNumber = Int(self.value) ?? 0
+            }
+            else if button == .equal {
+                let runningValue = self.runningNumber
+                let currentValue = Int(self.value) ?? 0
+                switch self.currentOperation {
+                case .add: self.value = "\(runningValue + currentValue)"
+                case .subtract: self.value = "\(runningValue - currentValue)"
+                case .multiply: self.value = "\(runningValue * currentValue)"
+                case .divide: self.value = "\(runningValue / currentValue)"
+                case .none:
+                    break
                 }
             }
-        }
-
-        func didTap(button: CalcButton) {
-            switch button {
-            case .add, .subtract, .mutliply, .divide, .equal:
-                if button == .add {
-                    self.currentOperation = .add
-                    self.runningNumber = Int(self.value) ?? 0
-                }
-                else if button == .subtract {
-                    self.currentOperation = .subtract
-                    self.runningNumber = Int(self.value) ?? 0
-                }
-                else if button == .mutliply {
-                    self.currentOperation = .multiply
-                    self.runningNumber = Int(self.value) ?? 0
-                }
-                else if button == .divide {
-                    self.currentOperation = .divide
-                    self.runningNumber = Int(self.value) ?? 0
-                }
-                else if button == .equal {
-                    let runningValue = self.runningNumber
-                    let currentValue = Int(self.value) ?? 0
-                    switch self.currentOperation {
-                    case .add: self.value = "\(runningValue + currentValue)"
-                    case .subtract: self.value = "\(runningValue - currentValue)"
-                    case .multiply: self.value = "\(runningValue * currentValue)"
-                    case .divide: self.value = "\(runningValue / currentValue)"
-                    case .none:
-                        break
-                    }
-                }
-
-                if button != .equal {
-                    self.value = "0"
-                }
-            case .clear:
+            
+            if button != .equal {
                 self.value = "0"
-            case .decimal, .negative, .percent:
-                break
-            default:
-                let number = button.rawValue
-                if self.value == "0" {
-                    value = number
-                }
-                else {
-                    self.value = "\(self.value)\(number)"
-                }
+            }
+        case .clear:
+            self.value = "0"
+        default:
+            let number = button.rawValue
+            if self.value == "0" {
+                value = number
+            }
+            else {
+                self.value = "\(self.value)\(number)"
             }
         }
-
-        func buttonWidth(item: CalcButton) -> CGFloat {
-            if item == .zero {
-                return ((UIScreen.main.bounds.width - (4*12)) / 4) * 2
-            }
-            return (UIScreen.main.bounds.width - (5*12)) / 4
+    }
+    
+    func buttonWidth() -> CGFloat {
+        return (UIScreen.main.bounds.width - (5*12)) / 4
+    }
+    
+    func buttonHeight(item: CalcButton) -> CGFloat {
+        if item == .equal{
+            return ((UIScreen.main.bounds.width - (4*12)) / 4)*2
         }
-
-        func buttonHeight() -> CGFloat {
-            return (UIScreen.main.bounds.width - (5*12)) / 4
+        return (UIScreen.main.bounds.width - (5*12)) / 4
+    }
+    
+    func getTextOrImage(for value: CalcButton) -> AnyView {
+        switch value{
+        case .del, .divide, .multiply, .subtract, .add, .equal:
+            return AnyView(Image(systemName: value.rawValue))
+        default:
+            return AnyView(Text(value.rawValue))
         }
+        
+    }
 }
 
 enum CalcButton: String {
@@ -135,24 +200,45 @@ enum CalcButton: String {
     case eight = "8"
     case nine = "9"
     case zero = "0"
-    case add = "+"
-    case subtract = "-"
-    case divide = "÷"
-    case mutliply = "x"
-    case equal = "="
+    case add = "plus"
+    case subtract = "minus"
+    case divide = "divide"
+    case multiply = "multiply"
+    case equal = "equal"
     case clear = "AC"
+    case doubleZero = "00"
+    case del = "delete.left"
     case decimal = "."
-    case percent = "%"
-    case negative = "-/+"
 
+    
     var buttonColor: Color {
         switch self {
-        case .add, .subtract, .mutliply, .divide, .equal:
-            return .orange
-        case .clear, .negative, .percent:
-            return Color(.lightGray)
+        case .divide, .multiply, .subtract, .add:
+            return Color("grayColor")
+        case .clear, .del:
+            return .red
+        case .equal:
+            return Color("orangeColor")
         default:
-            return Color(UIColor(red: 55/255.0, green: 55/255.0, blue: 55/255.0, alpha: 1))
+            return Color("darkGrayColor")
+        }
+    }
+    
+    var fontColor: Color {
+        switch self {
+        case .divide, .multiply, .subtract, .add:
+            return .black
+        default:
+            return .white
+        }
+    }
+    
+    var isText: Bool {
+        switch self {
+        case .del, .divide, .multiply, .subtract, .add, .equal:
+            return false
+        default:
+            return true
         }
     }
 }
