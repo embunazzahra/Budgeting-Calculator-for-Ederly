@@ -26,10 +26,10 @@ final class Expense {
 }
 
 enum ExpenseCategory: String, CaseIterable, Codable, Identifiable {
-    case household = "House Hold"
-    case health = "Health"
+    case household = "Household"
+    case health = "Medical"
     case other = "Others"
-    case savings = "Saving"
+    case savings = "Savings"
 
     var id: String { self.rawValue }
 
