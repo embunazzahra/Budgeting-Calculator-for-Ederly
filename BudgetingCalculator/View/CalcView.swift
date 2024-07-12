@@ -28,15 +28,59 @@ struct CalcView: View {
             VStack {
                 Spacer()
                 
-                // Text display
-                HStack {
-                    Spacer()
-                    Text(value)
-                        .bold()
-                        .font(.system(size: 100))
-                        .foregroundColor(.black)
+                //display
+                VStack(alignment: .center, spacing: 0){
+                    //history
+                    HStack{
+                        Text("200.000 x 2")
+                            .font(.title)
+                            .foregroundColor(.gray)
+                    }
+                    
+                    // Text display
+                    HStack{
+                        Text("IDR")
+                            .bold()
+                            .font(.system(size: 48))
+                            .foregroundColor(.black)
+                        Text(value)
+                            .bold()
+                            .font(.system(size: 48))
+                            .foregroundColor(.black)
+                    }
                 }
-                .padding()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)                .background(Color("yellowFFCF23"))
+                
+                
+                
+                //progress bar
+                HStack{
+                    //remaining budget
+                    VStack(alignment: .leading){
+                        Text("Remaining budget")
+                            .font(.system(size: 15))
+                            .foregroundColor(Color("gray585858"))
+                        Text("Rp 2.600.000")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 20))
+                            .foregroundColor(Color("gray585858"))
+                    }
+                    
+                    Spacer()
+                    
+                    //expenses
+                    VStack(alignment: .leading){
+                        Text("Expenses")
+                            .font(.system(size: 15))
+                            .foregroundColor(Color("gray585858"))
+                        Text("Rp 400.000")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 20))
+                            .foregroundColor(Color("gray585858"))
+                    }
+                }
+                .padding(.horizontal)
+                .padding(.top,5)
                 
                 VStack{
                     VStack{
@@ -65,15 +109,6 @@ struct CalcView: View {
                 }
                 .padding()
                 .background(Color("grayF4F4F4"))
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 
             }
         }
