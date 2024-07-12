@@ -8,30 +8,21 @@
 import SwiftUI
 
 struct CalcView: View {
-    @State var value = "0"
-    @State var runningNumber = 0
-    @State var currentOperation: Operation = .none
     
-    
-    let buttons: [[CalcButton]] = [
-        [.clear, .one, .four, .seven, .zero],
-        [.divide, .two, .five, .eight, .doubleZero],
-        [.multiply, .three, .six, .nine, .decimal],
-        [.del, .subtract, .add, .equal],
-    ]
+    @StateObject var modelView = AddExpenseViewModel()
     
     var body: some View {
         ZStack {
             Color.white.edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 0){
-
+                
                 //display
                 VStack(alignment: .center, spacing: 0){
-
+                    
                     //history
                     HStack{
-                        Text("200.000 x 2")
+                        Text(modelView.calcHistory)
                             .font(.title)
                             .foregroundColor(.gray)
                     }
@@ -42,7 +33,7 @@ struct CalcView: View {
                             .bold()
                             .font(.system(size: 48))
                             .foregroundColor(.black)
-                        Text(value)
+                        Text(modelView.value)
                             .bold()
                             .font(.system(size: 48))
                             .foregroundColor(.black)
@@ -87,13 +78,13 @@ struct CalcView: View {
                 VStack{
                     HStack{
                         // Our buttons
-                        ForEach(buttons, id: \.self) { row in
+                        ForEach(modelView.buttons, id: \.self) { row in
                             VStack(spacing: 12) {
                                 ForEach(row, id: \.self) { item in
                                     Button(action: {
-                                        self.didTap(button: item)
+                                        self.modelView.didTap(button: item)
                                     }, label: {
-                                        getTextOrImage(for: item)
+                                        modelView.getTextOrImage(for: item)
                                             .font(.system(size: 40))
                                             .frame(
                                                 width: self.buttonWidth(),
@@ -116,56 +107,9 @@ struct CalcView: View {
             }
             
         }
-        .navigationBarHidden(true)
+//        .navigationBarHidden(true)
     }
     
-    func didTap(button: CalcButton) {
-        switch button {
-        case .add, .subtract, .multiply, .divide, .equal:
-            if button == .add {
-                self.currentOperation = .add
-                self.runningNumber = Int(self.value) ?? 0
-            }
-            else if button == .subtract {
-                self.currentOperation = .subtract
-                self.runningNumber = Int(self.value) ?? 0
-            }
-            else if button == .multiply {
-                self.currentOperation = .multiply
-                self.runningNumber = Int(self.value) ?? 0
-            }
-            else if button == .divide {
-                self.currentOperation = .divide
-                self.runningNumber = Int(self.value) ?? 0
-            }
-            else if button == .equal {
-                let runningValue = self.runningNumber
-                let currentValue = Int(self.value) ?? 0
-                switch self.currentOperation {
-                case .add: self.value = "\(runningValue + currentValue)"
-                case .subtract: self.value = "\(runningValue - currentValue)"
-                case .multiply: self.value = "\(runningValue * currentValue)"
-                case .divide: self.value = "\(runningValue / currentValue)"
-                case .none:
-                    break
-                }
-            }
-            
-            if button != .equal {
-                self.value = "0"
-            }
-        case .clear:
-            self.value = "0"
-        default:
-            let number = button.rawValue
-            if self.value == "0" {
-                value = number
-            }
-            else {
-                self.value = "\(self.value)\(number)"
-            }
-        }
-    }
     
     func buttonWidth() -> CGFloat {
         return (UIScreen.main.bounds.width - (5*12)) / 4
@@ -177,75 +121,8 @@ struct CalcView: View {
         }
         return (UIScreen.main.bounds.width - (5*12)) / 4
     }
-    
-    func getTextOrImage(for value: CalcButton) -> AnyView {
-        switch value{
-        case .del, .divide, .multiply, .subtract, .add, .equal:
-            return AnyView(Image(systemName: value.rawValue))
-        default:
-            return AnyView(Text(value.rawValue))
-        }
-        
-    }
 }
 
-enum CalcButton: String {
-    case one = "1"
-    case two = "2"
-    case three = "3"
-    case four = "4"
-    case five = "5"
-    case six = "6"
-    case seven = "7"
-    case eight = "8"
-    case nine = "9"
-    case zero = "0"
-    case add = "plus"
-    case subtract = "minus"
-    case divide = "divide"
-    case multiply = "multiply"
-    case equal = "equal"
-    case clear = "AC"
-    case doubleZero = "00"
-    case del = "delete.left"
-    case decimal = "."
-
-    
-    var buttonColor: Color {
-        switch self {
-        case .divide, .multiply, .subtract, .add:
-            return Color("grayColor")
-        case .clear, .del:
-            return .red
-        case .equal:
-            return Color("orangeColor")
-        default:
-            return Color("darkGrayColor")
-        }
-    }
-    
-    var fontColor: Color {
-        switch self {
-        case .divide, .multiply, .subtract, .add:
-            return .black
-        default:
-            return .white
-        }
-    }
-    
-    var isText: Bool {
-        switch self {
-        case .del, .divide, .multiply, .subtract, .add, .equal:
-            return false
-        default:
-            return true
-        }
-    }
-}
-
-enum Operation {
-    case add, subtract, multiply, divide, none
-}
 
 #Preview {
     CalcView()
