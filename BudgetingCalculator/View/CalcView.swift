@@ -107,7 +107,7 @@ struct CalcView: View {
             }
             
         }
-        .navigationBarHidden(true)
+//        .navigationBarHidden(true)
     }
     
     

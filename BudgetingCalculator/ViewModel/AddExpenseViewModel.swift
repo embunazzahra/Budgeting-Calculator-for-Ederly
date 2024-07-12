@@ -67,13 +67,31 @@ class AddExpenseViewModel: ObservableObject {
     }
     
     func calculateExpression(expression: String) -> String {
-        let expression = NSExpression(format: expression)
+        let sanitizedExpression = sanitizeExpression(expression: expression)
+        let expression = NSExpression(format: sanitizedExpression)
         if let result = expression.expressionValue(with: nil, context: nil) as? NSNumber {
             return result.stringValue
         } else {
             return "Error"
         }
     }
+    
+    func sanitizeExpression(expression: String) -> String {
+            // Remove leading or trailing operators
+            let operators = CharacterSet(charactersIn: "+-*/")
+            var sanitizedExpression = expression.trimmingCharacters(in: operators)
+            
+            // Remove any invalid sequences
+            let pattern = "[0-9]+([+-/*][0-9]+)*"
+            let regex = try! NSRegularExpression(pattern: pattern)
+            if let match = regex.firstMatch(in: sanitizedExpression, options: [], range: NSRange(location: 0, length: sanitizedExpression.count)) {
+                if let range = Range(match.range, in: sanitizedExpression) {
+                    sanitizedExpression = String(sanitizedExpression[range])
+                }
+            }
+            
+            return sanitizedExpression
+        }
     
     
     //    func didTap(button: CalcButton) {
