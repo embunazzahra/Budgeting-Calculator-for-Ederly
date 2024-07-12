@@ -34,6 +34,7 @@
 		C2A5EA192C3FF7A500F0CC42 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A5EA182C3FF7A500F0CC42 /* Balance.swift */; };
 		C2CE94372C41233700BA084A /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CE94362C41233700BA084A /* ProgressBar.swift */; };
 		C2CE94392C4124E200BA084A /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CE94382C4124E200BA084A /* ProgressBarView.swift */; };
+		C2CE943C2C41311400BA084A /* NumberSeperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CE943B2C41311400BA084A /* NumberSeperator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		C2A5EA182C3FF7A500F0CC42 /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		C2CE94362C41233700BA084A /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		C2CE94382C4124E200BA084A /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		C2CE943B2C41311400BA084A /* NumberSeperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberSeperator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 		71507E242C3E1657003D043C /* BudgetingCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				C2CE943A2C4130EE00BA084A /* Helper */,
 				C2300CB92C3FCE0A00AD5D52 /* Service */,
 				464952A52C3EF58500BC8305 /* Extensions */,
 				4649528E2C3EEC9D00BC8305 /* Model */,
@@ -190,6 +193,14 @@
 				C2CE94382C4124E200BA084A /* ProgressBarView.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		C2CE943A2C4130EE00BA084A /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C2CE943B2C41311400BA084A /* NumberSeperator.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +297,7 @@
 				464952A92C3EFFB000BC8305 /* Income.swift in Sources */,
 				C2A5EA172C3FF3AF00F0CC42 /* EditBalanceView.swift in Sources */,
 				C2CE94372C41233700BA084A /* ProgressBar.swift in Sources */,
+				C2CE943C2C41311400BA084A /* NumberSeperator.swift in Sources */,
 				464952922C3EECEF00BC8305 /* BudgetViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
