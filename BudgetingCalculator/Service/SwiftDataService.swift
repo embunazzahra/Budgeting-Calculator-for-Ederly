@@ -19,7 +19,7 @@ class SwiftDataService {
     @MainActor
     private init() {
         // Change isStoredInMemoryOnly to false if you would like to see the data persistance after kill/exit the app
-        self.modelContainer = try! ModelContainer(for: Expense.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+        self.modelContainer = try! ModelContainer(for: Expense.self, Balance.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
         self.modelContext = modelContainer.mainContext
     }
     
@@ -37,6 +37,31 @@ class SwiftDataService {
             try modelContext.save()
         } catch {
             fatalError(error.localizedDescription)
+        }
+    }
+    
+    func fetchBalance() -> Balance? {
+        do {
+            return try modelContext.fetch(FetchDescriptor<Balance>()).first
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    func updateAccountBalance(newBalance: Int) {
+        do {
+            var balance: Balance
+            
+            if let existingBalance = fetchBalance() {
+                balance = existingBalance
+            } else {
+                balance = Balance(id: UUID(), accountBalance: newBalance)
+                modelContext.insert(balance)
+            }
+            balance.accountBalance = newBalance
+            try modelContext.save()
+        } catch {
+            fatalError("Error updating account balance: \(error.localizedDescription)")
         }
     }
 }

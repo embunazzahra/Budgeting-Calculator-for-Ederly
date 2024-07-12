@@ -22,6 +22,12 @@ class BudgetViewModel: ObservableObject {
         self.dataSource = dataSource
         
         // Add dummy expenses to the SwiftData to see if fetching data is works
+        if let balance = dataSource.fetchBalance() {
+            self.accountBalance = balance.accountBalance
+        } else {
+            // If balance is not found, you might want to handle this case
+            print("Balance not found")
+        }
     }
     
     func addExpense(category: String, amount: Double) {
@@ -29,6 +35,11 @@ class BudgetViewModel: ObservableObject {
         let newExpense = Expense(category: expenseCategory, amount: amount)
     }
 
+    func updateBalance(accountBalance: Int){
+        self.accountBalance = accountBalance
+        dataSource.updateAccountBalance(newBalance: accountBalance)
+    }
+    
     func deleteExpense(at offsets: IndexSet) {
 //        for index in offsets {
 ///           modelContext.delete(expenses[index])

@@ -10,28 +10,43 @@ import SwiftUI
 struct AccountBalanceView: View {
     @ObservedObject var viewModel: BudgetViewModel
     @State private var isUpdateBalanceSheetPresented = false // State untuk sheet Edit
-
+    
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
             Text("Account Balance")
-                .font(.headline)
-                .foregroundColor(.gray)
-            Text("IDR \(viewModel.accountBalance, specifier: "%.2f")")
-                .font(.largeTitle)
+                .font(.system(size: 17))
+            Text("IDR \(viewModel.accountBalance)")
+                .font(.system(size: 28))
                 .fontWeight(.bold)
-            NavigationLink(destination: UpdateAccountView(viewModel: viewModel)) {
+                .padding(.bottom, 10)
+            
+            Button(action: {
+                isUpdateBalanceSheetPresented = true
+            }) {
                 Text("Edit Balance")
-                    .frame(maxWidth: .infinity) // Make button full width
-                    .padding()
-                    .background(.blue) // Set background color for the button
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                    .padding([.top, .bottom], 12)
+                    .padding([.leading, .trailing], 104)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.white)
+                    )
+                    .cornerRadius(5)
+                    .font(.system(size: 20))
+                    .fontWeight(.semibold)
             }
-            .padding(.top, 5)
+            .sheet(isPresented: $isUpdateBalanceSheetPresented) {
+                EditBalanceView()
+                    .environmentObject(viewModel) // Pass the viewModel using environmentObject
+            }
         }
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color(.systemGray4))
-        .cornerRadius(10)
+        .padding([.top, .bottom], 30)
+        .padding([.leading, .trailing], 20)
+        .background(Color(.whiteBlue))
+        .cornerRadius(15)
+        .edgesIgnoringSafeArea(.all)
     }
+}
+
+#Preview {
+    AccountBalanceView(viewModel: BudgetViewModel(dataSource: .shared))
 }
