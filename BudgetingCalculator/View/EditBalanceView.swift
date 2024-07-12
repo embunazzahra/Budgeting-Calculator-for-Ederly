@@ -12,6 +12,8 @@ struct EditBalanceView: View {
     @State private var inputValue: String = ""
     @Environment(\.presentationMode) var presentationMode
     
+    private let numberSeperator = NumberSeperator()
+    
     var body: some View {
         VStack {
             HStack {
@@ -26,6 +28,10 @@ struct EditBalanceView: View {
             TextField("Enter a number", text: $inputValue)
                 .keyboardType(.numberPad)
                 .padding()
+                .onChange(of: inputValue) { newValue in
+                    inputValue = numberSeperator.formatNumber(inputValue)
+                }
+
             
             Spacer()
             
