@@ -22,7 +22,7 @@ struct CalcView: View {
                     
                     //history
                     HStack{
-                        Text("200.000 x 2")
+                        Text(modelView.calcHistory)
                             .font(.title)
                             .foregroundColor(.gray)
                     }

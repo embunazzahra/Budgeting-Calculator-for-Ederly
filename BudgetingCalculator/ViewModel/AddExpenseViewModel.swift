@@ -12,6 +12,8 @@ class AddExpenseViewModel: ObservableObject {
     @Published var value = "0"
     @Published var runningNumber = 0
     @Published var currentOperation: Operation = .none
+    @Published var calcHistory = ""
+    var convertedValue = "0"
     
     let buttons: [[CalcButton]] = [
         [.clear, .one, .four, .seven, .zero],
@@ -21,52 +23,106 @@ class AddExpenseViewModel: ObservableObject {
     ]
     
     func didTap(button: CalcButton) {
-        switch button {
-        case .add, .subtract, .multiply, .divide, .equal:
-            if button == .add {
-                self.currentOperation = .add
-                self.runningNumber = Int(self.value) ?? 0
-            }
-            else if button == .subtract {
-                self.currentOperation = .subtract
-                self.runningNumber = Int(self.value) ?? 0
-            }
-            else if button == .multiply {
-                self.currentOperation = .multiply
-                self.runningNumber = Int(self.value) ?? 0
-            }
-            else if button == .divide {
-                self.currentOperation = .divide
-                self.runningNumber = Int(self.value) ?? 0
-            }
-            else if button == .equal {
-                let runningValue = self.runningNumber
-                let currentValue = Int(self.value) ?? 0
-                switch self.currentOperation {
-                case .add: self.value = "\(runningValue + currentValue)"
-                case .subtract: self.value = "\(runningValue - currentValue)"
-                case .multiply: self.value = "\(runningValue * currentValue)"
-                case .divide: self.value = "\(runningValue / currentValue)"
-                case .none:
-                    break
-                }
-            }
-            
-            if button != .equal {
-                self.value = "0"
-            }
+        var convertedIcon = ""
+        
+        if value == "0"{
+            value = ""
+        }
+        
+        switch button{
+        case .add:
+            convertedIcon = "+"
+            convertedValue += convertedIcon
+            value += convertedIcon
+        case .subtract:
+            convertedIcon = "-"
+            convertedValue += convertedIcon
+            value += convertedIcon
+        case .multiply:
+            convertedIcon = "x"
+            convertedValue += "*"
+            value += convertedIcon
+        case .divide:
+            convertedIcon = "/"
+            convertedValue += convertedIcon
+            value += convertedIcon
         case .clear:
-            self.value = "0"
+            value = ""
+            convertedValue = ""
+            calcHistory = ""
+        case .del:
+            if !value.isEmpty {
+                value.removeLast()
+                convertedValue.removeLast()
+            }
+        case .equal:
+            calcHistory = value
+            value = calculateExpression(expression: convertedValue)
+            convertedValue = value
         default:
-            let number = button.rawValue
-            if self.value == "0" {
-                value = number
-            }
-            else {
-                self.value = "\(self.value)\(number)"
-            }
+            convertedValue += button.rawValue
+            value += button.rawValue
+        }
+        
+    }
+    
+    func calculateExpression(expression: String) -> String {
+        let expression = NSExpression(format: expression)
+        if let result = expression.expressionValue(with: nil, context: nil) as? NSNumber {
+            return result.stringValue
+        } else {
+            return "Error"
         }
     }
+    
+    
+    //    func didTap(button: CalcButton) {
+    //        switch button {
+    //        case .add, .subtract, .multiply, .divide, .equal:
+    //            if button == .add {
+    //                self.currentOperation = .add
+    //                self.runningNumber = Int(self.value) ?? 0
+    //            }
+    //            else if button == .subtract {
+    //                self.currentOperation = .subtract
+    //                self.runningNumber = Int(self.value) ?? 0
+    //            }
+    //            else if button == .multiply {
+    //                self.currentOperation = .multiply
+    //                self.runningNumber = Int(self.value) ?? 0
+    //            }
+    //            else if button == .divide {
+    //                self.currentOperation = .divide
+    //                self.runningNumber = Int(self.value) ?? 0
+    //            }
+    //            else if button == .equal {
+    //                let runningValue = self.runningNumber
+    //                let currentValue = Int(self.value) ?? 0
+    //                switch self.currentOperation {
+    //                case .add: self.value = "\(runningValue + currentValue)"
+    //                case .subtract: self.value = "\(runningValue - currentValue)"
+    //                case .multiply: self.value = "\(runningValue * currentValue)"
+    //                case .divide: self.value = "\(runningValue / currentValue)"
+    //                case .none:
+    //                    break
+    //                }
+    //            }
+    //            
+    //            if button != .equal {
+    //                self.value = "0"
+    //            }
+    //        case .clear:
+    //            self.value = "0"
+    //        default:
+    //            let number = button.rawValue
+    //            if self.value == "0" {
+    //                value = number
+    //            }
+    //            else {
+    //                self.value = "\(self.value)\(number)"
+    //            }
+    //        }
+    //    }
     
     
     
