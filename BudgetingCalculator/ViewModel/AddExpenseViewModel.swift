@@ -125,22 +125,28 @@ class AddExpenseViewModel: ObservableObject {
             convertedIcon = "+"
             convertedValue += convertedIcon
             value += convertedIcon
+            
         case .subtract:
             convertedIcon = "-"
             convertedValue += convertedIcon
             value += convertedIcon
+            
         case .multiply:
             convertedIcon = "x"
             convertedValue += "*"
             value += convertedIcon
+            
         case .divide:
             convertedIcon = "/"
             convertedValue += convertedIcon
             value += convertedIcon
         case .decimal:
+            
             convertedIcon = "."
             convertedValue += convertedIcon
             value += convertedIcon
+            
+            
         case .zero:
             if value != "0" {
                 convertedIcon = "0"
@@ -149,13 +155,11 @@ class AddExpenseViewModel: ObservableObject {
             }
         case .doubleZero:
             if value != "0"{
-//                // Pastikan string tidak kosong
-//                let lastChar = value.last
-                    
-                    // Daftar operator yang ingin diperiksa
-                    let operators: Set<Character> = ["+", "-", "x", "/"]
-                    
-                    // Periksa apakah karakter terakhir adalah salah satu dari operator tersebut
+                
+                // Daftar operator yang ingin diperiksa
+                let operators: Set<Character> = ["+", "-", "x", "/"]
+                
+                // Periksa apakah karakter terakhir adalah salah satu dari operator tersebut
                 if !operators.contains(value.last!){
                     convertedIcon = "00"
                     convertedValue += "00"
@@ -169,8 +173,10 @@ class AddExpenseViewModel: ObservableObject {
             value = "0"
             convertedValue = ""
             calcHistory = ""
+   
         case .del:
             if !value.isEmpty {
+  
                 value.removeLast()
             }
             if !convertedValue.isEmpty {
@@ -179,8 +185,8 @@ class AddExpenseViewModel: ObservableObject {
             
         case .equal:
             if !value.isEmpty {
-                value = calculateExpression(expression: convertedValue)
                 calcHistory = value
+                value = calculateExpression(expression: convertedValue)
                 convertedValue = value
             }
             
@@ -196,7 +202,6 @@ class AddExpenseViewModel: ObservableObject {
         if value.count >= 2 {
             value = doubleOperatorChecker(expression: value)
             convertedValue = doubleOperatorChecker(expression: convertedValue)
-            
         }
         
         if value.isEmpty || convertedValue.isEmpty{
@@ -261,32 +266,6 @@ class AddExpenseViewModel: ObservableObject {
         }
     }
     
-//    func calculateExpression(expression: String) -> String {
-//        let sanitizedExpression = sanitizeExpression(expression: expression)
-//        let expression = NSExpression(format: sanitizedExpression)
-//        
-//        if let result = expression.expressionValue(with: nil, context: nil) as? NSNumber {   
-//            
-//            
-//            let decimalResult = NSDecimalNumber(decimal: result.decimalValue)
-//            let result = String(Double(decimalResult))
-//            return result
-//            
-//        } else {
-//            return "Error"
-//        }
-//    }
-
-    
-//    func calculateExpression(expression: String) -> String {
-//        let sanitizedExpression = sanitizeExpression(expression: expression)
-//        let expression = NSExpression(format: sanitizedExpression)
-//        if let result = expression.expressionValue(with: nil, context: nil) as? NSNumber {
-//            return result.stringValue
-//        } else {
-//            return "Error"
-//        }
-//    }
     
     func sanitizeExpression(expression: String) -> String {
         // Remove leading or trailing operators
@@ -309,6 +288,18 @@ class AddExpenseViewModel: ObservableObject {
         
         return sanitizedExpression
     }
+    
+    func replaceDotsAfterFirstCharacter(in input: String) -> String {
+        guard let dotRange = input.range(of: ".", options: .literal) else {
+            return input
+        }
+        
+        let firstPart = input[..<dotRange.upperBound]
+        let secondPart = input[dotRange.upperBound...].replacingOccurrences(of: ".", with: "")
+        
+        return "\(firstPart)\(secondPart)"
+    }
+    
     
     
     func getTextOrImage(for button: CalcButton) -> AnyView {
