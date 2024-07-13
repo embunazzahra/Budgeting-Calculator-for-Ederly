@@ -158,7 +158,7 @@ class AddExpenseViewModel: ObservableObject {
             }
             
         default:
-            if value == "0"{
+            if value == "0" || value == "00" || value == ","{
                 value = ""
             }
             
@@ -214,19 +214,59 @@ class AddExpenseViewModel: ObservableObject {
     }
     
     func calculateExpression(expression: String) -> String {
+        
         let sanitizedExpression = sanitizeExpression(expression: expression)
+        print(sanitizedExpression)
         let expression = NSExpression(format: sanitizedExpression)
+        
         if let result = expression.expressionValue(with: nil, context: nil) as? NSNumber {
-            return result.stringValue
+            let doubleResult = result.doubleValue
+            
+            if doubleResult.truncatingRemainder(dividingBy: 1) == 0 {
+                // Jika hasilnya adalah bilangan bulat, format sebagai bilangan bulat
+                return String(format: "%.0f", doubleResult)
+            } else {
+                // Jika hasilnya adalah bilangan desimal, biarkan dalam format desimal
+                return String(doubleResult)
+            }
         } else {
             return "Error"
         }
     }
     
+//    func calculateExpression(expression: String) -> String {
+//        let sanitizedExpression = sanitizeExpression(expression: expression)
+//        let expression = NSExpression(format: sanitizedExpression)
+//        
+//        if let result = expression.expressionValue(with: nil, context: nil) as? NSNumber {   
+//            
+//            
+//            let decimalResult = NSDecimalNumber(decimal: result.decimalValue)
+//            let result = String(Double(decimalResult))
+//            return result
+//            
+//        } else {
+//            return "Error"
+//        }
+//    }
+
+    
+//    func calculateExpression(expression: String) -> String {
+//        let sanitizedExpression = sanitizeExpression(expression: expression)
+//        let expression = NSExpression(format: sanitizedExpression)
+//        if let result = expression.expressionValue(with: nil, context: nil) as? NSNumber {
+//            return result.stringValue
+//        } else {
+//            return "Error"
+//        }
+//    }
+    
     func sanitizeExpression(expression: String) -> String {
         // Remove leading or trailing operators
         let operators = CharacterSet(charactersIn: "+-*/")
-        var sanitizedExpression = expression.trimmingCharacters(in: operators)
+        var modifiedExpression = expression.trimmingCharacters(in: operators)
+        
+        var sanitizedExpression = modifiedExpression.replacingOccurrences(of: "/", with: "*1.0/")
         
         // Remove any invalid sequences
         let pattern = "[0-9]+([+-/*][0-9]+)*"
