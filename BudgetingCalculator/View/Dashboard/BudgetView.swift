@@ -11,6 +11,7 @@ import SwiftData
 struct BudgetView: View {
     @State var isCalculatorSheetPresented = false
     @StateObject var viewModel: BudgetViewModel = BudgetViewModel(dataSource: .shared)
+
     @Environment(\.locale) var locale
     
     @State private var isUpdateBalanceSheetPresented = false
@@ -21,13 +22,11 @@ struct BudgetView: View {
                 VStack {
                     // Account Balance Section
                     AccountBalanceView(viewModel: viewModel)
-                        .padding(.bottom, 8)
-                    
-                    // Expenses Section
-                    NavigationLink(destination: CalcView()){
-                        ExpenseCategoriesView(viewModel: viewModel)
+                        .padding(.bottom, 4)
+       
+                    ExpenseCategoriesView(viewModel: viewModel)
                             .padding(.horizontal)
-                            .padding(.bottom, 8) // Add padding to the bottom of the section
+                            
                     }
                     .buttonStyle(.plain)
                     .padding(.bottom, 8)
@@ -37,7 +36,6 @@ struct BudgetView: View {
                 .frame(maxHeight: .infinity)
                 .frame(width: 425)
             }
-        }
         
     }
         
