@@ -15,29 +15,35 @@ struct TabBarView: View {
 
 
     var body: some View {
-        ZStack{
-            TabView {
-                
-                BudgetView(viewModel: viewModel)
-                    .tabItem {
-                        Image(systemName: "creditcard")
-                    
-                        Text("Dashboard")
-                }
-                
-                
-                BudgetSettingsView(viewModel: viewModel)
-                    .tabItem {
-                        Label("Budget", systemImage: "dollarsign.circle.fill") .font(.system(size: 100))
+        NavigationStack{
+            ZStack{
+                TabView { 
+                    Group {
+                        BudgetView(viewModel: viewModel)
+                            .tabItem {
+                                Image(systemName: "creditcard")
+                                
+                                Text("Dashboard")
+                            }
+                        BudgetSettingsView(viewModel: viewModel)
+                            .tabItem {
+                                Label("Budget", systemImage: "dollarsign.circle.fill") .font(.system(size: 100))
+                                
+                            }
+                    }
+                    .toolbarBackground(.white, for: .tabBar)
+                    .toolbarBackground(.visible, for: .tabBar)
+                    .toolbar {
                         
-                    }.padding(.horizontal)
-                    
-            }.accentColor(.brightOrange)
-            .shadow(color: .black.opacity(1), radius: 0, x: 50, y: 50)
-            
-            ExpenseButton(viewModel: viewModel)
+                    }
+                }
+                .accentColor(.brightOrange)
+                .shadow(color: .black.opacity(1), radius: 0, x: 50, y: 50)
+                
+                
+                ExpenseButton(viewModel: viewModel)
+            }
         }
-
         }
         
         

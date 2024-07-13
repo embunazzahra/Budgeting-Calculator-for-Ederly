@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AmountBudget: View {
     var body: some View {
-        ZStack{
+        
         VStack(alignment: .center) {
             
             Text("Amount Budget")
@@ -26,7 +26,7 @@ struct AmountBudget: View {
             .background(Color(.systemGray4))
             .cornerRadius(15)
             
-        }
+        
 
     }
 }
