@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct CalcView: View {
-    
+    @ObservedObject var viewModel: BudgetViewModel
     @StateObject var modelView = AddExpenseViewModel()
+    let category: ExpenseCategory
+
     
     var body: some View {
         ZStack {
@@ -39,7 +41,8 @@ struct CalcView: View {
                             .foregroundColor(.black)
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)          .background(Color("yellowFFCF23").opacity(0.2))
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                .background(category.color)
                 
                 
                 //progress bar
@@ -125,5 +128,5 @@ struct CalcView: View {
 
 
 #Preview {
-    CalcView()
+    CalcView(viewModel: BudgetViewModel(dataSource: .shared), category: .household)
 }
