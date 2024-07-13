@@ -137,6 +137,33 @@ class AddExpenseViewModel: ObservableObject {
             convertedIcon = "/"
             convertedValue += convertedIcon
             value += convertedIcon
+        case .decimal:
+            convertedIcon = "."
+            convertedValue += convertedIcon
+            value += convertedIcon
+        case .zero:
+            if value != "0" {
+                convertedIcon = "0"
+                convertedValue += "0"
+                value += convertedIcon
+            }
+        case .doubleZero:
+            if value != "0"{
+//                // Pastikan string tidak kosong
+//                let lastChar = value.last
+                    
+                    // Daftar operator yang ingin diperiksa
+                    let operators: Set<Character> = ["+", "-", "x", "/"]
+                    
+                    // Periksa apakah karakter terakhir adalah salah satu dari operator tersebut
+                if !operators.contains(value.last!){
+                    convertedIcon = "00"
+                    convertedValue += "00"
+                    value += convertedIcon
+                }
+                
+                
+            }
         case .clear:
             initializeProgress(.household)
             value = "0"
@@ -158,7 +185,7 @@ class AddExpenseViewModel: ObservableObject {
             }
             
         default:
-            if value == "0" || value == "00" || value == ","{
+            if value == "0" || value == "00"{
                 value = ""
             }
             
@@ -203,7 +230,7 @@ class AddExpenseViewModel: ObservableObject {
             
             // Memeriksa apakah keduanya adalah operator
             if let last = lastChar, let secondLast = secondLastChar as Character? {
-                if "+-*/x".contains(last) && "+-*/x".contains(secondLast) {
+                if "+-*/x.".contains(last) && "+-*/x.".contains(secondLast) {
                     // Hapus secondLastChar dari string result
                     result.remove(at: secondLastCharIndex)
                 }
@@ -265,8 +292,9 @@ class AddExpenseViewModel: ObservableObject {
         // Remove leading or trailing operators
         let operators = CharacterSet(charactersIn: "+-*/")
         var modifiedExpression = expression.trimmingCharacters(in: operators)
-        
+        print(modifiedExpression)
         var sanitizedExpression = modifiedExpression.replacingOccurrences(of: "/", with: "*1.0/")
+        print(sanitizedExpression)
         
         // Remove any invalid sequences
         let pattern = "[0-9]+([+-/*][0-9]+)*"
@@ -276,6 +304,8 @@ class AddExpenseViewModel: ObservableObject {
                 sanitizedExpression = String(sanitizedExpression[range])
             }
         }
+        
+        print(sanitizedExpression)
         
         return sanitizedExpression
     }
@@ -318,7 +348,7 @@ enum CalcButton: String {
     case clear = "AC"
     case doubleZero = "00"
     case del = "delete.left"
-    case decimal = ","
+    case decimal = "."
     
     
     var buttonColor: Color {
