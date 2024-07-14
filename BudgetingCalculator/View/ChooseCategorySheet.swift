@@ -20,7 +20,7 @@ struct ChooseCategorySheet: View {
                     
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
                         ForEach(ExpenseCategory.allCases) { category in
-                            NavigationLink(destination: BudgetDetail(viewModel: viewModel, category: category)){
+                            NavigationLink(destination: CalcView( category: category)){
                                 CircleCategory(category: category, viewModel: viewModel)
                                     .onTapGesture {
                                         viewModel.selectedCategory = category
