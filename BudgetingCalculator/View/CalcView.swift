@@ -42,10 +42,10 @@ struct CalcView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .background(category.color)
+                .background(category.color.opacity(0.2))
                 
                 ZStack{
-                    ProgressBarView(progress: $modelView.progress)
+                    ProgressBarView(progress: $modelView.progress, color: category.color)
                     
                     //progress bar
                     HStack{
@@ -54,7 +54,7 @@ struct CalcView: View {
                             Text("Remaining budget")
                                 .font(.system(size: 15))
                                 .foregroundColor(Color("gray585858"))
-                            Text("Rp \(modelView.remainingBudgetForCategory(.household), specifier: "%.f")")
+                            Text("Rp \(modelView.remainingBudgetForCategory(category), specifier: "%.f")")
                                 .fontWeight(.semibold)
                                 .font(.system(size: 20))
                                 .foregroundColor(Color("gray585858"))

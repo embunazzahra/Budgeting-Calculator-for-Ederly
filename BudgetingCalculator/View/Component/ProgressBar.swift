@@ -21,7 +21,7 @@ struct ProgressBar: ProgressViewStyle {
                     .font(labelFontStyle)
                 
                 Rectangle()
-                    .fill(Color("yellowFFCF23").opacity(0.5))
+                    .fill(color.opacity(0.5))
                     .frame(height: height)
                     .frame(width: geometry.size.width)
                     .overlay(alignment: .leading) {
