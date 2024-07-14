@@ -24,6 +24,7 @@ class AddExpenseViewModel: ObservableObject {
     @Published var category: ExpenseCategory
     @Published var expense = 0.0
     @Published var budget = 0.0
+    @Published var remainingBudget = 0.0
     
     init(dataSource: SwiftDataService, category: ExpenseCategory) {
         self.dataSource = dataSource
@@ -81,8 +82,14 @@ class AddExpenseViewModel: ObservableObject {
         return max(0, categoryBudget - spent)
     }
     
+    func getAllocatedBudget(_ category: ExpenseCategory) -> Double {
+        let categoryBudget = budgetCategories.first(where: { $0.category == category })?.allocatedAmount ?? 0
+        return categoryBudget
+    }
+    
     func initializeProgress(_ category: ExpenseCategory) {
-        self.budget = remainingBudgetForCategory(category)
+        self.budget = getAllocatedBudget(category)
+        self.remainingBudget = remainingBudgetForCategory(category)
         self.expense = totalExpensesForCategoryThisMonth(category: category)
         
         if budget <= 0.0{
@@ -91,30 +98,33 @@ class AddExpenseViewModel: ObservableObject {
         else{
             self.progress = (1-(expense/budget))
             self.runningExpense = expense
-            self.runningBudget = budget
+            self.runningBudget = remainingBudget
         }
         
     }
     
-    func updateProgress(value: Double, category: ExpenseCategory) {
-        let newExpense = expense + value
+    func updateProgress() {
         if budget <= 0.0{
             self.progress = 0.5
         }
         else{
-            self.progress = (1-(newExpense/budget))
+            self.progress = (1-(runningExpense/budget))
+            print("running expense")
+            print(runningExpense)
+            print("budget")
+            print(budget)
+            print("progress")
+            print(progress)
         }
     }
     
     func updateRunningExpense(value: Double) {
-        let expense = totalExpensesForCategoryThisMonth(category: category)
         let newExpense = expense + value
         self.runningExpense = newExpense
     }
     
     func updateRunningBudget(value: Double) {
-        let budget = remainingBudgetForCategory(category)
-        let newBudget = budget - value
+        let newBudget = remainingBudget - value
         self.runningBudget = newBudget
     }
     
@@ -226,9 +236,9 @@ class AddExpenseViewModel: ObservableObject {
         }else{
             isCalculating = false
             if let convertedValue = Double(value){
-                self.updateProgress(value: convertedValue,category: category)
                 self.updateRunningExpense(value: convertedValue)
                 self.updateRunningBudget(value: convertedValue)
+                self.updateProgress()
             }
             
         }

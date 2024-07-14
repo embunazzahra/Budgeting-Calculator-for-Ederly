@@ -138,5 +138,5 @@ struct CalcView: View {
 
 
 #Preview {
-    CalcView(category: .savings)
+    CalcView(category: .health)
 }
