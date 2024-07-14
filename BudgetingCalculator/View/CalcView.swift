@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct CalcView: View {
-    @ObservedObject var viewModel: BudgetViewModel
-    @StateObject var modelView = AddExpenseViewModel()
+    
+    @StateObject var modelView: AddExpenseViewModel
     let category: ExpenseCategory
+    
+    init(category: ExpenseCategory) {
+            self.category = category
+        _modelView = StateObject(wrappedValue: AddExpenseViewModel(dataSource: .shared, category: category))
+        }
 
     
     var body: some View {
@@ -42,38 +47,43 @@ struct CalcView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .background(category.color)
+                .background(modelView.calculatorColor(category: category).opacity(0.2))
                 
-                
-                //progress bar
-                HStack{
-                    //remaining budget
-                    VStack(alignment: .leading){
-                        Text("Remaining budget")
-                            .font(.system(size: 15))
-                            .foregroundColor(Color("gray585858"))
-                        Text("Rp 2.600.000")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 20))
-                            .foregroundColor(Color("gray585858"))
-                    }
+                ZStack{
+                    ProgressBarView(progress: $modelView.progress, color: modelView.progressBarColor(category: category))
                     
-                    Spacer()
-                    
-                    //expenses
-                    VStack(alignment: .leading){
-                        Text("Expenses")
-                            .font(.system(size: 15))
-                            .foregroundColor(Color("gray585858"))
-                        Text("Rp 400.000")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 20))
-                            .foregroundColor(Color("gray585858"))
+                    //progress bar
+                    HStack{
+                        //remaining budget
+                        VStack(alignment: .leading){
+                            Text("Remaining budget")
+                                .font(.system(size: 15))
+                                .foregroundColor(Color("gray585858"))
+                            Text("Rp \(modelView.runningBudget, specifier: "%.f")")
+                                .fontWeight(.semibold)
+                                .font(.system(size: 20))
+                                .foregroundColor(Color("gray585858"))
+                        }
+                        
+                        Spacer()
+                        
+                        //expenses
+                        VStack(alignment: .leading){
+                            Text("Expenses")
+                                .font(.system(size: 15))
+                                .foregroundColor(Color("gray585858"))
+                            Text("Rp \(modelView.runningExpense, specifier: "%.f")")
+                                .fontWeight(.semibold)
+                                .font(.system(size: 20))
+                                .foregroundColor(Color("gray585858"))
+                        }
                     }
+                    .padding(.horizontal)
+                    .padding(.vertical,10)
+    //                .background(Color("yellowFFCF23"))
                 }
-                .padding(.horizontal)
-                .padding(.vertical,10)
-                .background(Color("yellowFFCF23"))
+                
+                
                 
                 
                 
@@ -128,5 +138,5 @@ struct CalcView: View {
 
 
 #Preview {
-    CalcView(viewModel: BudgetViewModel(dataSource: .shared), category: .household)
+    CalcView(category: .health)
 }

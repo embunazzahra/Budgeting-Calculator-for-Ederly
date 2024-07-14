@@ -8,21 +8,25 @@
 import SwiftUI
 
 struct ProgressBarView: View {
-    @State private var progress: Double = 0.5
-
+    @Binding var progress: Double
+    private var height = 65.0
+    var color: Color
+    
+    init(progress: Binding<Double>,color: Color = Color("yellowFFCF23")) {
+        self._progress = progress
+        self.color = color
+    }
+    
     var body: some View {
         VStack {
             ProgressView(value: progress, total: 1.0)
-                .progressViewStyle(ProgressBar(color: .brightOrange, height: 65))
-                .padding()
-
-            Slider(value: $progress, in: 0...1)
-                .padding()
+                .progressViewStyle(ProgressBar(color: color, height: self.height))
         }
-        .padding()
+        .frame(maxHeight: self.height)
+        
     }
 }
 
-#Preview {
-    ProgressBarView()
-}
+//#Preview {
+//    ProgressBarView()
+//}

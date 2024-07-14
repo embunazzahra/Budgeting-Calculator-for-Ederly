@@ -37,10 +37,10 @@ class BudgetViewModel: ObservableObject {
         // Check if there are existing categories to avoid duplication
         if budgetCategories.isEmpty {
             let dummyCategories = [
-                BudgetCategory(category: .household, allocatedAmount: 500.0),
-                BudgetCategory(category: .health, allocatedAmount: 200.0),
-                BudgetCategory(category: .other, allocatedAmount: 150.0),
-                BudgetCategory(category: .savings, allocatedAmount: 100.0)
+                BudgetCategory(category: .household, allocatedAmount: 2600000.0),
+                BudgetCategory(category: .health, allocatedAmount: 2000000.0),
+                BudgetCategory(category: .other, allocatedAmount: 1500000.0),
+                BudgetCategory(category: .savings, allocatedAmount: 100000.0)
             ]
             self.budgetCategories = dummyCategories
         }
