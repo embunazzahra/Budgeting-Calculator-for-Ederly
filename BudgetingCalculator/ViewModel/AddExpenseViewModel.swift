@@ -20,13 +20,14 @@ class AddExpenseViewModel: ObservableObject {
     @Published var expenses: [Expense] = []
     @Published var budgetCategories: [BudgetCategory] = []
     @Published var runningExpense = 0.0
+    @Published var category: ExpenseCategory
     
-    init(dataSource: SwiftDataService) {
+    init(dataSource: SwiftDataService, category: ExpenseCategory) {
         self.dataSource = dataSource
+        self.category = category
         initializeDummyExpensesCategories()
         initializeDummyBudgetCategories()
-        initializeProgress(.household)
-        self.runningExpense = totalExpensesForCategoryThisMonth(category: .household)
+        initializeProgress(self.category)
     }
     
     private func initializeDummyExpensesCategories() {
@@ -80,12 +81,14 @@ class AddExpenseViewModel: ObservableObject {
     func initializeProgress(_ category: ExpenseCategory) {
         let budget = remainingBudgetForCategory(category)
         let expense = totalExpensesForCategoryThisMonth(category: category)
+        print(expense)
         
         if budget <= 0.0{
             self.progress = 0.5
         }
         else{
             self.progress = (1-(expense/budget))
+            self.runningExpense = expense
         }
         
     }
@@ -103,7 +106,7 @@ class AddExpenseViewModel: ObservableObject {
     }
     
     func updateRunningExpense(value: Double) {
-        let expense = totalExpensesForCategoryThisMonth(category: .household)
+        let expense = totalExpensesForCategoryThisMonth(category: category)
         let newExpense = expense + value
         self.runningExpense = newExpense
     }

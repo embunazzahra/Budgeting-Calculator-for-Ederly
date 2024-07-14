@@ -9,8 +9,13 @@ import SwiftUI
 
 struct CalcView: View {
     
-    @StateObject var modelView = AddExpenseViewModel(dataSource: .shared)
+    @StateObject var modelView: AddExpenseViewModel
     let category: ExpenseCategory
+    
+    init(category: ExpenseCategory) {
+            self.category = category
+        _modelView = StateObject(wrappedValue: AddExpenseViewModel(dataSource: .shared, category: category))
+        }
 
     
     var body: some View {
