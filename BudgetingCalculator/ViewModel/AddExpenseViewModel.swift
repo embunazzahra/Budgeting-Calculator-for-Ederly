@@ -20,7 +20,10 @@ class AddExpenseViewModel: ObservableObject {
     @Published var expenses: [Expense] = []
     @Published var budgetCategories: [BudgetCategory] = []
     @Published var runningExpense = 0.0
+    @Published var runningBudget = 0.0
     @Published var category: ExpenseCategory
+    @Published var expense = 0.0
+    @Published var budget = 0.0
     
     init(dataSource: SwiftDataService, category: ExpenseCategory) {
         self.dataSource = dataSource
@@ -79,9 +82,8 @@ class AddExpenseViewModel: ObservableObject {
     }
     
     func initializeProgress(_ category: ExpenseCategory) {
-        let budget = remainingBudgetForCategory(category)
-        let expense = totalExpensesForCategoryThisMonth(category: category)
-        print(expense)
+        self.budget = remainingBudgetForCategory(category)
+        self.expense = totalExpensesForCategoryThisMonth(category: category)
         
         if budget <= 0.0{
             self.progress = 0.5
@@ -89,13 +91,12 @@ class AddExpenseViewModel: ObservableObject {
         else{
             self.progress = (1-(expense/budget))
             self.runningExpense = expense
+            self.runningBudget = budget
         }
         
     }
     
     func updateProgress(value: Double, category: ExpenseCategory) {
-        let budget = remainingBudgetForCategory(category)
-        let expense = totalExpensesForCategoryThisMonth(category: category)
         let newExpense = expense + value
         if budget <= 0.0{
             self.progress = 0.5
@@ -109,6 +110,12 @@ class AddExpenseViewModel: ObservableObject {
         let expense = totalExpensesForCategoryThisMonth(category: category)
         let newExpense = expense + value
         self.runningExpense = newExpense
+    }
+    
+    func updateRunningBudget(value: Double) {
+        let budget = remainingBudgetForCategory(category)
+        let newBudget = budget - value
+        self.runningBudget = newBudget
     }
     
     let buttons: [[CalcButton]] = [
@@ -172,7 +179,7 @@ class AddExpenseViewModel: ObservableObject {
                 
             }
         case .clear:
-            initializeProgress(.household)
+            initializeProgress(category)
             value = "0"
             convertedValue = ""
             calcHistory = ""
@@ -219,8 +226,9 @@ class AddExpenseViewModel: ObservableObject {
         }else{
             isCalculating = false
             if let convertedValue = Double(value){
-                self.updateProgress(value: convertedValue,category: .household)
+                self.updateProgress(value: convertedValue,category: category)
                 self.updateRunningExpense(value: convertedValue)
+                self.updateRunningBudget(value: convertedValue)
             }
             
         }

@@ -59,7 +59,7 @@ struct CalcView: View {
                             Text("Remaining budget")
                                 .font(.system(size: 15))
                                 .foregroundColor(Color("gray585858"))
-                            Text("Rp \(modelView.remainingBudgetForCategory(category), specifier: "%.f")")
+                            Text("Rp \(modelView.runningBudget, specifier: "%.f")")
                                 .fontWeight(.semibold)
                                 .font(.system(size: 20))
                                 .foregroundColor(Color("gray585858"))
