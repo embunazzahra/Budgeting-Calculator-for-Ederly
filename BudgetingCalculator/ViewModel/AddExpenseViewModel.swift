@@ -270,7 +270,7 @@ class AddExpenseViewModel: ObservableObject {
     func sanitizeExpression(expression: String) -> String {
         // Remove leading or trailing operators
         let operators = CharacterSet(charactersIn: "+-*/")
-        var modifiedExpression = expression.trimmingCharacters(in: operators)
+        let modifiedExpression = expression.trimmingCharacters(in: operators)
         print(modifiedExpression)
         var sanitizedExpression = modifiedExpression.replacingOccurrences(of: "/", with: "*1.0/")
         print(sanitizedExpression)
@@ -317,6 +317,32 @@ class AddExpenseViewModel: ObservableObject {
     
     func containsOperator(_ value: String) -> Bool {
         return value.contains("+") || value.contains("-") || value.contains("x") || value.contains("/")
+    }
+    
+    func calculatorColor (category: ExpenseCategory) -> Color {
+        switch category{
+        case .household:
+            return Color.yellowFFCF23
+        case .health:
+            return Color.green00C7BE
+        case .savings:
+            return Color.blue3EAFE5
+        case .other:
+            return Color.purpleAB2377
+        }
+    }
+    
+    func progressBarColor (category: ExpenseCategory) -> Color{
+        switch category{
+        case .household:
+            return Color.yellowFFCF23
+        case .health:
+            return Color.green00C7BE
+        case .savings:
+            return Color.blue32ADE6
+        case .other:
+            return Color.purpleAB2377
+        }
     }
 }
 

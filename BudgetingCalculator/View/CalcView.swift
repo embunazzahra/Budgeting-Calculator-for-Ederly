@@ -42,10 +42,10 @@ struct CalcView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .background(category.color.opacity(0.2))
+                .background(modelView.calculatorColor(category: category).opacity(0.2))
                 
                 ZStack{
-                    ProgressBarView(progress: $modelView.progress, color: category.color)
+                    ProgressBarView(progress: $modelView.progress, color: modelView.progressBarColor(category: category))
                     
                     //progress bar
                     HStack{
@@ -133,5 +133,5 @@ struct CalcView: View {
 
 
 #Preview {
-    CalcView(category: .household)
+    CalcView(category: .savings)
 }
