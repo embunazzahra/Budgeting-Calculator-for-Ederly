@@ -120,6 +120,8 @@ struct CalcView: View {
             }
             
         }
+        .navigationBarTitle(category.rawValue, displayMode: .inline) // 1
+        .navigationBarBackButtonHidden(false)
 //        .navigationBarHidden(true)
     }
     
