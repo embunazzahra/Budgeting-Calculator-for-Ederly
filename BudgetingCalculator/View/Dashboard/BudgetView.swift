@@ -24,8 +24,12 @@ struct BudgetView: View {
                     AccountBalanceView(viewModel: viewModel)
                         .padding(.bottom, 4)
        
+                    // Expense Categories View
                     ExpenseCategoriesView(viewModel: viewModel)
                             .padding(.horizontal)
+                    
+                    // Recent Expenses
+                    RecentExpensesView(viewModel: viewModel)
                             
                     }
                     .buttonStyle(.plain)
