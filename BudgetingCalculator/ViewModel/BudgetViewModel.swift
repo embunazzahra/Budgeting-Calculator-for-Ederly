@@ -22,6 +22,9 @@ class BudgetViewModel: ObservableObject {
     init(dataSource: SwiftDataService) {
         self.dataSource = dataSource
         
+        self.expenses = dataSource.fetchExpenses()
+        self.budgetCategories = dataSource.fetchBudgetCategory()
+        
         // Add dummy expenses to the SwiftData to see if fetching data is works
         if let balance = dataSource.fetchBalance() {
             self.accountBalance = balance.accountBalance

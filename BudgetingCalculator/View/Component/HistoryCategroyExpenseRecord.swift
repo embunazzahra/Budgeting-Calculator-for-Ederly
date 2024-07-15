@@ -9,14 +9,13 @@ import SwiftUI
 
 struct HistoryCategroyExpenseRecord: View {
     var expense: Expense
-    var date: Date
-    var amount: Double
+    @ObservedObject var viewModel: BudgetViewModel
     
     // Pindahin ke ViewModel
     private var formattedDate: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "E, d MMM"
-        return formatter.string(from: date)
+        return formatter.string(from: expense.date)
     }
     
     var body: some View {
@@ -24,22 +23,22 @@ struct HistoryCategroyExpenseRecord: View {
             HStack {
                 Text(formattedDate)
                 Spacer()
-                Text("-\(amount, specifier: "%.2f")")
+                Text("-\(expense.amount, specifier: "%.2f")")
             }
             .padding()
             .background(expense.category.colorBack)
             .frame(width: 320, height: 52)
             .cornerRadius(10)
 
-            Rectangle() // Adding the bottom border line
-                .fill(Color(.bordercolor)) // Change the color of the border line as needed
-                .frame(height: 1) // Adjust the height of the border line
+            Rectangle()
+                .fill(Color(.bordercolor))
+                .frame(height: 1)
         }
         .frame(width: 305)
     }
 }
 
 #Preview {
-    HistoryCategroyExpenseRecord(expense: Expense(category: .health, amount: 25000), date: Date(), amount: 25000)
+    HistoryCategroyExpenseRecord(expense: Expense(category: .health, amount: 25000, date: Date()), viewModel: BudgetViewModel(dataSource: .shared))
 }
 

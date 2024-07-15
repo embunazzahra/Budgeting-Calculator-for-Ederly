@@ -27,7 +27,7 @@ struct HistoryCategoryView: View {
                     ForEach(viewModel.expensesGroupedByDate(for: category).sorted(by: { $0.key > $1.key }), id: \.key) { date, expenses in
                         VStack (spacing: 0) {
                             ForEach(expenses) { expense in
-                                HistoryCategroyExpenseRecord(expense: expense, date: expense.date, amount: expense.amount)
+                                HistoryCategroyExpenseRecord(expense: expense, viewModel: viewModel)
                             }
                         }
                         .padding(.bottom, 8)
@@ -43,15 +43,6 @@ struct HistoryCategoryView: View {
     }
 }
 
-struct MockData {
-    static let sampleCategory: ExpenseCategory = .health
-    static let sampleViewModel: BudgetViewModel = {
-        let viewModel = BudgetViewModel(dataSource: .shared)
-        // Add any additional setup if needed
-        return viewModel
-    }()
-}
-
 #Preview {
-    HistoryCategoryView(category: MockData.sampleCategory, viewModel: MockData.sampleViewModel)
+    HistoryCategoryView(category: .health, viewModel: BudgetViewModel(dataSource: .shared))
 }

@@ -42,5 +42,5 @@ struct ExpenseCategoriesView: View {
 }
 
 #Preview {
-    BudgetView()
+    ExpenseCategoriesView(viewModel: BudgetViewModel(dataSource: .shared))
 }
