@@ -27,7 +27,7 @@ struct HistoryCategoryView: View {
                     ForEach(viewModel.expensesGroupedByDate(for: category).sorted(by: { $0.key > $1.key }), id: \.key) { date, expenses in
                         VStack (spacing: 0) {
                             ForEach(expenses) { expense in
-                                HistoryCategroyExpenseRecord(expense: expense, viewModel: viewModel)
+                                HistoryCategroyExpenseRecord(expense: expense, viewModel: BudgetViewModel(dataSource: .shared))
                             }
                         }
                         .padding(.bottom, 8)
