@@ -51,14 +51,19 @@ class AddExpenseViewModel: ObservableObject {
     }
     
     private func initializeDummyBudgetCategories() {
-        // Check if there are existing categories to avoid duplication
-        if budgetCategories.isEmpty {
+        if dataSource.fetchBudgetCategory().isEmpty{
             let dummyCategories = [
                 BudgetCategory(category: .household, allocatedAmount: 2600000.0),
-                BudgetCategory(category: .health, allocatedAmount: 2000000.0),
-                BudgetCategory(category: .other, allocatedAmount: 1500000.0),
-                BudgetCategory(category: .savings, allocatedAmount: 100000.0)
+                BudgetCategory(category: .health, allocatedAmount: 3000000.0),
+                BudgetCategory(category: .other, allocatedAmount: 5000000.0),
+                BudgetCategory(category: .savings, allocatedAmount: 1500000.0)
             ]
+            
+            for budget in dummyCategories {
+                //add budget ke swift data
+            }
+            
+            //nanti ganti dummyCategories ke fetchBudgetCategory
             self.budgetCategories = dummyCategories
         }
     }
@@ -213,6 +218,8 @@ class AddExpenseViewModel: ObservableObject {
                 
                 if !isCalculating {
                     addExpense(category: category, amount: Double(value) ?? 0.0)
+                    initializeDummyExpensesCategories()
+                    initializeDummyBudgetCategories()
                 }
             }
             
