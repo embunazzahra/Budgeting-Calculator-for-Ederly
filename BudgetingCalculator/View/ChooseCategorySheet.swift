@@ -22,10 +22,10 @@ struct ChooseCategorySheet: View {
                         ForEach(ExpenseCategory.allCases) { category in
                             NavigationLink(destination: CalcView( category: category)){
                                 CircleCategory(category: category, viewModel: viewModel)
-                                    .onTapGesture {
-                                        viewModel.selectedCategory = category
-                                        viewModel.isCalculatorSheetPresented = true
-                                    }
+//                                    .onTapGesture {
+//                                        viewModel.selectedCategory = category
+//                                        viewModel.isCalculatorSheetPresented = true
+//                                    }
                             }
                         }
                     }
