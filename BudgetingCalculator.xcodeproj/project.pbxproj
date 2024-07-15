@@ -36,10 +36,15 @@
 		71507E2D2C3E1659003D043C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71507E2C2C3E1659003D043C /* Preview Assets.xcassets */; };
 		71507E342C3E16B7003D043C /* CalcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71507E332C3E16B7003D043C /* CalcView.swift */; };
 		C2300CBB2C3FCE1700AD5D52 /* SwiftDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2300CBA2C3FCE1700AD5D52 /* SwiftDataService.swift */; };
+		C272C4B92C440B6A0000023D /* RemainingBudgetCategoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C272C4B82C440B6A0000023D /* RemainingBudgetCategoryCard.swift */; };
+		C277A75E2C43EAD600C5DA89 /* HistoryCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C277A75D2C43EAD600C5DA89 /* HistoryCategoryView.swift */; };
 		C29C838C2C3FD2F200215D31 /* ExpenseCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29C838B2C3FD2F200215D31 /* ExpenseCategoriesView.swift */; };
 		C29C838E2C3FD44C00215D31 /* AccountBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29C838D2C3FD44C00215D31 /* AccountBalanceView.swift */; };
 		C2A5EA172C3FF3AF00F0CC42 /* EditBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A5EA162C3FF3AF00F0CC42 /* EditBalanceView.swift */; };
 		C2A5EA192C3FF7A500F0CC42 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A5EA182C3FF7A500F0CC42 /* Balance.swift */; };
+		C2BC99C02C444B4C00672389 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BC99BF2C444B4C00672389 /* HistoryViewModel.swift */; };
+		C2BC99C22C44E90600672389 /* HistoryCategroyExpenseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BC99C12C44E90600672389 /* HistoryCategroyExpenseRecord.swift */; };
+		C2BC99C42C44F36700672389 /* RecentExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BC99C32C44F36700672389 /* RecentExpensesView.swift */; };
 		C2CE94372C41233700BA084A /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CE94362C41233700BA084A /* ProgressBar.swift */; };
 		C2CE94392C4124E200BA084A /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CE94382C4124E200BA084A /* ProgressBarView.swift */; };
 		C2CE943C2C41311400BA084A /* NumberSeperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CE943B2C41311400BA084A /* NumberSeperator.swift */; };
@@ -76,10 +81,15 @@
 		71507E2C2C3E1659003D043C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		71507E332C3E16B7003D043C /* CalcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcView.swift; sourceTree = "<group>"; };
 		C2300CBA2C3FCE1700AD5D52 /* SwiftDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataService.swift; sourceTree = "<group>"; };
+		C272C4B82C440B6A0000023D /* RemainingBudgetCategoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainingBudgetCategoryCard.swift; sourceTree = "<group>"; };
+		C277A75D2C43EAD600C5DA89 /* HistoryCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCategoryView.swift; sourceTree = "<group>"; };
 		C29C838B2C3FD2F200215D31 /* ExpenseCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoriesView.swift; sourceTree = "<group>"; };
 		C29C838D2C3FD44C00215D31 /* AccountBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalanceView.swift; sourceTree = "<group>"; };
 		C2A5EA162C3FF3AF00F0CC42 /* EditBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBalanceView.swift; sourceTree = "<group>"; };
 		C2A5EA182C3FF7A500F0CC42 /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
+		C2BC99BF2C444B4C00672389 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		C2BC99C12C44E90600672389 /* HistoryCategroyExpenseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCategroyExpenseRecord.swift; sourceTree = "<group>"; };
+		C2BC99C32C44F36700672389 /* RecentExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentExpensesView.swift; sourceTree = "<group>"; };
 		C2CE94362C41233700BA084A /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		C2CE94382C4124E200BA084A /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		C2CE943B2C41311400BA084A /* NumberSeperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberSeperator.swift; sourceTree = "<group>"; };
@@ -113,6 +123,7 @@
 				464952912C3EECEF00BC8305 /* BudgetViewModel.swift */,
 				464952AA2C3F011100BC8305 /* IncomeViewModel.swift */,
 				7113359C2C4119990035AB15 /* AddExpenseViewModel.swift */,
+				C2BC99BF2C444B4C00672389 /* HistoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -123,6 +134,7 @@
 				464952B22C3FD84600BC8305 /* Component */,
 				C2CE94352C41232B00BA084A /* Component */,
 				C2300CBC2C3FD23200AD5D52 /* Dashboard */,
+				C2C2A8202C43E4D800E91C17 /* History */,
 				464952962C3EECFE00BC8305 /* BudgetingSettingView.swift */,
 				71507E332C3E16B7003D043C /* CalcView.swift */,
 				464952972C3EECFE00BC8305 /* CalculatorSheet.swift */,
@@ -214,8 +226,17 @@
 				464952932C3EECFE00BC8305 /* BudgetView.swift */,
 				C29C838B2C3FD2F200215D31 /* ExpenseCategoriesView.swift */,
 				464952992C3EECFE00BC8305 /* ExpenseCategoryView.swift */,
+				C2BC99C32C44F36700672389 /* RecentExpensesView.swift */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		C2C2A8202C43E4D800E91C17 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				C277A75D2C43EAD600C5DA89 /* HistoryCategoryView.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		C2CE94352C41232B00BA084A /* Component */ = {
@@ -223,6 +244,8 @@
 			children = (
 				C2CE94362C41233700BA084A /* ProgressBar.swift */,
 				C2CE94382C4124E200BA084A /* ProgressBarView.swift */,
+				C272C4B82C440B6A0000023D /* RemainingBudgetCategoryCard.swift */,
+				C2BC99C12C44E90600672389 /* HistoryCategroyExpenseRecord.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -310,6 +333,7 @@
 				71507E262C3E1657003D043C /* BudgetingCalculatorApp.swift in Sources */,
 				464952D02C4119A400BC8305 /* CircleCategory.swift in Sources */,
 				464952B92C3FF61300BC8305 /* BudgetDetail.swift in Sources */,
+				C2BC99C02C444B4C00672389 /* HistoryViewModel.swift in Sources */,
 				4649529A2C3EECFE00BC8305 /* CalculatorSheet.swift in Sources */,
 				464952AD2C3F0E9B00BC8305 /* Color.swift in Sources */,
 				4649529B2C3EECFE00BC8305 /* HistoryView.swift in Sources */,
@@ -317,14 +341,18 @@
 				464952BB2C3FF72300BC8305 /* AmountBudget.swift in Sources */,
 				C29C838E2C3FD44C00215D31 /* AccountBalanceView.swift in Sources */,
 				464952B72C3FDD5400BC8305 /* ButtonUpdateBudget.swift in Sources */,
+				C277A75E2C43EAD600C5DA89 /* HistoryCategoryView.swift in Sources */,
+				C2BC99C42C44F36700672389 /* RecentExpensesView.swift in Sources */,
 				C2A5EA192C3FF7A500F0CC42 /* Balance.swift in Sources */,
 				464952AF2C3F0EDC00BC8305 /* BudgetCategory.swift in Sources */,
 				464952CE2C41180A00BC8305 /* ChooseCategorySheet.swift in Sources */,
 				464952A72C3EF59100BC8305 /* Rounded.swift in Sources */,
 				4649529C2C3EECFE00BC8305 /* ExpenseCategoryView.swift in Sources */,
+				C272C4B92C440B6A0000023D /* RemainingBudgetCategoryCard.swift in Sources */,
 				464952CC2C41176500BC8305 /* ExpenseButton.swift in Sources */,
 				464952AB2C3F011100BC8305 /* IncomeViewModel.swift in Sources */,
 				464952A42C3EF54400BC8305 /* IncomeView.swift in Sources */,
+				C2BC99C22C44E90600672389 /* HistoryCategroyExpenseRecord.swift in Sources */,
 				4649529D2C3EECFE00BC8305 /* BudgetingSettingView.swift in Sources */,
 				C2CE94392C4124E200BA084A /* ProgressBarView.swift in Sources */,
 				4649529E2C3EECFE00BC8305 /* TabBarView.swift in Sources */,
