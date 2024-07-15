@@ -15,11 +15,25 @@ class AllHistoryViewModel: ObservableObject {
     @Published var expenses: [Expense] = []
     @Published var selectedDate = Date()
     @Published var currentWeek: [Date] = []
+    @Published var weekSlider: [[WeekDay]] = []
+    @Published var currentWeekIndex: Int = 1
+    @Published var firstDate: Date = Date()
+    @Published var lastDate: Date = Date()
     
     init(dataSource: SwiftDataService){
         self.dataSource = dataSource
         initializeExpenses()
-        fetchCurrentWeek() 
+        let currentWeek = fetchWeek()
+        
+        if let firstDate = currentWeek.first?.date{
+            weekSlider.append(createPreviousWeek(firstDate))
+        }
+        
+        weekSlider.append(currentWeek)
+        
+        if let lastDate = currentWeek.last?.date{
+            weekSlider.append(createNextWeek(lastDate))
+        }
     }
     
     private func initializeExpenses(){
@@ -39,26 +53,9 @@ class AllHistoryViewModel: ObservableObject {
         self.expenses = dataSource.fetchExpenses()
     }
     
-    func fetchCurrentWeek(){
-        let today = Date()
-        let calendar = Calendar.current
-        
-        let week = calendar.dateInterval(of: .weekOfMonth, for: today)
-        
-        guard let firstWeekDay = week?.start else{
-            return
-        }
-        
-        (1...7).forEach{
-            day in
-            
-            if let weekday = calendar.date(byAdding: .day, value: day, to: firstWeekDay){
-                currentWeek.append(weekday)
-            }
-                
-        }
-        
-    }
+
+    
+    
     
     func extractDate(date: Date, format: String) -> String{
         let formatter = DateFormatter()
@@ -70,7 +67,68 @@ class AllHistoryViewModel: ObservableObject {
     func isToday(date: Date) -> Bool{
         let calendar = Calendar.current
         
-        return calendar.isDate(selectedDate, inSameDayAs: date)
+        return calendar.isDate(selectedDate, inSameDayAs: date )
+    }
+    
+    func fetchWeek(_ date: Date = .init()) -> [WeekDay]{
+
+        let calendar = Calendar.current
+        let startOfDate = calendar.startOfDay(for: date)
+        
+        var week: [WeekDay] = []
+        
+        let weekForDate = calendar.dateInterval(of: .weekOfMonth, for: startOfDate)
+        
+        guard let startOfWeek = weekForDate?.start else{
+            return []
+        }
+        
+        (1...7).forEach{
+            day in
+            
+            if let weekday = calendar.date(byAdding: .day, value: day, to: startOfWeek){
+                week.append(.init(date: weekday))
+            }
+                
+        }
+        return week
+        
+    }
+    
+    
+    //creating previous week based on first current week's date
+    func createPreviousWeek(_ date: Date) -> [WeekDay]{
+        let calendar = Calendar.current
+        let startOfFirstDate = calendar.startOfDay(for: date)
+        
+        guard let previousDate = calendar.date(byAdding: .day, value: -2, to: startOfFirstDate) else{
+            return []
+        }
+        
+        return fetchWeek(previousDate)
+    }
+    
+    //creating next week based on last current week's date
+    func createNextWeek(_ date: Date) -> [WeekDay]{
+        let calendar = Calendar.current
+        let startOfLastDate = calendar.startOfDay(for: date)
+        
+        guard let nextDate = calendar.date(byAdding: .day, value: 1, to: startOfLastDate) else{
+            return []
+        }
+        
+        return fetchWeek(nextDate)
     }
     
 }
+
+
+    
+    
+    struct WeekDay: Identifiable{
+        var id: UUID  = .init()
+        var date: Date
+    }
+
+
+
