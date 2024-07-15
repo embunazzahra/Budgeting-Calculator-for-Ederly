@@ -34,6 +34,7 @@
 		711335A12C44AB420035AB15 /* AllHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711335A02C44AB420035AB15 /* AllHistoryViewModel.swift */; };
 		711335A32C44AFA70035AB15 /* HistoryCategoryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711335A22C44AFA70035AB15 /* HistoryCategoryIcon.swift */; };
 		711335A52C44BE440035AB15 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711335A42C44BE440035AB15 /* DateFormatter.swift */; };
+		711335A72C44EE760035AB15 /* OffsetKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711335A62C44EE760035AB15 /* OffsetKey.swift */; };
 		71507E262C3E1657003D043C /* BudgetingCalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71507E252C3E1657003D043C /* BudgetingCalculatorApp.swift */; };
 		71507E282C3E1657003D043C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71507E272C3E1657003D043C /* ContentView.swift */; };
 		71507E2A2C3E1659003D043C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71507E292C3E1659003D043C /* Assets.xcassets */; };
@@ -77,6 +78,7 @@
 		711335A02C44AB420035AB15 /* AllHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllHistoryViewModel.swift; sourceTree = "<group>"; };
 		711335A22C44AFA70035AB15 /* HistoryCategoryIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCategoryIcon.swift; sourceTree = "<group>"; };
 		711335A42C44BE440035AB15 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		711335A62C44EE760035AB15 /* OffsetKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetKey.swift; sourceTree = "<group>"; };
 		71507E222C3E1657003D043C /* BudgetingCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetingCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71507E252C3E1657003D043C /* BudgetingCalculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingCalculatorApp.swift; sourceTree = "<group>"; };
 		71507E272C3E1657003D043C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			children = (
 				C2CE943B2C41311400BA084A /* NumberSeperator.swift */,
 				711335A42C44BE440035AB15 /* DateFormatter.swift */,
+				711335A62C44EE760035AB15 /* OffsetKey.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				464952AB2C3F011100BC8305 /* IncomeViewModel.swift in Sources */,
 				464952A42C3EF54400BC8305 /* IncomeView.swift in Sources */,
 				4649529D2C3EECFE00BC8305 /* BudgetingSettingView.swift in Sources */,
+				711335A72C44EE760035AB15 /* OffsetKey.swift in Sources */,
 				711335A52C44BE440035AB15 /* DateFormatter.swift in Sources */,
 				C2CE94392C4124E200BA084A /* ProgressBarView.swift in Sources */,
 				4649529E2C3EECFE00BC8305 /* TabBarView.swift in Sources */,

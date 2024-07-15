@@ -19,6 +19,7 @@ class AllHistoryViewModel: ObservableObject {
     @Published var currentWeekIndex: Int = 1
     @Published var firstDate: Date = Date()
     @Published var lastDate: Date = Date()
+    @Published var createWeek: Bool = false
     
     init(dataSource: SwiftDataService){
         self.dataSource = dataSource
@@ -118,6 +119,28 @@ class AllHistoryViewModel: ObservableObject {
         }
         
         return fetchWeek(nextDate)
+    }
+    
+    func handleWeekIndexChange(oldValue: Int, newValue: Int) {
+            if newValue == 0 || newValue == (weekSlider.count - 1) {
+                createWeek = true
+            }
+        }
+    
+    func paginateWeek(){
+        if weekSlider.indices.contains(currentWeekIndex){
+            if let firstDate = weekSlider[currentWeekIndex].first?.date, currentWeekIndex == 0{
+                weekSlider.insert(createPreviousWeek(firstDate), at: 0)
+                weekSlider.removeLast()
+                currentWeekIndex = 1
+            }
+            if let lastDate = weekSlider[currentWeekIndex].last?.date, currentWeekIndex == (weekSlider.count-1 ){
+                weekSlider.append(createNextWeek(lastDate))
+                weekSlider.removeFirst()
+                currentWeekIndex = weekSlider.count -  2
+            }
+        }
+        print(weekSlider.count)
     }
     
 }

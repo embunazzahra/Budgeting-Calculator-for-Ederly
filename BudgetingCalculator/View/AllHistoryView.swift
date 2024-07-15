@@ -32,53 +32,7 @@ struct AllHistoryView: View {
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .frame(height: 90)
                 .background(.yellowFFCF23.opacity(0.3))
-                
-                //calendar
-                LazyVStack(spacing:15,pinnedViews: [.sectionHeaders]){
-                    Section{
-                        ScrollView(.horizontal,showsIndicators: false){
-                            HStack(spacing:10){
-                                ForEach(modelView.currentWeek, id:\.self){ day in
-                                    VStack(spacing: 10){
-                                        
-                                        Text(modelView.extractDate(date: day, format: "EEE").prefix(1))
-                                            .font(.system(size: 14))
-                                            .fontWeight(.semibold)
-                                        
-                                        ZStack{
-                                            Circle()
-                                                .fill(.yellowFFCF23)
-                                                .frame(width: 26,height: 26)
-                                                .opacity(modelView.isToday(date: day) ? 1 : 0)
-                                            
-                                            Text(modelView.extractDate(date: day, format: "dd"))
-                                                .font(.system(size: 14))
-                                                .fontWeight(.regular)
-                                        }
-                                        
-                                        
-                                        
-                                        
-                                    }
-                                    .frame(width: 45, height: 90)
-                                    .background(
-                                        Color.clear
-                                    )
-                                    .onTapGesture {
-                                        withAnimation(.snappy){
-                                            modelView.selectedDate = day
-                                        }
-                                    }
-                                    
-                                }
-                            }
-                            .padding(.horizontal)
-                        }
-                    }
-                }
-                .background(.yellowFFCF23.opacity(0.3))
-                
-                
+            
                 
                 //Selected Date
                 HStack{
@@ -89,13 +43,10 @@ struct AllHistoryView: View {
                 
                 historyListView() 
             }
+            .onChange(of: modelView.currentWeekIndex, perform: { newValue in
+                                modelView.handleWeekIndexChange(oldValue: modelView.currentWeekIndex, newValue: newValue)
+                            })
         }
-//        .onAppear(perform: {
-//            if modelView.weekSlider.isEmpty{
-//                let currentWeek = modelView.fetchWeek()
-//                model
-//            }
-//        })
     }
     
     func weekView(_ week: [WeekDay]) -> some View{
@@ -131,7 +82,22 @@ struct AllHistoryView: View {
                 
             }
         }
-        .padding(.horizontal)
+//        .padding(.horizontal)
+        .background{
+            GeometryReader {
+                let minX = $0.frame(in: .global).minX
+                
+                Color.clear
+                    .preference(key: OffsetKey.self, value: minX)
+                    .onPreferenceChange(OffsetKey.self) {
+                        value in
+                        if value.rounded() == 10 && modelView.createWeek{
+                            modelView.paginateWeek()
+                            modelView.createWeek = false
+                        }
+                    }
+            }
+        }
     }
     
     func historyListView() -> some View{
