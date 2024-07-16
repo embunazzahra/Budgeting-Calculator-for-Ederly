@@ -10,10 +10,13 @@ import SwiftUI
 struct CalcView: View {
     
     @StateObject var modelView: AddExpenseViewModel
+    @Environment(\.dismiss) var dismiss // Tambahkan ini
     let category: ExpenseCategory
+    var onDismiss: (() -> Void)? // Tambahkan ini
     
-    init(category: ExpenseCategory) {
+    init(category: ExpenseCategory, onDismiss: (() -> Void)? = nil) {
             self.category = category
+        self.onDismiss = onDismiss // Simpan onDismiss
         _modelView = StateObject(wrappedValue: AddExpenseViewModel(dataSource: .shared, category: category))
         }
 
@@ -96,6 +99,11 @@ struct CalcView: View {
                                 ForEach(row, id: \.self) { item in
                                     Button(action: {
                                         self.modelView.didTap(button: item)
+                                        
+                                        if modelView.isFinished { //
+                                                                               dismiss() 
+                                            onDismiss?()
+                                                                    }
                                     }, label: {
                                         modelView.getTextOrImage(for: item)
                                             .font(.system(size: 40))

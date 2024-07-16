@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CircleCategory: View {
     let category: ExpenseCategory
-    @ObservedObject var viewModel = BudgetViewModel(dataSource: .shared)
+    @ObservedObject var viewModel: BudgetViewModel
     
     var body: some View {
         
@@ -38,5 +38,5 @@ struct CircleCategory: View {
 }
 
 #Preview {
-    CircleCategory(category: .health)
+    CircleCategory(category: .health, viewModel: BudgetViewModel(dataSource: .shared))
 }

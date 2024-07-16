@@ -20,14 +20,14 @@ struct HistoryCategoryView: View {
             Divider()
             
             // Remaining Budget Category Card
-            RemainingBudgetCategoryCard(category: category, viewModel: BudgetViewModel(dataSource: .shared))
+            RemainingBudgetCategoryCard(category: category, viewModel: viewModel)
             
             ScrollView {
                 VStack {
                     ForEach(viewModel.expensesGroupedByDate(for: category).sorted(by: { $0.key > $1.key }), id: \.key) { date, expenses in
                         VStack (spacing: 0) {
                             ForEach(expenses) { expense in
-                                HistoryCategroyExpenseRecord(expense: expense, viewModel: BudgetViewModel(dataSource: .shared))
+                                HistoryCategroyExpenseRecord(expense: expense, viewModel: viewModel)
                             }
                         }
                         .padding(.bottom, 8)
