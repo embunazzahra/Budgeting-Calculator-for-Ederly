@@ -10,7 +10,7 @@ import SwiftData
 
 struct BudgetView: View {
     @State var isCalculatorSheetPresented = false
-    @StateObject var viewModel: BudgetViewModel = BudgetViewModel(dataSource: .shared)
+    @ObservedObject var viewModel: BudgetViewModel
 
     @Environment(\.locale) var locale
     
@@ -24,8 +24,12 @@ struct BudgetView: View {
                     AccountBalanceView(viewModel: viewModel)
                         .padding(.bottom, 4)
        
+                    // Expense Categories View
                     ExpenseCategoriesView(viewModel: viewModel)
                             .padding(.horizontal)
+                    
+                    // Recent Expenses
+                    RecentExpensesView(viewModel: viewModel)
                             
                     }
                     .buttonStyle(.plain)

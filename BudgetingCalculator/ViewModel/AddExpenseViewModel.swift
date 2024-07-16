@@ -25,6 +25,7 @@ class AddExpenseViewModel: ObservableObject {
     @Published var expense = 0.0
     @Published var budget = 0.0
     @Published var remainingBudget = 0.0
+    @Published var isFinished = false
     
     init(dataSource: SwiftDataService, category: ExpenseCategory) {
         self.dataSource = dataSource
@@ -35,7 +36,7 @@ class AddExpenseViewModel: ObservableObject {
     }
     
     private func initializeDummyExpensesCategories() {
-        if expenses.isEmpty {
+        if dataSource.fetchExpenses().isEmpty {
             let dummyExpenses = [
                 Expense(category: .household, amount: 300000.0),
                 Expense(category: .household, amount: 100000.0),
@@ -43,19 +44,27 @@ class AddExpenseViewModel: ObservableObject {
                 Expense(category: .other, amount:200000.0),
                 Expense(category: .savings, amount:20000.0),
             ]
-            self.expenses = dummyExpenses
+            for expense in dummyExpenses {
+                dataSource.addExpense(expense)
+            }
         }
+        self.expenses = dataSource.fetchExpenses()
     }
     
     private func initializeDummyBudgetCategories() {
-        // Check if there are existing categories to avoid duplication
-        if budgetCategories.isEmpty {
+        if dataSource.fetchBudgetCategory().isEmpty{
             let dummyCategories = [
                 BudgetCategory(category: .household, allocatedAmount: 2600000.0),
-                BudgetCategory(category: .health, allocatedAmount: 2000000.0),
-                BudgetCategory(category: .other, allocatedAmount: 1500000.0),
-                BudgetCategory(category: .savings, allocatedAmount: 100000.0)
+                BudgetCategory(category: .health, allocatedAmount: 3000000.0),
+                BudgetCategory(category: .other, allocatedAmount: 5000000.0),
+                BudgetCategory(category: .savings, allocatedAmount: 1500000.0)
             ]
+            
+            for budget in dummyCategories {
+                //add budget ke swift data
+            }
+            
+            //nanti ganti dummyCategories ke fetchBudgetCategory
             self.budgetCategories = dummyCategories
         }
     }
@@ -109,12 +118,6 @@ class AddExpenseViewModel: ObservableObject {
         }
         else{
             self.progress = (1-(runningExpense/budget))
-            print("running expense")
-            print(runningExpense)
-            print("budget")
-            print(budget)
-            print("progress")
-            print(progress)
         }
     }
     
@@ -126,6 +129,11 @@ class AddExpenseViewModel: ObservableObject {
     func updateRunningBudget(value: Double) {
         let newBudget = remainingBudget - value
         self.runningBudget = newBudget
+    }
+    
+    func addExpense(category: ExpenseCategory, amount: Double){
+        let newExpense = Expense(category: category, amount: amount)
+        dataSource.addExpense(newExpense)
     }
     
     let buttons: [[CalcButton]] = [
@@ -193,10 +201,10 @@ class AddExpenseViewModel: ObservableObject {
             value = "0"
             convertedValue = ""
             calcHistory = ""
-   
+            
         case .del:
             if !value.isEmpty {
-  
+                
                 value.removeLast()
             }
             if !convertedValue.isEmpty {
@@ -208,6 +216,13 @@ class AddExpenseViewModel: ObservableObject {
                 calcHistory = value
                 value = calculateExpression(expression: convertedValue)
                 convertedValue = value
+                
+                if !isCalculating {
+                    addExpense(category: category, amount: Double(value) ?? 0.0)
+                    initializeDummyExpensesCategories()
+                    initializeDummyBudgetCategories()
+                    self.isFinished = true
+                }
             }
             
         default:

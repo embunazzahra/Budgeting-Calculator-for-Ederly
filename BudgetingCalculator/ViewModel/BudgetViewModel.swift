@@ -22,6 +22,9 @@ class BudgetViewModel: ObservableObject {
     init(dataSource: SwiftDataService) {
         self.dataSource = dataSource
         
+        self.expenses = dataSource.fetchExpenses()
+        self.budgetCategories = dataSource.fetchBudgetCategory()
+        
         // Add dummy expenses to the SwiftData to see if fetching data is works
         if let balance = dataSource.fetchBalance() {
             self.accountBalance = balance.accountBalance
@@ -31,17 +34,61 @@ class BudgetViewModel: ObservableObject {
         }
         
         initializeDummyBudgetCategories()
+        initializeDummyExpensesCategories()
+    }
+    
+    func refreshData(){
+        self.expenses = dataSource.fetchExpenses()
+        self.budgetCategories = dataSource.fetchBudgetCategory()
+        
+        // Add dummy expenses to the SwiftData to see if fetching data is works
+        if let balance = dataSource.fetchBalance() {
+            self.accountBalance = balance.accountBalance
+        } else {
+            // If balance is not found, you might want to handle this case
+            print("Balance not found")
+        }
+        initializeDummyBudgetCategories()
+        initializeDummyExpensesCategories()
+    }
+    
+    private func initializeDummyExpensesCategories() {
+        if expenses.isEmpty {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy/MM/dd"
+
+            if dataSource.fetchExpenses().isEmpty {
+                let dummyExpenses = [
+                    Expense(category: .health, amount: 300000.0, date: dateFormatter.date(from: "2024/07/10")!),
+                    Expense(category: .health, amount: 100000.0, date: dateFormatter.date(from: "2024/07/10")!),
+                    Expense(category: .health, amount: 500000.0, date: dateFormatter.date(from: "2024/07/12")!),
+                    Expense(category: .other, amount: 200000.0, date: dateFormatter.date(from: "2024/07/13")!),
+                    Expense(category: .savings, amount: 200000.0, date: dateFormatter.date(from: "2024/07/14")!),
+                    Expense(category: .household, amount: 200000.0, date: dateFormatter.date(from: "2024/07/11")!),
+                    Expense(category: .household, amount: 500000.0, date: dateFormatter.date(from: "2024/07/13")!),
+                ]
+                for expense in dummyExpenses {
+                    dataSource.addExpense(expense)
+                }
+            }
+            self.expenses = dataSource.fetchExpenses()
+        }
     }
     
     private func initializeDummyBudgetCategories() {
-        // Check if there are existing categories to avoid duplication
-        if budgetCategories.isEmpty {
+        if dataSource.fetchBudgetCategory().isEmpty{
             let dummyCategories = [
                 BudgetCategory(category: .household, allocatedAmount: 2600000.0),
-                BudgetCategory(category: .health, allocatedAmount: 2000000.0),
-                BudgetCategory(category: .other, allocatedAmount: 1500000.0),
-                BudgetCategory(category: .savings, allocatedAmount: 100000.0)
+                BudgetCategory(category: .health, allocatedAmount: 3000000.0),
+                BudgetCategory(category: .other, allocatedAmount: 5000000.0),
+                BudgetCategory(category: .savings, allocatedAmount: 1500000.0)
             ]
+            
+            for budget in dummyCategories {
+                //add budget ke swift data
+            }
+            
+            //nanti ganti dummyCategories ke fetchBudgetCategory
             self.budgetCategories = dummyCategories
         }
     }
@@ -98,4 +145,25 @@ class BudgetViewModel: ObservableObject {
         return max(0, categoryBudget - spent)
     }
     
+    func totalExpenseForCategory(_ category: ExpenseCategory) -> Double {
+        let spent = expenses.filter { $0.category == category }.reduce(0) { $0 + $1.amount }
+        return spent
+    }
+    
+    func expensesGroupedByDate(for category: ExpenseCategory) -> [Date: [Expense]] {
+        let filteredExpenses = expenses.filter { $0.category == category }
+        var groupedExpenses = [Date: [Expense]]()
+        
+        for expense in filteredExpenses {
+            let startOfDay = Calendar.current.startOfDay(for: expense.date)
+            if var existingExpenses = groupedExpenses[startOfDay] {
+                existingExpenses.append(expense)
+                groupedExpenses[startOfDay] = existingExpenses
+            } else {
+                groupedExpenses[startOfDay] = [expense]
+            }
+        }
+        
+        return groupedExpenses
+    }
 }

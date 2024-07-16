@@ -11,7 +11,7 @@ struct ExpenseCategoriesView: View {
     @ObservedObject var viewModel: BudgetViewModel
     
     var body: some View {
-        NavigationView{
+        NavigationView {
             VStack(alignment: .leading, spacing: 20) {
                 Text("Remaining Budget")
                     .font(.system(size: 22))
@@ -25,16 +25,13 @@ struct ExpenseCategoriesView: View {
                             ExpenseCategoryView(category: category, viewModel: viewModel)
                         }
                     }.padding(.all,10)
-                    
-                    
                 }
                 .padding(.bottom, 20)
                 .frame(maxWidth: .infinity)
                 .frame(height: 250)
-                
-                
             }
             .padding(.horizontal, 10)
+            .padding(.leading, 5)
             .padding(.vertical, 25)
             .background(Color(.whiteBlue)) // Background color for the Expenses section
             .cornerRadius(10)
@@ -45,5 +42,5 @@ struct ExpenseCategoriesView: View {
 }
 
 #Preview {
-    BudgetView()
+    ExpenseCategoriesView(viewModel: BudgetViewModel(dataSource: .shared))
 }
