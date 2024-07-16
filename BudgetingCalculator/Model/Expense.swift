@@ -45,6 +45,19 @@ enum ExpenseCategory: String, CaseIterable, Codable, Identifiable {
             return LocalizedStringKey("Savings")
         }
     }
+    
+    var localizedHistoryString: LocalizedStringKey {
+        switch self {
+        case .household:
+            return LocalizedStringKey("History for Household")
+        case .health:
+            return LocalizedStringKey("History for Health")
+        case .other:
+            return LocalizedStringKey("History for Other")
+        case .savings:
+            return LocalizedStringKey("History for Savings")
+        }
+    }
 
     var icon: String {
         switch self {
@@ -57,10 +70,10 @@ enum ExpenseCategory: String, CaseIterable, Codable, Identifiable {
     
     var color: Color {
         switch self {
-        case .household: return .brightOrange
+        case .household: return .orangeColour
         case .health: return .turquoise
-        case .other: return .darkRed 
-        case .savings: return .lightBlue
+        case .other: return .magenta
+        case .savings: return .blue
         }
     }
     
