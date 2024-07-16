@@ -16,7 +16,6 @@ struct AllHistoryView: View {
     }
     
     var body: some View {
-        NavigationView {
             VStack{
                 
                 //Week SLider
@@ -40,13 +39,23 @@ struct AllHistoryView: View {
                 }
                 .padding(.top,20)
                 
+                if !modelView.filteredExpense.isEmpty {
+                    historyListView()
+                }
+                else{
+                    Spacer()
+                    Text("No Expense")
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
+                    Spacer()
+                }
                 
-                historyListView()
             }
             .onChange(of: modelView.currentWeekIndex) { oldValue, newValue in
                 modelView.handleWeekIndexChange(oldValue: modelView.currentWeekIndex, newValue: newValue)
             }
-        }
+            .navigationTitle("History")
+            .navigationBarTitleDisplayMode(.inline)
     }
     
     func weekView(_ week: [WeekDay]) -> some View{
