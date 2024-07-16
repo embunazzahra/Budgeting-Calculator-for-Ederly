@@ -23,6 +23,7 @@ struct ChooseCategorySheet: View {
                         ForEach(ExpenseCategory.allCases) { category in
                             NavigationLink(destination: CalcView( category: category,onDismiss: {
                                 self.isPresented = false // Menutup ChooseCategorySheet
+                                viewModel.refreshData()
                             })){
                                 CircleCategory(category: category, viewModel: viewModel)
 //                                    .onTapGesture {

@@ -37,6 +37,21 @@ class BudgetViewModel: ObservableObject {
         initializeDummyExpensesCategories()
     }
     
+    func refreshData(){
+        self.expenses = dataSource.fetchExpenses()
+        self.budgetCategories = dataSource.fetchBudgetCategory()
+        
+        // Add dummy expenses to the SwiftData to see if fetching data is works
+        if let balance = dataSource.fetchBalance() {
+            self.accountBalance = balance.accountBalance
+        } else {
+            // If balance is not found, you might want to handle this case
+            print("Balance not found")
+        }
+        initializeDummyBudgetCategories()
+        initializeDummyExpensesCategories()
+    }
+    
     private func initializeDummyExpensesCategories() {
         if expenses.isEmpty {
             let dateFormatter = DateFormatter()

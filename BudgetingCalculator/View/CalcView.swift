@@ -100,7 +100,7 @@ struct CalcView: View {
                                     Button(action: {
                                         self.modelView.didTap(button: item)
                                         
-                                        if item == .equal { //
+                                        if modelView.isFinished { //
                                                                                dismiss() 
                                             onDismiss?()
                                                                     }

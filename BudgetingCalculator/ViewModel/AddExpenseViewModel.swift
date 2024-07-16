@@ -25,6 +25,7 @@ class AddExpenseViewModel: ObservableObject {
     @Published var expense = 0.0
     @Published var budget = 0.0
     @Published var remainingBudget = 0.0
+    @Published var isFinished = false
     
     init(dataSource: SwiftDataService, category: ExpenseCategory) {
         self.dataSource = dataSource
@@ -220,6 +221,7 @@ class AddExpenseViewModel: ObservableObject {
                     addExpense(category: category, amount: Double(value) ?? 0.0)
                     initializeDummyExpensesCategories()
                     initializeDummyBudgetCategories()
+                    self.isFinished = true
                 }
             }
             
