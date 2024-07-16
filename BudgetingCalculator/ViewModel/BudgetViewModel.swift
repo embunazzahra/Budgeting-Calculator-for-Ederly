@@ -102,8 +102,8 @@ class BudgetViewModel: ObservableObject {
             }
             
             //nanti ganti dummyCategories ke fetchBudgetCategory
-            self.budgetCategories = dataSource.fetchBudgetCategory()
         }
+        self.budgetCategories = dataSource.fetchBudgetCategory()
     }
     
     func updateBalance(accountBalance: Int){
@@ -145,6 +145,15 @@ class BudgetViewModel: ObservableObject {
 //    }
 
 
+    func allocatedBudgetForCategory(_ category: ExpenseCategory) -> Double {
+        let categoryBudget = budgetCategories.first(where: { $0.category == category })?.allocatedAmount ?? 0
+        return categoryBudget
+    }
+    
+    func totalBudget() -> Double {
+        let totalBudget = budgetCategories.reduce(0) { $0 + $1.allocatedAmount }
+        return totalBudget
+    }
 
     func remainingBudgetForCategory(_ category: ExpenseCategory) -> Double {
         let categoryBudget = budgetCategories.first(where: { $0.category == category })?.allocatedAmount ?? 0

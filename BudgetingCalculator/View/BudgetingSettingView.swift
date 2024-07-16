@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct BudgetSettingsView: View {
     @ObservedObject var viewModel: BudgetViewModel
     
@@ -18,7 +16,7 @@ struct BudgetSettingsView: View {
             VStack(alignment: .leading) {
                 VStack(alignment: .center, spacing: 10){
                     VStack{
-                        AmountBudget().padding(.bottom,20)
+                        AmountBudget(viewModel: viewModel).padding(.bottom,20)
                         
                             .padding()
                     }

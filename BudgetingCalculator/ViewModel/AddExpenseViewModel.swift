@@ -26,6 +26,7 @@ class AddExpenseViewModel: ObservableObject {
     @Published var budget = 0.0
     @Published var remainingBudget = 0.0
     @Published var isFinished = false
+    @Published var currPage = 1 // 1 -> CalcView, 2 -> InputSetBudget
     
     init(dataSource: SwiftDataService, category: ExpenseCategory) {
         self.dataSource = dataSource
@@ -61,12 +62,13 @@ class AddExpenseViewModel: ObservableObject {
             ]
             
             for budget in dummyCategories {
-                dataSource.addBudgetCategory(budget) 
+                dataSource.addBudgetCategory(budget)
             }
             
-            //nanti ganti dummyCategories ke fetchBudgetCategory
-            self.budgetCategories = dataSource.fetchBudgetCategory()
         }
+        
+        //nanti ganti dummyCategories ke fetchBudgetCategory
+        self.budgetCategories = dataSource.fetchBudgetCategory()
     }
     
     func totalExpensesForCategoryThisMonth(category: ExpenseCategory) -> Double {
@@ -144,7 +146,9 @@ class AddExpenseViewModel: ObservableObject {
         [.del, .subtract, .add, .equal],
     ]
     
-    func didTap(button: CalcButton) {
+    
+    
+    func didTap(button: CalcButton, currPage: Int, category: ExpenseCategory) {
         var convertedIcon = ""
         
         
@@ -219,10 +223,19 @@ class AddExpenseViewModel: ObservableObject {
                 convertedValue = value
                 
                 if !isCalculating {
-                    addExpense(category: category, amount: Double(value) ?? 0.0)
-                    initializeDummyExpensesCategories()
-                    initializeDummyBudgetCategories()
-                    self.isFinished = true
+                    if (currPage == 1){
+                        addExpense(category: category, amount: Double(value) ?? 0.0)
+                        initializeDummyExpensesCategories()
+                        initializeDummyBudgetCategories()
+                        self.isFinished = true
+                    } else {
+                        dataSource.updateBudgetCategory(category: category, newAllocatedAmount: Double(value) ?? 0.0)
+                        let x = dataSource.fetchBudgetCategory()
+                        for budget in x {
+                            print("Category: \(budget.category), Allocated Amount: \(budget.allocatedAmount)")
+                        }
+                    }
+                    
                 }
             }
             
@@ -252,9 +265,12 @@ class AddExpenseViewModel: ObservableObject {
         }else{
             isCalculating = false
             if let convertedValue = Double(value){
+                
                 self.updateRunningExpense(value: convertedValue)
                 self.updateRunningBudget(value: convertedValue)
                 self.updateProgress()
+                
+                
             }
             
         }

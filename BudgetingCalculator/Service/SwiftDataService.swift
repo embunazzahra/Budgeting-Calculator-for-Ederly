@@ -85,4 +85,41 @@ class SwiftDataService {
             fatalError(error.localizedDescription)
         }
     }
+    
+    func updateBudgetCategory(category: ExpenseCategory, newAllocatedAmount: Double) {
+        do {
+            var arrayBudgetCategories = fetchBudgetCategory()
+
+            // Search for existing budget category in your data structure (e.g., an array or dictionary)
+            if let index = arrayBudgetCategories.firstIndex(where: { $0.category == category }) {
+                // Update existing budget category
+                var existingCategory = arrayBudgetCategories[index]
+                existingCategory.allocatedAmount = newAllocatedAmount
+
+                // Remove existing budget category from array
+                arrayBudgetCategories.remove(at: index)
+
+                // Delete the existing category from CoreData context
+                modelContext.delete(existingCategory)
+                let budgetCategory = BudgetCategory(id: UUID(), category: category, allocatedAmount: newAllocatedAmount)
+                arrayBudgetCategories.append(budgetCategory)
+            } else {
+                // Create new budget category if it doesn't exist
+
+            }
+            
+            // Insert or update each budget category in context
+            for budgetCategory in arrayBudgetCategories {
+                modelContext.insert(budgetCategory)
+            }
+            
+            // Save changes to the context
+            try modelContext.save()
+            
+            // Update or reassign the array of budget categories in your data source
+            
+        } catch {
+            fatalError("Error updating budget category: \(error.localizedDescription)")
+        }
+    }
 }

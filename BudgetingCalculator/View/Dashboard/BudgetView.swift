@@ -22,28 +22,29 @@ struct BudgetView: View {
                 VStack {
                     // Account Balance Section
                     AccountBalanceView(viewModel: viewModel)
-                        .padding(.bottom, 4)
+                        .padding(.bottom, 8)
        
                     // Expense Categories View
                     ExpenseCategoriesView(viewModel: viewModel)
+                        .padding(.bottom, 8)
                             .padding(.horizontal)
                     
                     // Recent Expenses
                     RecentExpensesView(viewModel: viewModel)
+                        .padding(.horizontal)
+                        .padding(.bottom, 8)
                             
                     }
                     .padding(.bottom, 8)
                 }
-  
-
-                .id(viewModel.triggerRefresh)
-                .padding()
-                .navigationTitle("SeniorBudget")
-                .frame(maxHeight: .infinity)
-                .frame(width: 425)
-                .onAppear(){
-                    print(viewModel.triggerRefresh)
-                }
+            .padding(.horizontal)
+            .id(viewModel.triggerRefresh)
+            .navigationTitle("SeniorBudget")
+            .frame(maxHeight: .infinity)
+            .frame(width: 425)
+            .onAppear(){
+                print(viewModel.triggerRefresh)
+            }
             }
         
     }

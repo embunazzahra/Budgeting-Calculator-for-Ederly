@@ -25,7 +25,7 @@ struct ButtonUpdateBudget: View {
                         .foregroundColor(.white)
                     
                     
-                    Text("IDR \(viewModel.remainingBudgetForCategory(category), specifier: "%.2f")")
+                    Text("IDR \(viewModel.allocatedBudgetForCategory(category), specifier: "%.2f")")
                         .font(.subheadline)
                         .foregroundColor(.white)
                 }
