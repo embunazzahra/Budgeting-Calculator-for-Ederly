@@ -14,7 +14,7 @@ struct HistoryCategoryView: View {
     var body: some View {
         VStack {
             // Header
-            Text("History for \(category.rawValue)")
+            Text("History for \(category.localizedString)")
                 .font(.system(size: 20))
                 .fontWeight(.semibold)
             Divider()

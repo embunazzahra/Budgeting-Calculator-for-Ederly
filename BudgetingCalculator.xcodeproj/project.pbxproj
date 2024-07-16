@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B7404272C4530E200DECB13 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0B7404262C4530E200DECB13 /* Localizable.xcstrings */; };
 		464952922C3EECEF00BC8305 /* BudgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952912C3EECEF00BC8305 /* BudgetViewModel.swift */; };
 		4649529A2C3EECFE00BC8305 /* CalculatorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952972C3EECFE00BC8305 /* CalculatorSheet.swift */; };
 		4649529B2C3EECFE00BC8305 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952982C3EECFE00BC8305 /* HistoryView.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B7404262C4530E200DECB13 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		464952912C3EECEF00BC8305 /* BudgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewModel.swift; sourceTree = "<group>"; };
 		464952932C3EECFE00BC8305 /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
 		464952942C3EECFE00BC8305 /* UpdateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountView.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 		71507E192C3E1657003D043C = {
 			isa = PBXGroup;
 			children = (
+				0B7404262C4530E200DECB13 /* Localizable.xcstrings */,
 				71507E242C3E1657003D043C /* BudgetingCalculator */,
 				71507E232C3E1657003D043C /* Products */,
 			);
@@ -303,6 +306,7 @@
 			knownRegions = (
 				en,
 				Base,
+				id,
 			);
 			mainGroup = 71507E192C3E1657003D043C;
 			productRefGroup = 71507E232C3E1657003D043C /* Products */;
@@ -321,6 +325,7 @@
 			files = (
 				71507E2D2C3E1659003D043C /* Preview Assets.xcassets in Resources */,
 				71507E2A2C3E1659003D043C /* Assets.xcassets in Resources */,
+				0B7404272C4530E200DECB13 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,7 +509,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BudgetingCalculator/Preview Content\"";
-				DEVELOPMENT_TEAM = 9CXPD89H8W;
+				DEVELOPMENT_TEAM = 6U87HWWFMX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -533,7 +538,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BudgetingCalculator/Preview Content\"";
-				DEVELOPMENT_TEAM = 9CXPD89H8W;
+				DEVELOPMENT_TEAM = 6U87HWWFMX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

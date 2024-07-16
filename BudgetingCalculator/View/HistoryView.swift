@@ -20,7 +20,7 @@ struct HistoryView: View {
                         VStack(alignment: .leading) {
                             Text(expense.date, style: .date) // Show date
                                 .font(.caption)
-                            Text(expense.category.rawValue) // Show category
+                            Text(expense.category.localizedString) // Show category
                                 .font(.headline)
                         }
                         Spacer()
