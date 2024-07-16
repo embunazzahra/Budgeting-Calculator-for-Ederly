@@ -25,7 +25,7 @@ struct CircleCategory: View {
                         
                         
                         
-                        Text(category.rawValue)
+                        Text(category.localizedString)
                             .font(.title2)
                             .fontWeight(.semibold)
                             .foregroundStyle(.white)

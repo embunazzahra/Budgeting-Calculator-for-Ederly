@@ -72,7 +72,7 @@ struct ExpenseRowView: View {
                 
                 
                 // Name
-                Text("\(expense.category.rawValue)")
+                Text(expense.category.localizedString)
                 
                 Spacer()
                 
