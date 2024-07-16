@@ -61,11 +61,11 @@ class AddExpenseViewModel: ObservableObject {
             ]
             
             for budget in dummyCategories {
-                //add budget ke swift data
+                dataSource.addBudgetCategory(budget) 
             }
             
             //nanti ganti dummyCategories ke fetchBudgetCategory
-            self.budgetCategories = dummyCategories
+            self.budgetCategories = dataSource.fetchBudgetCategory()
         }
     }
     
@@ -90,6 +90,7 @@ class AddExpenseViewModel: ObservableObject {
         let spent = expenses.filter { $0.category == category }.reduce(0) { $0 + $1.amount }
         return max(0, categoryBudget - spent)
     }
+    
     
     func getAllocatedBudget(_ category: ExpenseCategory) -> Double {
         let categoryBudget = budgetCategories.first(where: { $0.category == category })?.allocatedAmount ?? 0

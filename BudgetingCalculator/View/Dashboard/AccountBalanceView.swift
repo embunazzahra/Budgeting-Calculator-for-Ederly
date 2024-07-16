@@ -36,7 +36,8 @@ struct AccountBalanceView: View {
             }
             .sheet(isPresented: $isUpdateBalanceSheetPresented) {
                 EditBalanceView()
-                    .environmentObject(viewModel) // Pass the viewModel using environmentObject
+                    .environmentObject(viewModel)
+                    .presentationDetents([.medium, .medium])
             }
         }
         .padding([.top, .bottom], 30)

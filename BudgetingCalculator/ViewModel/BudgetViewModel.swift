@@ -52,6 +52,18 @@ class BudgetViewModel: ObservableObject {
         initializeDummyBudgetCategories()
         initializeDummyExpensesCategories()
     }
+    func fetchBudgetCategories() {
+        self.budgetCategories = dataSource.fetchBudgetCategory()
+    }
+    
+//    func saveBudgetCategory(_ budgetCategory: BudgetCategory) {
+//        if let index = budgetCategories.firstIndex(where: { $0.category == budgetCategory.category }) {
+//            budgetCategories[index] = budgetCategory
+//        } else {
+//            budgetCategories.append(budgetCategory)
+//        }
+//        dataSource.saveBudgetCategories(budgetCategories)
+//    }
     
     private func initializeDummyExpensesCategories() {
         if expenses.isEmpty {
@@ -86,11 +98,11 @@ class BudgetViewModel: ObservableObject {
             ]
             
             for budget in dummyCategories {
-                //add budget ke swift data
+                dataSource.addBudgetCategory(budget)
             }
             
             //nanti ganti dummyCategories ke fetchBudgetCategory
-            self.budgetCategories = dummyCategories
+            self.budgetCategories = dataSource.fetchBudgetCategory()
         }
     }
     
@@ -132,13 +144,7 @@ class BudgetViewModel: ObservableObject {
 //        return proportion * 360
 //    }
 
-    func saveBudgetCategories() {
-        do {
-//            try modelContext.save()
-        } catch {
-            print("Error saving budget categories: \(error)")
-        }
-    }
+
 
     func remainingBudgetForCategory(_ category: ExpenseCategory) -> Double {
         let categoryBudget = budgetCategories.first(where: { $0.category == category })?.allocatedAmount ?? 0

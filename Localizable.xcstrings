@@ -21,12 +21,46 @@
         }
       }
     },
+    "." : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "."
+          }
+        }
+      }
+    },
     "%@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@"
+          }
+        }
+      }
+    },
+    "%lld" : {
+
+    },
+    "=" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "="
+          }
+        }
+      }
+    },
+    "0" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0"
           }
         }
       }
@@ -127,6 +161,12 @@
         }
       }
     },
+    "C" : {
+
+    },
+    "Category" : {
+
+    },
     "Choose Category" : {
       "localizations" : {
         "en" : {
@@ -192,6 +232,7 @@
       }
     },
     "Enter a number" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -234,6 +275,17 @@
       }
     },
     "health" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kesehatan"
+          }
+        }
+      }
+    },
+    "Health" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -254,6 +306,7 @@
       }
     },
     "History for %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -263,7 +316,58 @@
         }
       }
     },
+    "History for Health" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat untuk Kesehatan"
+          }
+        }
+      }
+    },
+    "History for Household" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat untuk Rumah Tangga"
+          }
+        }
+      }
+    },
+    "History for Other" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat untuk Lainnya"
+          }
+        }
+      }
+    },
+    "History for Savings" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat untuk Tabungan"
+          }
+        }
+      }
+    },
     "household" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rumah Tangga"
+          }
+        }
+      }
+    },
+    "Household" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -313,7 +417,21 @@
         }
       }
     },
+    "IDR XXX.XXX" : {
+
+    },
     "other" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lainnya"
+          }
+        }
+      }
+    },
+    "Other" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -364,11 +482,22 @@
       }
     },
     "savings" : {
+      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "tabungan"
+          }
+        }
+      }
+    },
+    "Savings" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabungan"
           }
         }
       }
@@ -384,6 +513,7 @@
       }
     },
     "Set Budget for %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {

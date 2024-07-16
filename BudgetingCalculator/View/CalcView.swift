@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct CalcView: View {
-    
     @StateObject var modelView: AddExpenseViewModel
     @Environment(\.dismiss) var dismiss // Tambahkan ini
     let category: ExpenseCategory
     var onDismiss: (() -> Void)? // Tambahkan ini
     
     init(category: ExpenseCategory, onDismiss: (() -> Void)? = nil) {
-            self.category = category
+        self.category = category
         self.onDismiss = onDismiss // Simpan onDismiss
         _modelView = StateObject(wrappedValue: AddExpenseViewModel(dataSource: .shared, category: category))
-        }
-
+    }
+    
     
     var body: some View {
         ZStack {
@@ -83,7 +82,7 @@ struct CalcView: View {
                     }
                     .padding(.horizontal)
                     .padding(.vertical,10)
-    //                .background(Color("yellowFFCF23"))
+                    //                .background(Color("yellowFFCF23"))
                 }
                 
                 
@@ -101,9 +100,9 @@ struct CalcView: View {
                                         self.modelView.didTap(button: item)
                                         
                                         if modelView.isFinished { //
-                                                                               dismiss() 
+                                            dismiss()
                                             onDismiss?()
-                                                                    }
+                                        }
                                     }, label: {
                                         modelView.getTextOrImage(for: item)
                                             .font(.system(size: 40))
@@ -128,10 +127,11 @@ struct CalcView: View {
             }
             
         }
-        .navigationBarTitle(category.rawValue, displayMode: .inline) // 1
+        .navigationBarTitle(category.localizedString, displayMode: .inline) // 1
         .navigationBarBackButtonHidden(false)
-//        .navigationBarHidden(true)
+        //        .navigationBarHidden(true)
     }
+    
     
     
     func buttonWidth() -> CGFloat {

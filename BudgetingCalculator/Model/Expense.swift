@@ -36,13 +36,26 @@ enum ExpenseCategory: String, CaseIterable, Codable, Identifiable {
     var localizedString: LocalizedStringKey {
         switch self {
         case .household:
-            return LocalizedStringKey("household")
+            return LocalizedStringKey("Household")
         case .health:
-            return LocalizedStringKey("health")
+            return LocalizedStringKey("Health")
         case .other:
-            return LocalizedStringKey("other")
+            return LocalizedStringKey("Other")
         case .savings:
-            return LocalizedStringKey("savings")
+            return LocalizedStringKey("Savings")
+        }
+    }
+    
+    var localizedHistoryString: LocalizedStringKey {
+        switch self {
+        case .household:
+            return LocalizedStringKey("History for Household")
+        case .health:
+            return LocalizedStringKey("History for Health")
+        case .other:
+            return LocalizedStringKey("History for Other")
+        case .savings:
+            return LocalizedStringKey("History for Savings")
         }
     }
 

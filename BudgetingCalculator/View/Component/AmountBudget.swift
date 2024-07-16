@@ -19,11 +19,11 @@ struct AmountBudget: View {
             Divider().foregroundColor(.white)
             
             VStack(){
-                Text("IDR 0")
+                Text("")
                 }
             }
         .frame(width: 335, height: 88)
-            .background(Color(.systemGray4))
+        .background(Color(.whiteBlue))
             .cornerRadius(15)
             
         

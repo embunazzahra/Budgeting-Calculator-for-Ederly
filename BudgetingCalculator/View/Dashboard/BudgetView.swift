@@ -32,7 +32,6 @@ struct BudgetView: View {
                     RecentExpensesView(viewModel: viewModel)
                             
                     }
-                    .buttonStyle(.plain)
                     .padding(.bottom, 8)
                 }
   
