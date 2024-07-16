@@ -65,9 +65,10 @@ class AddExpenseViewModel: ObservableObject {
                 dataSource.addBudgetCategory(budget)
             }
             
-            //nanti ganti dummyCategories ke fetchBudgetCategory
-            self.budgetCategories = dataSource.fetchBudgetCategory()
         }
+        
+        //nanti ganti dummyCategories ke fetchBudgetCategory
+        self.budgetCategories = dataSource.fetchBudgetCategory()
     }
     
     func totalExpensesForCategoryThisMonth(category: ExpenseCategory) -> Double {

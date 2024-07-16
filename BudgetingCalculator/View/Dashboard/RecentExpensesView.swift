@@ -43,7 +43,7 @@ struct RecentExpensesView: View {
         .padding(.vertical, 20)
         .background(Color(.whiteBlue)) // Background color for the Expenses section
         .cornerRadius(10)
-        .frame(width: 350)
+        .frame(width: .infinity)
         
         
     }
