@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UpdateAccountView: View {
-    @ObservedObject var viewModel: BudgetViewModel = BudgetViewModel(dataSource: .shared)
+    @ObservedObject var viewModel: BudgetViewModel
     @Environment(\.dismiss) var dismiss
 
     @State private var amount: String = ""

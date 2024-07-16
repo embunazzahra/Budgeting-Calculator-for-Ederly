@@ -12,6 +12,7 @@ struct ChooseCategorySheet: View {
 //    @Binding var showPopup: Bool
     @Environment(\.dismiss) var dismiss // Untuk menutup sheet
     @State var isPresentCategoryExpense = false
+    @Binding var isPresented: Bool // Tambahkan in
 
     var body: some View {
         NavigationView {
@@ -20,7 +21,10 @@ struct ChooseCategorySheet: View {
                     
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
                         ForEach(ExpenseCategory.allCases) { category in
-                            NavigationLink(destination: CalcView( category: category)){
+                            NavigationLink(destination: CalcView( category: category,onDismiss: {
+                                self.isPresented = false // Menutup ChooseCategorySheet
+                                viewModel.refreshData()
+                            })){
                                 CircleCategory(category: category, viewModel: viewModel)
 //                                    .onTapGesture {
 //                                        viewModel.selectedCategory = category
@@ -40,6 +44,6 @@ struct ChooseCategorySheet: View {
 
 
 #Preview {
-    ChooseCategorySheet(viewModel: BudgetViewModel(dataSource: .shared))
+    ChooseCategorySheet(viewModel: BudgetViewModel(dataSource: .shared), isPresented: .constant(true))
 }
 
