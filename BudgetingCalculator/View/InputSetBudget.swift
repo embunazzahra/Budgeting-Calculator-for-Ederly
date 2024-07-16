@@ -114,6 +114,6 @@ struct InputSetBudget: View {
 
 
 #Preview {
-    CalcView(category: .health)
+    InputSetBudget(category: .health)
 }
 
