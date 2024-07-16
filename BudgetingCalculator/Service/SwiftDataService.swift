@@ -76,4 +76,13 @@ class SwiftDataService {
             fatalError("Error updating account balance: \(error.localizedDescription)")
         }
     }
+    
+    func addBudgetCategory(_ budgetCategory: BudgetCategory) {
+        modelContext.insert(budgetCategory)
+        do {
+            try modelContext.save()
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
 }

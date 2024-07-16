@@ -29,6 +29,7 @@
 		464952CC2C41176500BC8305 /* ExpenseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952CB2C41176500BC8305 /* ExpenseButton.swift */; };
 		464952CE2C41180A00BC8305 /* ChooseCategorySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952CD2C41180A00BC8305 /* ChooseCategorySheet.swift */; };
 		464952D02C4119A400BC8305 /* CircleCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952CF2C4119A400BC8305 /* CircleCategory.swift */; };
+		46F16F5B2C46658C00FB6FA4 /* InputSetBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16F5A2C46658C00FB6FA4 /* InputSetBudget.swift */; };
 		7113359D2C4119990035AB15 /* AddExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113359C2C4119990035AB15 /* AddExpenseViewModel.swift */; };
 		71507E262C3E1657003D043C /* BudgetingCalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71507E252C3E1657003D043C /* BudgetingCalculatorApp.swift */; };
 		71507E2A2C3E1659003D043C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71507E292C3E1659003D043C /* Assets.xcassets */; };
@@ -73,6 +74,7 @@
 		464952CB2C41176500BC8305 /* ExpenseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseButton.swift; sourceTree = "<group>"; };
 		464952CD2C41180A00BC8305 /* ChooseCategorySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCategorySheet.swift; sourceTree = "<group>"; };
 		464952CF2C4119A400BC8305 /* CircleCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCategory.swift; sourceTree = "<group>"; };
+		46F16F5A2C46658C00FB6FA4 /* InputSetBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSetBudget.swift; sourceTree = "<group>"; };
 		7113359C2C4119990035AB15 /* AddExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewModel.swift; sourceTree = "<group>"; };
 		71507E222C3E1657003D043C /* BudgetingCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetingCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71507E252C3E1657003D043C /* BudgetingCalculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingCalculatorApp.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				464952942C3EECFE00BC8305 /* UpdateAccountView.swift */,
 				464952B82C3FF61300BC8305 /* BudgetDetail.swift */,
 				464952CD2C41180A00BC8305 /* ChooseCategorySheet.swift */,
+				46F16F5A2C46658C00FB6FA4 /* InputSetBudget.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				464952B72C3FDD5400BC8305 /* ButtonUpdateBudget.swift in Sources */,
 				C277A75E2C43EAD600C5DA89 /* HistoryCategoryView.swift in Sources */,
 				C2BC99C42C44F36700672389 /* RecentExpensesView.swift in Sources */,
+				46F16F5B2C46658C00FB6FA4 /* InputSetBudget.swift in Sources */,
 				C2A5EA192C3FF7A500F0CC42 /* Balance.swift in Sources */,
 				464952AF2C3F0EDC00BC8305 /* BudgetCategory.swift in Sources */,
 				464952CE2C41180A00BC8305 /* ChooseCategorySheet.swift in Sources */,
