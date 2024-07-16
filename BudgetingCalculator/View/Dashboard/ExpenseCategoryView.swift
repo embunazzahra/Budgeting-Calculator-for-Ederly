@@ -57,7 +57,6 @@ struct ExpenseCategoryView: View {
                         Rectangle()
                             .foregroundColor(.clear)
                             .frame(width: 44, height: 38)
-                            .background(Image(systemName: "plus.circle.fill").font(Font.custom("SF Pro", size: 20).weight(.semibold)))
                             .background(.white)
                             .clipShape(RoundedCornersShape(radius: 20, corners: [.topLeft, .bottomLeft]))
                             .offset(x: 112)

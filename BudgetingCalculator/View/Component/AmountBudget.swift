@@ -15,17 +15,18 @@ struct AmountBudget: View {
         VStack(alignment: .center) {
             
             Text("Amount Budget")
-            
-            Divider().foregroundColor(.white)
+                .foregroundColor(Color.black)
             
             VStack(){
-                Text(String(format: "$%.2f", viewModel.totalBudget()))
-                    .font(.headline)
-                    .foregroundColor(.black)
+                Text(String(format: "IDR%.2f", viewModel.totalBudget()))
+                    .font(.title)
+                    .fontWeight(.heavy)
+                    .foregroundColor(Color.black)
             }
         }
+        
         .frame(width: 335, height: 88)
-        .background(Color(.whiteBlue))
+        .background(.amountBudget)
         .cornerRadius(15)
         
         

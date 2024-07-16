@@ -103,6 +103,8 @@ struct CalcView: View {
                                             dismiss()
                                             onDismiss?()
                                         }
+                                        
+                                        
                                     }, label: {
                                         modelView.getTextOrImage(for: item)
                                             .font(.system(size: 40))
@@ -145,6 +147,7 @@ struct CalcView: View {
         return (UIScreen.main.bounds.width - (5*12)) / 4
     }
 }
+
 
 
 #Preview {
