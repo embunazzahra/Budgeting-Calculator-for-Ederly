@@ -32,7 +32,7 @@ struct AllHistoryView: View {
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .frame(height: 90)
                 .background(.yellowFFCF23.opacity(0.3))
-            
+                
                 
                 //Selected Date
                 HStack{
@@ -41,11 +41,11 @@ struct AllHistoryView: View {
                 .padding(.top,20)
                 
                 
-                historyListView() 
+                historyListView()
             }
-            .onChange(of: modelView.currentWeekIndex, perform: { newValue in
-                                modelView.handleWeekIndexChange(oldValue: modelView.currentWeekIndex, newValue: newValue)
-                            })
+            .onChange(of: modelView.currentWeekIndex) { oldValue, newValue in
+                modelView.handleWeekIndexChange(oldValue: modelView.currentWeekIndex, newValue: newValue)
+            }
         }
     }
     
@@ -63,7 +63,7 @@ struct AllHistoryView: View {
                             .fill(.yellowFFCF23)
                             .frame(width: 26,height: 26)
                             .opacity(modelView.isToday(date: day.date) ? 1 : 0)
-                            
+                        
                         
                         Text(day.date.format("dd"))
                             .font(.system(size: 14))
@@ -82,7 +82,7 @@ struct AllHistoryView: View {
                 
             }
         }
-//        .padding(.horizontal)
+        //        .padding(.horizontal)
         .background{
             GeometryReader {
                 let minX = $0.frame(in: .global).minX
