@@ -61,11 +61,11 @@ struct CalcView: View {
                         VStack(alignment: .leading){
                             Text("Remaining budget")
                                 .font(.system(size: 15))
-                                .foregroundColor(Color("gray585858"))
+                                .foregroundColor(Color("graylabel"))
                             Text("Rp \(modelView.runningBudget, specifier: "%.f")")
                                 .fontWeight(.semibold)
                                 .font(.system(size: 20))
-                                .foregroundColor(Color("gray585858"))
+                                .foregroundColor(Color("graylabel"))
                         }
                         
                         Spacer()
@@ -74,11 +74,11 @@ struct CalcView: View {
                         VStack(alignment: .leading){
                             Text("Expenses")
                                 .font(.system(size: 15))
-                                .foregroundColor(Color("gray585858"))
+                                .foregroundColor(Color("graylabel"))
                             Text("Rp \(modelView.runningExpense, specifier: "%.f")")
                                 .fontWeight(.semibold)
                                 .font(.system(size: 20))
-                                .foregroundColor(Color("gray585858"))
+                                .foregroundColor(Color("graylabel"))
                         }
                     }
                     .padding(.horizontal)

@@ -360,11 +360,11 @@ class AddExpenseViewModel: ObservableObject {
         case .household:
             return Color.yellowFFCF23
         case .health:
-            return Color.green00C7BE
+            return Color.turquoise
         case .savings:
             return Color.blue3EAFE5
         case .other:
-            return Color.purpleAB2377
+            return Color.magenta
         }
     }
     
@@ -373,11 +373,11 @@ class AddExpenseViewModel: ObservableObject {
         case .household:
             return Color.yellowFFCF23
         case .health:
-            return Color.green00C7BE
+            return Color.turquoise
         case .savings:
-            return Color.blue32ADE6
+            return Color.blue
         case .other:
-            return Color.purpleAB2377
+            return Color.magenta
         }
     }
 }
