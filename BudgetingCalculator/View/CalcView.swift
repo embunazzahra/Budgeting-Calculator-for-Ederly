@@ -128,7 +128,7 @@ struct CalcView: View {
             }
             
         }
-        .navigationBarTitle(category.rawValue, displayMode: .inline) // 1
+        .navigationBarTitle(category.localizedString, displayMode: .inline) // 1
         .navigationBarBackButtonHidden(false)
 //        .navigationBarHidden(true)
     }

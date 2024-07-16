@@ -13,12 +13,12 @@ struct BudgetDetail : View {
 
     var body: some View {
         VStack {
-            Text("Set Budget for \(category.rawValue)")
+            Text("Set Budget for \(category.localizedString)")
                 .font(.headline)
             // Tambahkan elemen UI untuk input dan pengaturan anggaran
         }
         .padding()
-        .navigationTitle(category.rawValue)
+        .navigationTitle(category.localizedString)
     }
 }
 

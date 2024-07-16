@@ -10,7 +10,7 @@ import SwiftData
 
 struct BudgetView: View {
     @State var isCalculatorSheetPresented = false
-    @ObservedObject var viewModel: BudgetViewModel
+    @ObservedObject var viewModel: BudgetViewModel = BudgetViewModel(dataSource: .shared)
 
     @Environment(\.locale) var locale
     
@@ -34,10 +34,16 @@ struct BudgetView: View {
                     }
                     .padding(.bottom, 8)
                 }
+  
+
+                .id(viewModel.triggerRefresh)
                 .padding()
                 .navigationTitle("SeniorBudget")
                 .frame(maxHeight: .infinity)
                 .frame(width: 425)
+                .onAppear(){
+                    print(viewModel.triggerRefresh)
+                }
             }
         
     }
