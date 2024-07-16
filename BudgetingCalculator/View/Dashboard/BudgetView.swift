@@ -10,7 +10,7 @@ import SwiftData
 
 struct BudgetView: View {
     @State var isCalculatorSheetPresented = false
-    @StateObject var viewModel: BudgetViewModel = BudgetViewModel(dataSource: .shared)
+    @ObservedObject var viewModel: BudgetViewModel
 
     @Environment(\.locale) var locale
     
