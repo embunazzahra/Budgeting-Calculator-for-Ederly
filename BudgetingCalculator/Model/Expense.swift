@@ -70,10 +70,10 @@ enum ExpenseCategory: String, CaseIterable, Codable, Identifiable {
     
     var color: Color {
         switch self {
-        case .household: return .brightOrange
+        case .household: return .orangeColour
         case .health: return .turquoise
-        case .other: return .darkRed 
-        case .savings: return .lightBlue
+        case .other: return .magenta
+        case .savings: return .blue
         }
     }
     

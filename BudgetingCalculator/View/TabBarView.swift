@@ -37,7 +37,7 @@ struct TabBarView: View {
                         
                     }
                 }
-                .accentColor(.brightOrange)
+                .accentColor(.orangeColour)
                 .shadow(color: .black.opacity(1), radius: 0, x: 50, y: 50)
                 
                 
