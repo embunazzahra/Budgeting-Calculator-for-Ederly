@@ -22,6 +22,7 @@
       }
     },
     "." : {
+      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -42,10 +43,8 @@
         }
       }
     },
-    "%lld" : {
-
-    },
     "=" : {
+      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -56,6 +55,7 @@
       }
     },
     "0" : {
+      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -160,12 +160,6 @@
           }
         }
       }
-    },
-    "C" : {
-
-    },
-    "Category" : {
-
     },
     "Choose Category" : {
       "localizations" : {

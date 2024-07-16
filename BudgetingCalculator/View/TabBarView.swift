@@ -31,11 +31,9 @@ struct TabBarView: View {
                                 
                             }
                     }
-                    .toolbarBackground(.white, for: .tabBar)
+                    .toolbarBackground(.tapBar, for: .tabBar)
                     .toolbarBackground(.visible, for: .tabBar)
-                    .toolbar {
-                        
-                    }
+                    
                 }
                 .accentColor(.orangeColour)
                 .shadow(color: .black.opacity(1), radius: 0, x: 50, y: 50)

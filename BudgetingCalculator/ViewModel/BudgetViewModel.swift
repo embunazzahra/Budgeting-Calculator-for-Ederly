@@ -137,13 +137,6 @@ class BudgetViewModel: ObservableObject {
         max(0, Double(accountBalance) - totalExpenses)
     }
 
-//    func angleForCategory(_ category: String) -> Double {
-//        let filteredExpenses = expenses.filter { $0.category == category }
-//        let categoryTotal = filteredExpenses.reduce(0) { $0 + $1.amount }
-//        let proportion = totalExpenses > 0 ? categoryTotal / totalExpenses : 0
-//        return proportion * 360
-//    }
-
 
     func allocatedBudgetForCategory(_ category: ExpenseCategory) -> Double {
         let categoryBudget = budgetCategories.first(where: { $0.category == category })?.allocatedAmount ?? 0
