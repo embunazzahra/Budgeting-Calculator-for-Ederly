@@ -32,6 +32,19 @@ enum ExpenseCategory: String, CaseIterable, Codable, Identifiable {
     case savings = "Savings"
 
     var id: String { self.rawValue }
+    
+    var localizedString: LocalizedStringKey {
+        switch self {
+        case .household:
+            return LocalizedStringKey("household")
+        case .health:
+            return LocalizedStringKey("health")
+        case .other:
+            return LocalizedStringKey("other")
+        case .savings:
+            return LocalizedStringKey("savings")
+        }
+    }
 
     var icon: String {
         switch self {

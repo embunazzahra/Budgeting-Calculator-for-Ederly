@@ -18,6 +18,7 @@ class BudgetViewModel: ObservableObject {
     @Published var isPresentCategoryExpense = false
     @Published var accountBalance = 10000000 // Initial Account Balance
     @Published var selectedCategory: ExpenseCategory?
+    @Published var triggerRefresh: Bool = false
     
     init(dataSource: SwiftDataService) {
         self.dataSource = dataSource

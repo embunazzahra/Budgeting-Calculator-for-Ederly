@@ -21,9 +21,9 @@ struct ExpenseCategoriesView: View {
                 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                     ForEach(ExpenseCategory.allCases) { category in
-                        NavigationLink(destination: CalcView( category: category)){
+                        
                             ExpenseCategoryView(category: category, viewModel: viewModel)
-                        }
+                        
                     }.padding(.all,10)
                 }
                 .padding(.bottom, 20)
