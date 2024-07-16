@@ -39,7 +39,12 @@ struct ExpenseButton: View {
                         .buttonStyle(PlainButtonStyle())
                         Spacer()
                             .sheet(isPresented: $isPresentCategoryExpense){
-                                ChooseCategorySheet(viewModel: viewModel)
+                                ChooseCategorySheet(viewModel: viewModel, isPresented: $isPresentCategoryExpense)
+                                    .onDisappear{
+                                        print("Test")
+                                        viewModel.triggerRefresh.toggle()
+                                        print(viewModel.triggerRefresh)
+                                    }
                             }
                     }
                     
@@ -48,9 +53,9 @@ struct ExpenseButton: View {
         }
         .edgesIgnoringSafeArea(.all)
         
- 
         
-
+        
+        
     }
 }
 

@@ -18,6 +18,7 @@ class BudgetViewModel: ObservableObject {
     @Published var isPresentCategoryExpense = false
     @Published var accountBalance = 10000000 // Initial Account Balance
     @Published var selectedCategory: ExpenseCategory?
+    @Published var triggerRefresh: Bool = false
     
     init(dataSource: SwiftDataService) {
         self.dataSource = dataSource
@@ -33,6 +34,21 @@ class BudgetViewModel: ObservableObject {
             print("Balance not found")
         }
         
+        initializeDummyBudgetCategories()
+        initializeDummyExpensesCategories()
+    }
+    
+    func refreshData(){
+        self.expenses = dataSource.fetchExpenses()
+        self.budgetCategories = dataSource.fetchBudgetCategory()
+        
+        // Add dummy expenses to the SwiftData to see if fetching data is works
+        if let balance = dataSource.fetchBalance() {
+            self.accountBalance = balance.accountBalance
+        } else {
+            // If balance is not found, you might want to handle this case
+            print("Balance not found")
+        }
         initializeDummyBudgetCategories()
         initializeDummyExpensesCategories()
     }
