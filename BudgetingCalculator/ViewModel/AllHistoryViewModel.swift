@@ -20,10 +20,12 @@ class AllHistoryViewModel: ObservableObject {
     @Published var firstDate: Date = Date()
     @Published var lastDate: Date = Date()
     @Published var createWeek: Bool = false
+    @Published var filteredExpense: [Expense] = []
     
     init(dataSource: SwiftDataService){
         self.dataSource = dataSource
         initializeExpenses()
+        getFilteredExpense(selectedDate: selectedDate)
         let currentWeek = fetchWeek()
         
         if let firstDate = currentWeek.first?.date{
@@ -55,7 +57,12 @@ class AllHistoryViewModel: ObservableObject {
     }
     
 
-    
+    func getFilteredExpense(selectedDate: Date){
+        let calendar = Calendar.current
+        let filtered = expenses.filter { calendar.isDate($0.date, inSameDayAs: selectedDate) }
+        
+        self.filteredExpense = filtered
+    }
     
     
     func extractDate(date: Date, format: String) -> String{

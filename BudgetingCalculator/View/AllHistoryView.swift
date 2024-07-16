@@ -77,6 +77,7 @@ struct AllHistoryView: View {
                 .onTapGesture {
                     withAnimation(.snappy){
                         modelView.selectedDate = day.date
+                        modelView.getFilteredExpense(selectedDate: day.date)
                     }
                 }
                 
@@ -102,7 +103,7 @@ struct AllHistoryView: View {
     
     func historyListView() -> some View{
         //History ListView
-        List(modelView.expenses) { expense in
+        List(modelView.filteredExpense) { expense in
             VStack(spacing: 0){
                 Divider()
                 HStack(alignment: .center){

@@ -30,10 +30,20 @@ struct BudgetView: View {
                     
                     // Recent Expenses
                     RecentExpensesView(viewModel: viewModel)
-                            
+                    
+                    NavigationLink(destination: AllHistoryView()) {
+                        Text("Go to History")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(10)
                     }
-                    .buttonStyle(.plain)
-                    .padding(.bottom, 8)
+                    .padding()
+                    
+                }
+                .buttonStyle(.plain)
+                .padding(.bottom, 8)
                 }
                 .padding()
                 .navigationTitle("SeniorBudget")
