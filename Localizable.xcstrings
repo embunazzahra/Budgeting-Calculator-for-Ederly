@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "-%.2f" : {
       "localizations" : {
         "id" : {
@@ -193,6 +196,7 @@
       }
     },
     "Enter a number" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -328,6 +332,7 @@
       }
     },
     "IDR 0" : {
+      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -336,6 +341,9 @@
           }
         }
       }
+    },
+    "IDR XXX.XXX" : {
+
     },
     "other" : {
       "extractionState" : "stale",

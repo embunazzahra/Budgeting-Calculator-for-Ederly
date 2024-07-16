@@ -63,7 +63,7 @@ struct InputSetBudget: View {
                                 VStack(spacing: 12) {
                                     ForEach(row, id: \.self) { item in
                                         Button(action: {
-                                            self.modelView.didTap(button: item)
+                                            self.modelView.didTap(button: item, currPage: 2, category: category)
                                             
                                             if modelView.isFinished { //
                                                 dismiss()
