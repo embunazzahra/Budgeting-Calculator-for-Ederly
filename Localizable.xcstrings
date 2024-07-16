@@ -11,6 +11,26 @@
         }
       }
     },
+    "-IDR %.f" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "-Rp %.f"
+          }
+        }
+      }
+    },
+    "%@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
     "Account Balance" : {
       "localizations" : {
         "en" : {
@@ -213,6 +233,16 @@
         }
       }
     },
+    "health" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kesehatan"
+          }
+        }
+      }
+    },
     "History" : {
       "localizations" : {
         "id" : {
@@ -229,6 +259,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Riwayat untuk %@"
+          }
+        }
+      }
+    },
+    "household" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rumah Tangga"
           }
         }
       }
@@ -273,6 +313,16 @@
         }
       }
     },
+    "other" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lainnya"
+          }
+        }
+      }
+    },
     "Recent Expenses" : {
       "localizations" : {
         "id" : {
@@ -313,6 +363,16 @@
         }
       }
     },
+    "savings" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tabungan"
+          }
+        }
+      }
+    },
     "SeniorBudget" : {
       "localizations" : {
         "id" : {
@@ -349,6 +409,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Perbarui Saldo Akun"
+          }
+        }
+      }
+    },
+    "View All" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Semua"
           }
         }
       }
