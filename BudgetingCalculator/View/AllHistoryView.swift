@@ -118,7 +118,7 @@ struct AllHistoryView: View {
                 HStack(alignment: .center){
                     HistoryCategoryIcon(category: expense.category)
                     Spacer().frame(width: 20)
-                    Text("\(expense.category.rawValue)")
+                    Text((expense.category.localizedString))
                     Spacer()
                     Spacer()
                     Text("IDR\(expense.amount, specifier: "%.f")")
