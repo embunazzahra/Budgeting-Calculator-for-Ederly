@@ -10,6 +10,8 @@ import SwiftUI
 struct AmountBudget: View {
     @ObservedObject var viewModel: BudgetViewModel
     
+    private let numberSeperator = NumberSeperator()
+
     var body: some View {
         
         VStack(alignment: .center) {
@@ -18,7 +20,7 @@ struct AmountBudget: View {
                 .foregroundColor(Color.black)
             
             VStack(){
-                Text(String(format: "IDR%.2f", viewModel.totalBudget()))
+                Text("IDR \(numberSeperator.formatNumber("\(Int(viewModel.totalBudget()))"))")
                     .font(.title)
                     .fontWeight(.heavy)
                     .foregroundColor(Color.black)
