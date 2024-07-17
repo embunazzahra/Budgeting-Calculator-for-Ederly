@@ -10,7 +10,6 @@ import SwiftUI
 struct BudgetSettingsView: View {
     @ObservedObject var viewModel: BudgetViewModel
     
-    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {

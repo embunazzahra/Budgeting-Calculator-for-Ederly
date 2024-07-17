@@ -29,6 +29,26 @@ class AddExpenseViewModel: ObservableObject {
     @Published var currPage = 1 // 1 -> CalcView, 2 -> InputSetBudget
     private let lightImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
     
+    private var numberFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = ","
+        formatter.locale = Locale(identifier: "id_ID")
+        return formatter
+    }
+    
+    var formattedValue: String {
+        let cleanedNumber = value.replacingOccurrences(of: ",", with: "")
+        guard let numberValue = Int(cleanedNumber) else {
+            return value
+        }
+        
+        return numberFormatter.string(from: NSNumber(value: numberValue)) ?? value
+    }
+    
+    func cleanNumberString(_ numberString: String) -> String {
+        return numberString.replacingOccurrences(of: ",", with: "")
+    }
 
     func triggerHapticFeedback() {
         lightImpactFeedbackGenerator.impactOccurred()
@@ -273,8 +293,8 @@ class AddExpenseViewModel: ObservableObject {
             self.updateRunningExpense(value: 0.0)
         }else{
             isCalculating = false
-            if let convertedValue = Double(value){
-                
+            if let convertedValue = Double(cleanNumberString(value)){
+                print(convertedValue)
                 self.updateRunningExpense(value: convertedValue)
                 self.updateRunningBudget(value: convertedValue)
                 self.updateProgress()
@@ -283,6 +303,8 @@ class AddExpenseViewModel: ObservableObject {
             }
             
         }
+        
+        value = formattedValue // Update the value to formatted value
         
         
     }
