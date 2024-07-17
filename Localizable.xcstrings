@@ -415,6 +415,22 @@
     "IDR XXX.XXX" : {
 
     },
+    "IDR%.f" : {
+
+    },
+    "Key" : {
+      "extractionState" : "manual"
+    },
+    "No Expense" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak Ada Pengeluaran"
+          }
+        }
+      }
+    },
     "other" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -498,6 +514,7 @@
       }
     },
     "SeniorBudget" : {
+      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -547,6 +564,9 @@
           }
         }
       }
+    },
+    "WiseWallet" : {
+
     }
   },
   "version" : "1.0"

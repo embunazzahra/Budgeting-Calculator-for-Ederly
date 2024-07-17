@@ -20,7 +20,7 @@ struct RecentExpensesView: View {
 
                 Spacer()
                 // Navigation ke All Record
-                NavigationLink(destination: AccountBalanceView(viewModel: viewModel)) {
+                NavigationLink(destination: AllHistoryView()) {
                     Text("View All")
                         .foregroundColor(.blue)
                         .padding(.top, 2)

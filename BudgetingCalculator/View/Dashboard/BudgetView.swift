@@ -23,6 +23,7 @@ struct BudgetView: View {
                     // Account Balance Section
                     AccountBalanceView(viewModel: viewModel)
                         .padding(.bottom, 8)
+                        .padding(.horizontal)
        
                     // Expense Categories View
                     ExpenseCategoriesView(viewModel: viewModel)
@@ -36,10 +37,11 @@ struct BudgetView: View {
                             
                     }
                     .padding(.bottom, 8)
+
                 }
             .padding(.horizontal)
             .id(viewModel.triggerRefresh)
-            .navigationTitle("SeniorBudget")
+            .navigationTitle("WiseWallet")
             .frame(maxHeight: .infinity)
             .frame(width: 425)
             .onAppear(){

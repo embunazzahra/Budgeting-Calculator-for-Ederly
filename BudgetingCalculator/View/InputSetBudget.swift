@@ -86,6 +86,7 @@ struct InputSetBudget: View {
                             }
                         }
                     }
+                    .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color("grayF4F4F4"))
                     
