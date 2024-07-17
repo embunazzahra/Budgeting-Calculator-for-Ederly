@@ -34,9 +34,9 @@ struct HistoryCategroyExpenseRecord: View {
             .frame(width: 320, height: 52)
             .cornerRadius(10)
 
-            Rectangle()
-                .fill(Color(.bordercolor))
-                .frame(height: 1)
+//            Rectangle()
+//                .fill(Color(.bordercolor))
+//                .frame(height: 1)
         }
         .frame(width: 305)
     }

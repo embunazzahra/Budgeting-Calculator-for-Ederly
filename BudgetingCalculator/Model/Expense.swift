@@ -73,7 +73,7 @@ enum ExpenseCategory: String, CaseIterable, Codable, Identifiable {
         case .household: return .orangeColour
         case .health: return .turquoise
         case .other: return .magenta
-        case .savings: return .blue
+        case .savings: return .blueCust
         }
     }
     
@@ -91,7 +91,7 @@ enum ExpenseCategory: String, CaseIterable, Codable, Identifiable {
         case .household: return .historyHouse
         case .health: return .historyMedical
         case .other: return  .historyOther
-        case .savings: return .historyMedical
+        case .savings: return .historySaving
         }
     }
 }

@@ -36,7 +36,7 @@ struct RecentExpensesView: View {
                     Divider()
                 }
             }
-            .background(Color(.white)) // Background color for the list
+            .background(Color.recent) // Background color for the list
             .cornerRadius(10)
         }
         .padding(.horizontal, 20)
@@ -55,7 +55,7 @@ struct ExpenseRowView: View {
     var body: some View {
         VStack (alignment: .leading) {
             Text(formattedDate)
-                .foregroundColor(Color.black)
+                .foregroundColor(Color.font)
                 .fontWeight(.semibold)
                 .padding(.bottom, 10)
             
@@ -68,13 +68,13 @@ struct ExpenseRowView: View {
                     
                     Image(systemName: expense.category.icon)
                         .font(.system(size: 20))
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.font)
                 }
                 
                 
                 // Name
                 Text(expense.category.localizedString)
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color.font)
                 Spacer()
                 
                 Text("-IDR \(expense.amount, specifier: "%.f")")

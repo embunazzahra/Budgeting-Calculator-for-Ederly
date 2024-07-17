@@ -30,7 +30,7 @@ struct CircleCategory: View {
                         Text(category.localizedString)
                             .font(.title2)
                             .fontWeight(.semibold)
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.font)
                     }
                         
                 

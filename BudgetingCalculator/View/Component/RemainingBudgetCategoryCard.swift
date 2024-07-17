@@ -18,7 +18,7 @@ struct RemainingBudgetCategoryCard: View {
                 .font(.system(size: 20))
                 .fontWeight(.semibold)
             
-            Text("IDR \(viewModel.remainingBudgetForCategory(category), specifier: "%.2f")")
+            Text("IDR \(viewModel.remainingBudgetForCategory(category), specifier: "%.f")")
                 .font(.system(size: 34))
                 .fontWeight(.bold)
                 .padding(.bottom, 10)
