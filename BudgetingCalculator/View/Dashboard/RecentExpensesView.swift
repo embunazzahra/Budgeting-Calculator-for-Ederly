@@ -20,7 +20,7 @@ struct RecentExpensesView: View {
 
                 Spacer()
                 // Navigation ke All Record
-                NavigationLink(destination: AccountBalanceView(viewModel: viewModel)) {
+                NavigationLink(destination: AllHistoryView()) {
                     Text("View All")
                         .foregroundColor(.blue)
                         .padding(.top, 2)
@@ -55,6 +55,7 @@ struct ExpenseRowView: View {
     var body: some View {
         VStack (alignment: .leading) {
             Text(formattedDate)
+                .foregroundColor(Color.black)
                 .fontWeight(.semibold)
                 .padding(.bottom, 10)
             
@@ -73,7 +74,7 @@ struct ExpenseRowView: View {
                 
                 // Name
                 Text(expense.category.localizedString)
-                
+                    .foregroundColor(Color.black)
                 Spacer()
                 
                 Text("-IDR \(expense.amount, specifier: "%.f")")

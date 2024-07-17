@@ -17,9 +17,9 @@ struct ChooseCategorySheet: View {
     var body: some View {
         NavigationView {
             ZStack{
-                VStack(spacing: 20) {
+                VStack{
                     
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+                    LazyVGrid(columns: [GridItem(.flexible(),spacing: 0), GridItem(.flexible())], spacing: 15) {
                         ForEach(ExpenseCategory.allCases) { category in
                             NavigationLink(destination: CalcView( category: category,onDismiss: {
                                 self.isPresented = false // Menutup ChooseCategorySheet
@@ -33,8 +33,12 @@ struct ChooseCategorySheet: View {
                             }
                         }
                     }
-                    .padding()
-                }.padding(.bottom, 50)
+                    
+//                    .padding()
+                }
+                
+
+                .padding(.bottom, 50)
                     .navigationTitle("Choose Category")
             }
                 

@@ -32,6 +32,11 @@
 		464952D02C4119A400BC8305 /* CircleCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464952CF2C4119A400BC8305 /* CircleCategory.swift */; };
 		46F16F5B2C46658C00FB6FA4 /* InputSetBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F16F5A2C46658C00FB6FA4 /* InputSetBudget.swift */; };
 		7113359D2C4119990035AB15 /* AddExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113359C2C4119990035AB15 /* AddExpenseViewModel.swift */; };
+		7113359F2C44A97E0035AB15 /* AllHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113359E2C44A97E0035AB15 /* AllHistoryView.swift */; };
+		711335A12C44AB420035AB15 /* AllHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711335A02C44AB420035AB15 /* AllHistoryViewModel.swift */; };
+		711335A32C44AFA70035AB15 /* HistoryCategoryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711335A22C44AFA70035AB15 /* HistoryCategoryIcon.swift */; };
+		711335A52C44BE440035AB15 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711335A42C44BE440035AB15 /* DateFormatter.swift */; };
+		711335A72C44EE760035AB15 /* OffsetKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711335A62C44EE760035AB15 /* OffsetKey.swift */; };
 		71507E262C3E1657003D043C /* BudgetingCalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71507E252C3E1657003D043C /* BudgetingCalculatorApp.swift */; };
 		71507E2A2C3E1659003D043C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71507E292C3E1659003D043C /* Assets.xcassets */; };
 		71507E2D2C3E1659003D043C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71507E2C2C3E1659003D043C /* Preview Assets.xcassets */; };
@@ -78,6 +83,11 @@
 		464952CF2C4119A400BC8305 /* CircleCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCategory.swift; sourceTree = "<group>"; };
 		46F16F5A2C46658C00FB6FA4 /* InputSetBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSetBudget.swift; sourceTree = "<group>"; };
 		7113359C2C4119990035AB15 /* AddExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewModel.swift; sourceTree = "<group>"; };
+		7113359E2C44A97E0035AB15 /* AllHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllHistoryView.swift; sourceTree = "<group>"; };
+		711335A02C44AB420035AB15 /* AllHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllHistoryViewModel.swift; sourceTree = "<group>"; };
+		711335A22C44AFA70035AB15 /* HistoryCategoryIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCategoryIcon.swift; sourceTree = "<group>"; };
+		711335A42C44BE440035AB15 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		711335A62C44EE760035AB15 /* OffsetKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetKey.swift; sourceTree = "<group>"; };
 		71507E222C3E1657003D043C /* BudgetingCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetingCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71507E252C3E1657003D043C /* BudgetingCalculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetingCalculatorApp.swift; sourceTree = "<group>"; };
 		71507E292C3E1659003D043C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,6 +137,7 @@
 				464952912C3EECEF00BC8305 /* BudgetViewModel.swift */,
 				464952AA2C3F011100BC8305 /* IncomeViewModel.swift */,
 				7113359C2C4119990035AB15 /* AddExpenseViewModel.swift */,
+				711335A02C44AB420035AB15 /* AllHistoryViewModel.swift */,
 				C2BC99BF2C444B4C00672389 /* HistoryViewModel.swift */,
 			);
 			path = ViewModel;
@@ -149,6 +160,8 @@
 				464952942C3EECFE00BC8305 /* UpdateAccountView.swift */,
 				464952B82C3FF61300BC8305 /* BudgetDetail.swift */,
 				464952CD2C41180A00BC8305 /* ChooseCategorySheet.swift */,
+				7113359E2C44A97E0035AB15 /* AllHistoryView.swift */,
+				71507E252C3E1657003D043C /* BudgetingCalculatorApp.swift */,
 				46F16F5A2C46658C00FB6FA4 /* InputSetBudget.swift */,
 			);
 			path = View;
@@ -171,6 +184,7 @@
 				464952BA2C3FF72300BC8305 /* AmountBudget.swift */,
 				464952CB2C41176500BC8305 /* ExpenseButton.swift */,
 				464952CF2C4119A400BC8305 /* CircleCategory.swift */,
+				711335A22C44AFA70035AB15 /* HistoryCategoryIcon.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -201,7 +215,6 @@
 				4649528E2C3EEC9D00BC8305 /* Model */,
 				464952902C3EECD300BC8305 /* View */,
 				4649528F2C3EECA300BC8305 /* ViewModel */,
-				71507E252C3E1657003D043C /* BudgetingCalculatorApp.swift */,
 				71507E292C3E1659003D043C /* Assets.xcassets */,
 				71507E2B2C3E1659003D043C /* Preview Content */,
 			);
@@ -260,6 +273,8 @@
 			isa = PBXGroup;
 			children = (
 				C2CE943B2C41311400BA084A /* NumberSeperator.swift */,
+				711335A42C44BE440035AB15 /* DateFormatter.swift */,
+				711335A62C44EE760035AB15 /* OffsetKey.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -336,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7113359F2C44A97E0035AB15 /* AllHistoryView.swift in Sources */,
 				464952A22C3EED0500BC8305 /* Expense.swift in Sources */,
 				71507E262C3E1657003D043C /* BudgetingCalculatorApp.swift in Sources */,
 				464952D02C4119A400BC8305 /* CircleCategory.swift in Sources */,
@@ -352,7 +368,9 @@
 				C2BC99C42C44F36700672389 /* RecentExpensesView.swift in Sources */,
 				46F16F5B2C46658C00FB6FA4 /* InputSetBudget.swift in Sources */,
 				C2A5EA192C3FF7A500F0CC42 /* Balance.swift in Sources */,
+				711335A32C44AFA70035AB15 /* HistoryCategoryIcon.swift in Sources */,
 				464952AF2C3F0EDC00BC8305 /* BudgetCategory.swift in Sources */,
+				711335A12C44AB420035AB15 /* AllHistoryViewModel.swift in Sources */,
 				464952CE2C41180A00BC8305 /* ChooseCategorySheet.swift in Sources */,
 				464952A72C3EF59100BC8305 /* Rounded.swift in Sources */,
 				4649529C2C3EECFE00BC8305 /* ExpenseCategoryView.swift in Sources */,
@@ -362,6 +380,8 @@
 				464952A42C3EF54400BC8305 /* IncomeView.swift in Sources */,
 				C2BC99C22C44E90600672389 /* HistoryCategroyExpenseRecord.swift in Sources */,
 				4649529D2C3EECFE00BC8305 /* BudgetingSettingView.swift in Sources */,
+				711335A72C44EE760035AB15 /* OffsetKey.swift in Sources */,
+				711335A52C44BE440035AB15 /* DateFormatter.swift in Sources */,
 				C2368CA32C463656004A1947 /* ExpenseRowView.swift in Sources */,
 				C2CE94392C4124E200BA084A /* ProgressBarView.swift in Sources */,
 				4649529E2C3EECFE00BC8305 /* TabBarView.swift in Sources */,
@@ -509,10 +529,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BudgetingCalculator/Preview Content\"";
-				DEVELOPMENT_TEAM = 47594KTVFL;
-				DEVELOPMENT_TEAM = 6U87HWWFMX;
+				DEVELOPMENT_TEAM = 9CXPD89H8W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WiseWallet;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -539,10 +559,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BudgetingCalculator/Preview Content\"";
-				DEVELOPMENT_TEAM = 47594KTVFL;
-				DEVELOPMENT_TEAM = 6U87HWWFMX;
+				DEVELOPMENT_TEAM = 9CXPD89H8W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WiseWallet;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

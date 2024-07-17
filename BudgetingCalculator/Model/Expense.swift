@@ -85,6 +85,15 @@ enum ExpenseCategory: String, CaseIterable, Codable, Identifiable {
         case .savings: return .skyBlue
         }
     }
+    
+    var colorHistory: Color {
+        switch self {
+        case .household: return .historyHouse
+        case .health: return .historyMedical
+        case .other: return  .historyOther
+        case .savings: return .historyMedical
+        }
+    }
 }
 
 

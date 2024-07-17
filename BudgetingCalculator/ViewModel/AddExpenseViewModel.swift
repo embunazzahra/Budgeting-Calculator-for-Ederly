@@ -27,6 +27,13 @@ class AddExpenseViewModel: ObservableObject {
     @Published var remainingBudget = 0.0
     @Published var isFinished = false
     @Published var currPage = 1 // 1 -> CalcView, 2 -> InputSetBudget
+    private let lightImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+    
+
+    func triggerHapticFeedback() {
+        lightImpactFeedbackGenerator.impactOccurred()
+    }
+    
     
     init(dataSource: SwiftDataService, category: ExpenseCategory) {
         self.dataSource = dataSource
@@ -148,10 +155,11 @@ class AddExpenseViewModel: ObservableObject {
     
     
     
+    
     func didTap(button: CalcButton, currPage: Int, category: ExpenseCategory) {
         var convertedIcon = ""
         
-        
+        triggerHapticFeedback()
         
         switch button{
         case .add:
@@ -375,13 +383,13 @@ class AddExpenseViewModel: ObservableObject {
     func calculatorColor (category: ExpenseCategory) -> Color {
         switch category{
         case .household:
-            return Color.yellowFFCF23
+            return .calcBackHouse
         case .health:
-            return Color.turquoise
+            return .calcBackMedical
         case .savings:
-            return Color.blue3EAFE5
+            return .calcBackSaving
         case .other:
-            return Color.magenta
+            return .calcBackOther
         }
     }
     
@@ -398,6 +406,7 @@ class AddExpenseViewModel: ObservableObject {
         }
     }
 }
+
 
 enum CalcButton: String {
     case one = "1"
@@ -428,7 +437,7 @@ enum CalcButton: String {
         case .clear, .del:
             return .red
         case .equal:
-            return Color("orangeColor")
+            return .calculator
         default:
             return Color("darkGrayColor")
         }
