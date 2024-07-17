@@ -22,11 +22,13 @@ struct ExpenseCategoryView: View {
                         
                         Text(category.localizedString)
                             .font(.headline)
-                            .foregroundColor(.white)
+                            .foregroundColor(.font)
+                            .fontWeight(.regular)
                         
-                        Text("IDR \(viewModel.remainingBudgetForCategory(category), specifier: "%.2f")")
+                        Text("IDR \(viewModel.remainingBudgetForCategory(category), specifier: "%.f")")
                             .font(.system(size: 15))
-                            .foregroundColor(.white)
+                            .foregroundColor(.font)
+                            .bold()
                             .lineLimit(1)
                             .fixedSize(horizontal: true, vertical: false)
                     }

@@ -31,6 +31,7 @@ struct TabBarView: View {
                                 
                             }
                     }
+                    
                     .toolbarBackground(.tapBar, for: .tabBar)
                     .toolbarBackground(.visible, for: .tabBar)
                     

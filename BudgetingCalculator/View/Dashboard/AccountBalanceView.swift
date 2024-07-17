@@ -28,18 +28,21 @@ struct AccountBalanceView: View {
                     .padding([.leading, .trailing], 104)
                     .background(
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.white)
+                            .fill(Color.recent)
                     )
                     .cornerRadius(5)
                     .font(.system(size: 20))
                     .fontWeight(.semibold)
+                    
             }
+            
             .sheet(isPresented: $isUpdateBalanceSheetPresented) {
                 EditBalanceView()
                     .environmentObject(viewModel)
                     .presentationDetents([.medium, .medium])
             }
         }
+        
         .padding([.top, .bottom], 30)
 //        .padding([.leading, .trailing], 20)
         .frame(maxWidth: .infinity)

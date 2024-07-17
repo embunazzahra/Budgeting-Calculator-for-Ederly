@@ -257,6 +257,7 @@ class AddExpenseViewModel: ObservableObject {
                         initializeDummyBudgetCategories()
                         self.isFinished = true
                     } else {
+                        self.isFinished = true
                         dataSource.updateBudgetCategory(category: category, newAllocatedAmount: Double(value) ?? 0.0)
                         let x = dataSource.fetchBudgetCategory()
                         for budget in x {

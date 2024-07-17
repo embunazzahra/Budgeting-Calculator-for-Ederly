@@ -41,15 +41,15 @@ struct CalcView: View {
                         Text("IDR")
                             .bold()
                             .font(.system(size: 48))
-                            .foregroundColor(.black)
+                            .foregroundColor(.font)
                         Text(modelView.value)
                             .bold()
                             .font(.system(size: 48))
-                            .foregroundColor(.black)
+                            .foregroundColor(.font)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .background(modelView.calculatorColor(category: category).opacity(0.2))
+                .background(modelView.calculatorColor(category: category))
                 
                 ZStack{
                     ProgressBarView(progress: $modelView.progress, color: modelView.progressBarColor(category: category))
@@ -60,11 +60,11 @@ struct CalcView: View {
                         VStack(alignment: .leading){
                             Text("Remaining budget")
                                 .font(.system(size: 15))
-                                .foregroundColor(Color("graylabel"))
+                                .foregroundColor(.black)
                             Text("Rp \(modelView.runningBudget, specifier: "%.f")")
                                 .fontWeight(.semibold)
                                 .font(.system(size: 20))
-                                .foregroundColor(Color("graylabel"))
+                                .foregroundColor(.black)
                         }
                         
                         Spacer()
@@ -73,11 +73,11 @@ struct CalcView: View {
                         VStack(alignment: .leading){
                             Text("Expenses")
                                 .font(.system(size: 15))
-                                .foregroundColor(Color("graylabel"))
+                                .foregroundColor(.black)
                             Text("Rp \(modelView.runningExpense, specifier: "%.f")")
                                 .fontWeight(.semibold)
                                 .font(.system(size: 20))
-                                .foregroundColor(Color("graylabel"))
+                                .foregroundColor(.black)
                         }
                     }
                     .padding(.horizontal)
@@ -152,5 +152,5 @@ struct CalcView: View {
 
 
 #Preview {
-    CalcView(category: .health)
+    CalcView(category: .household)
 }
