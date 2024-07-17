@@ -41,7 +41,8 @@ struct AccountBalanceView: View {
             }
         }
         .padding([.top, .bottom], 30)
-        .padding([.leading, .trailing], 20)
+//        .padding([.leading, .trailing], 20)
+        .frame(maxWidth: .infinity)
         .background(Color(.whiteBlue))
         .cornerRadius(15)
         .edgesIgnoringSafeArea(.all)
