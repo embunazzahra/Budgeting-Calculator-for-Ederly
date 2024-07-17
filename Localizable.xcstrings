@@ -33,7 +33,6 @@
       }
     },
     "%@" : {
-      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -413,6 +412,12 @@
       }
     },
     "IDR XXX.XXX" : {
+
+    },
+    "IDR%.f" : {
+
+    },
+    "No Expense" : {
 
     },
     "other" : {
