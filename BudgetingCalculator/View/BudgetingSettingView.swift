@@ -7,27 +7,26 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct BudgetSettingsView: View {
     @ObservedObject var viewModel: BudgetViewModel
-   
-
+    
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
                 VStack(alignment: .center, spacing: 10){
                     VStack{
-                        AmountBudget().padding(.bottom,20)
-                             
-                        Divider()
+                        AmountBudget(viewModel: viewModel).padding(.bottom,20)
+                        
                             .padding()
                     }
                     
-                        ForEach(ExpenseCategory.allCases) { category in
-                            NavigationLink(destination: BudgetDetail(viewModel: viewModel, category: category)){
-                                ButtonUpdateBudget(category: category, viewModel: viewModel)
-                                
+                    ForEach(ExpenseCategory.allCases) { category in
+                        NavigationLink(destination: InputSetBudget(category: category, onDismiss: {
+                            viewModel.fetchBudgetCategories()
+                        })) {
+                            ButtonUpdateBudget(category: category, viewModel: viewModel)
+                            
                         }
                         
                     }
@@ -36,8 +35,8 @@ struct BudgetSettingsView: View {
             }
             .padding(.bottom, 60)
             .frame(height: 600)
-
-                .navigationTitle("Budget Settings").navigationBarTitleDisplayMode(.inline)
+            
+            .navigationTitle("Budget Settings").navigationBarTitleDisplayMode(.inline)
         }
         
     }

@@ -14,9 +14,11 @@ struct CircleCategory: View {
     var body: some View {
         
             ZStack {
-                Circle()
+                Rectangle()
                     .fill(category.color)
-                    .frame(width: 151, height: 151)
+                    .frame(width: 181, height: 277)
+                    .cornerRadius(25)
+
                     VStack{
                         Image(systemName: category.icon)
                             .font(.system(size: 48))
@@ -25,7 +27,7 @@ struct CircleCategory: View {
                         
                         
                         
-                        Text(category.rawValue)
+                        Text(category.localizedString)
                             .font(.title2)
                             .fontWeight(.semibold)
                             .foregroundStyle(.white)

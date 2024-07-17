@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct CalcView: View {
-    
     @StateObject var modelView: AddExpenseViewModel
     @Environment(\.dismiss) var dismiss // Tambahkan ini
     let category: ExpenseCategory
     var onDismiss: (() -> Void)? // Tambahkan ini
     
     init(category: ExpenseCategory, onDismiss: (() -> Void)? = nil) {
-            self.category = category
+        self.category = category
         self.onDismiss = onDismiss // Simpan onDismiss
         _modelView = StateObject(wrappedValue: AddExpenseViewModel(dataSource: .shared, category: category))
-        }
-
+    }
+    
     
     var body: some View {
         ZStack {
@@ -61,11 +60,11 @@ struct CalcView: View {
                         VStack(alignment: .leading){
                             Text("Remaining budget")
                                 .font(.system(size: 15))
-                                .foregroundColor(Color("gray585858"))
+                                .foregroundColor(Color("graylabel"))
                             Text("Rp \(modelView.runningBudget, specifier: "%.f")")
                                 .fontWeight(.semibold)
                                 .font(.system(size: 20))
-                                .foregroundColor(Color("gray585858"))
+                                .foregroundColor(Color("graylabel"))
                         }
                         
                         Spacer()
@@ -74,16 +73,16 @@ struct CalcView: View {
                         VStack(alignment: .leading){
                             Text("Expenses")
                                 .font(.system(size: 15))
-                                .foregroundColor(Color("gray585858"))
+                                .foregroundColor(Color("graylabel"))
                             Text("Rp \(modelView.runningExpense, specifier: "%.f")")
                                 .fontWeight(.semibold)
                                 .font(.system(size: 20))
-                                .foregroundColor(Color("gray585858"))
+                                .foregroundColor(Color("graylabel"))
                         }
                     }
                     .padding(.horizontal)
                     .padding(.vertical,10)
-    //                .background(Color("yellowFFCF23"))
+                    //                .background(Color("yellowFFCF23"))
                 }
                 
                 
@@ -98,12 +97,14 @@ struct CalcView: View {
                             VStack(spacing: 12) {
                                 ForEach(row, id: \.self) { item in
                                     Button(action: {
-                                        self.modelView.didTap(button: item)
+                                        self.modelView.didTap(button: item, currPage: 1, category: category)
                                         
                                         if modelView.isFinished { //
-                                                                               dismiss() 
+                                            dismiss()
                                             onDismiss?()
-                                                                    }
+                                        }
+                                        
+                                        
                                     }, label: {
                                         modelView.getTextOrImage(for: item)
                                             .font(.system(size: 40))
@@ -128,10 +129,11 @@ struct CalcView: View {
             }
             
         }
-        .navigationBarTitle(category.rawValue, displayMode: .inline) // 1
+        .navigationBarTitle(category.localizedString, displayMode: .inline) // 1
         .navigationBarBackButtonHidden(false)
-//        .navigationBarHidden(true)
+        //        .navigationBarHidden(true)
     }
+    
     
     
     func buttonWidth() -> CGFloat {
@@ -145,6 +147,7 @@ struct CalcView: View {
         return (UIScreen.main.bounds.width - (5*12)) / 4
     }
 }
+
 
 
 #Preview {

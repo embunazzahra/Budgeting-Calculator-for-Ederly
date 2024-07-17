@@ -10,7 +10,7 @@ import SwiftData
 
 struct BudgetView: View {
     @State var isCalculatorSheetPresented = false
-    @ObservedObject var viewModel: BudgetViewModel
+    @ObservedObject var viewModel: BudgetViewModel = BudgetViewModel(dataSource: .shared)
 
     @Environment(\.locale) var locale
     
@@ -22,33 +22,30 @@ struct BudgetView: View {
                 VStack {
                     // Account Balance Section
                     AccountBalanceView(viewModel: viewModel)
-                        .padding(.bottom, 4)
+                        .padding(.bottom, 8)
        
                     // Expense Categories View
                     ExpenseCategoriesView(viewModel: viewModel)
+                        .padding(.bottom, 8)
                             .padding(.horizontal)
                     
                     // Recent Expenses
                     RecentExpensesView(viewModel: viewModel)
-                    
-                    NavigationLink(destination: AllHistoryView()) {
-                        Text("Go to History")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(10)
+                        .padding(.horizontal)
+                        .padding(.bottom, 8)
+                            
                     }
-                    .padding()
-                    
+                    .padding(.bottom, 8)
+
                 }
-                .buttonStyle(.plain)
-                .padding(.bottom, 8)
-                }
-                .padding()
-                .navigationTitle("SeniorBudget")
-                .frame(maxHeight: .infinity)
-                .frame(width: 425)
+            .padding(.horizontal)
+            .id(viewModel.triggerRefresh)
+            .navigationTitle("SeniorBudget")
+            .frame(maxHeight: .infinity)
+            .frame(width: 425)
+            .onAppear(){
+                print(viewModel.triggerRefresh)
+            }
             }
         
     }

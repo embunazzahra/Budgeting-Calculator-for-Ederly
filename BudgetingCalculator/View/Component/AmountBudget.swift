@@ -8,29 +8,32 @@
 import SwiftUI
 
 struct AmountBudget: View {
+    @ObservedObject var viewModel: BudgetViewModel
+    
     var body: some View {
         
         VStack(alignment: .center) {
             
             Text("Amount Budget")
-            
-            
-                .background(Color(.systemGray4))
-            Divider().foregroundColor(.white)
+                .foregroundColor(Color.black)
             
             VStack(){
-                Text("IDR 0")
-                }
+                Text(String(format: "IDR%.2f", viewModel.totalBudget()))
+                    .font(.title)
+                    .fontWeight(.heavy)
+                    .foregroundColor(Color.black)
             }
-        .frame(width: 335, height: 88)
-            .background(Color(.systemGray4))
-            .cornerRadius(15)
-            
+        }
         
-
+        .frame(width: 335, height: 88)
+        .background(.amountBudget)
+        .cornerRadius(15)
+        
+        
+        
     }
 }
 
 #Preview {
-    AmountBudget()
+    AmountBudget(viewModel: BudgetViewModel(dataSource: .shared))
 }

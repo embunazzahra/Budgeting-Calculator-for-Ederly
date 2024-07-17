@@ -22,11 +22,15 @@ struct HistoryCategroyExpenseRecord: View {
         VStack(spacing: 0) { // Using VStack to manage the border line at the bottom
             HStack {
                 Text(formattedDate)
+                    .foregroundColor(.font)
+                    .fontWeight(.light)
+                    .bold()
                 Spacer()
                 Text("-\(expense.amount, specifier: "%.2f")")
+                    .foregroundColor(Color.red)
             }
             .padding()
-            .background(expense.category.colorBack)
+            .background(expense.category.colorHistory)
             .frame(width: 320, height: 52)
             .cornerRadius(10)
 
@@ -39,6 +43,6 @@ struct HistoryCategroyExpenseRecord: View {
 }
 
 #Preview {
-    HistoryCategroyExpenseRecord(expense: Expense(category: .health, amount: 25000, date: Date()), viewModel: BudgetViewModel(dataSource: .shared))
+    HistoryCategroyExpenseRecord(expense: Expense(category: .household, amount: 25000, date: Date()), viewModel: BudgetViewModel(dataSource: .shared))
 }
 

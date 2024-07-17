@@ -9,12 +9,13 @@ import SwiftUI
 
 struct HistoryCategoryView: View {
     let category: ExpenseCategory
+//    let localizedCategory: String = category.localizedString
     @ObservedObject var viewModel: BudgetViewModel
     
     var body: some View {
         VStack {
             // Header
-            Text("History for \(category.rawValue)")
+            Text(category.localizedHistoryString)
                 .font(.system(size: 20))
                 .fontWeight(.semibold)
             Divider()

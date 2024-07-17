@@ -19,7 +19,7 @@ struct IncomeView: View {
                 .font(.largeTitle)
                 .foregroundColor(.white)
                 
-            Text(category.rawValue)
+            Text(category.localizedString)
                 .font(.headline)
                 .foregroundColor(.white)
         

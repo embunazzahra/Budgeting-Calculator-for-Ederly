@@ -26,6 +26,14 @@ class AddExpenseViewModel: ObservableObject {
     @Published var budget = 0.0
     @Published var remainingBudget = 0.0
     @Published var isFinished = false
+    @Published var currPage = 1 // 1 -> CalcView, 2 -> InputSetBudget
+    private let lightImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+    
+
+    func triggerHapticFeedback() {
+        lightImpactFeedbackGenerator.impactOccurred()
+    }
+    
     
     init(dataSource: SwiftDataService, category: ExpenseCategory) {
         self.dataSource = dataSource
@@ -61,12 +69,13 @@ class AddExpenseViewModel: ObservableObject {
             ]
             
             for budget in dummyCategories {
-                //add budget ke swift data
+                dataSource.addBudgetCategory(budget)
             }
             
-            //nanti ganti dummyCategories ke fetchBudgetCategory
-            self.budgetCategories = dummyCategories
         }
+        
+        //nanti ganti dummyCategories ke fetchBudgetCategory
+        self.budgetCategories = dataSource.fetchBudgetCategory()
     }
     
     func totalExpensesForCategoryThisMonth(category: ExpenseCategory) -> Double {
@@ -90,6 +99,7 @@ class AddExpenseViewModel: ObservableObject {
         let spent = expenses.filter { $0.category == category }.reduce(0) { $0 + $1.amount }
         return max(0, categoryBudget - spent)
     }
+    
     
     func getAllocatedBudget(_ category: ExpenseCategory) -> Double {
         let categoryBudget = budgetCategories.first(where: { $0.category == category })?.allocatedAmount ?? 0
@@ -143,10 +153,13 @@ class AddExpenseViewModel: ObservableObject {
         [.del, .subtract, .add, .equal],
     ]
     
-    func didTap(button: CalcButton) {
+    
+    
+    
+    func didTap(button: CalcButton, currPage: Int, category: ExpenseCategory) {
         var convertedIcon = ""
         
-        
+        triggerHapticFeedback()
         
         switch button{
         case .add:
@@ -218,10 +231,19 @@ class AddExpenseViewModel: ObservableObject {
                 convertedValue = value
                 
                 if !isCalculating {
-                    addExpense(category: category, amount: Double(value) ?? 0.0)
-                    initializeDummyExpensesCategories()
-                    initializeDummyBudgetCategories()
-                    self.isFinished = true
+                    if (currPage == 1){
+                        addExpense(category: category, amount: Double(value) ?? 0.0)
+                        initializeDummyExpensesCategories()
+                        initializeDummyBudgetCategories()
+                        self.isFinished = true
+                    } else {
+                        dataSource.updateBudgetCategory(category: category, newAllocatedAmount: Double(value) ?? 0.0)
+                        let x = dataSource.fetchBudgetCategory()
+                        for budget in x {
+                            print("Category: \(budget.category), Allocated Amount: \(budget.allocatedAmount)")
+                        }
+                    }
+                    
                 }
             }
             
@@ -251,9 +273,12 @@ class AddExpenseViewModel: ObservableObject {
         }else{
             isCalculating = false
             if let convertedValue = Double(value){
+                
                 self.updateRunningExpense(value: convertedValue)
                 self.updateRunningBudget(value: convertedValue)
                 self.updateProgress()
+                
+                
             }
             
         }
@@ -358,13 +383,13 @@ class AddExpenseViewModel: ObservableObject {
     func calculatorColor (category: ExpenseCategory) -> Color {
         switch category{
         case .household:
-            return Color.yellowFFCF23
+            return .calcBackHouse
         case .health:
-            return Color.green00C7BE
+            return .calcBackMedical
         case .savings:
-            return Color.blue3EAFE5
+            return .calcBackSaving
         case .other:
-            return Color.purpleAB2377
+            return .calcBackOther
         }
     }
     
@@ -373,14 +398,15 @@ class AddExpenseViewModel: ObservableObject {
         case .household:
             return Color.yellowFFCF23
         case .health:
-            return Color.green00C7BE
+            return Color.turquoise
         case .savings:
-            return Color.blue32ADE6
+            return Color.blue
         case .other:
-            return Color.purpleAB2377
+            return Color.magenta
         }
     }
 }
+
 
 enum CalcButton: String {
     case one = "1"
@@ -411,7 +437,7 @@ enum CalcButton: String {
         case .clear, .del:
             return .red
         case .equal:
-            return Color("orangeColor")
+            return .calculator
         default:
             return Color("darkGrayColor")
         }

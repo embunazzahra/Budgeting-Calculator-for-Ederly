@@ -18,6 +18,7 @@ class BudgetViewModel: ObservableObject {
     @Published var isPresentCategoryExpense = false
     @Published var accountBalance = 10000000 // Initial Account Balance
     @Published var selectedCategory: ExpenseCategory?
+    @Published var triggerRefresh: Bool = false
     
     init(dataSource: SwiftDataService) {
         self.dataSource = dataSource
@@ -51,6 +52,18 @@ class BudgetViewModel: ObservableObject {
         initializeDummyBudgetCategories()
         initializeDummyExpensesCategories()
     }
+    func fetchBudgetCategories() {
+        self.budgetCategories = dataSource.fetchBudgetCategory()
+    }
+    
+//    func saveBudgetCategory(_ budgetCategory: BudgetCategory) {
+//        if let index = budgetCategories.firstIndex(where: { $0.category == budgetCategory.category }) {
+//            budgetCategories[index] = budgetCategory
+//        } else {
+//            budgetCategories.append(budgetCategory)
+//        }
+//        dataSource.saveBudgetCategories(budgetCategories)
+//    }
     
     private func initializeDummyExpensesCategories() {
         if expenses.isEmpty {
@@ -85,12 +98,12 @@ class BudgetViewModel: ObservableObject {
             ]
             
             for budget in dummyCategories {
-                //add budget ke swift data
+                dataSource.addBudgetCategory(budget)
             }
             
             //nanti ganti dummyCategories ke fetchBudgetCategory
-            self.budgetCategories = dummyCategories
         }
+        self.budgetCategories = dataSource.fetchBudgetCategory()
     }
     
     func updateBalance(accountBalance: Int){
@@ -124,19 +137,15 @@ class BudgetViewModel: ObservableObject {
         max(0, Double(accountBalance) - totalExpenses)
     }
 
-//    func angleForCategory(_ category: String) -> Double {
-//        let filteredExpenses = expenses.filter { $0.category == category }
-//        let categoryTotal = filteredExpenses.reduce(0) { $0 + $1.amount }
-//        let proportion = totalExpenses > 0 ? categoryTotal / totalExpenses : 0
-//        return proportion * 360
-//    }
 
-    func saveBudgetCategories() {
-        do {
-//            try modelContext.save()
-        } catch {
-            print("Error saving budget categories: \(error)")
-        }
+    func allocatedBudgetForCategory(_ category: ExpenseCategory) -> Double {
+        let categoryBudget = budgetCategories.first(where: { $0.category == category })?.allocatedAmount ?? 0
+        return categoryBudget
+    }
+    
+    func totalBudget() -> Double {
+        let totalBudget = budgetCategories.reduce(0) { $0 + $1.allocatedAmount }
+        return totalBudget
     }
 
     func remainingBudgetForCategory(_ category: ExpenseCategory) -> Double {

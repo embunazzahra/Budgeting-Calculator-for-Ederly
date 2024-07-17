@@ -25,9 +25,17 @@ struct EditBalanceView: View {
                 Spacer()
             }
             
-            TextField("Enter a number", text: $inputValue)
+            TextField("IDR XXX.XXX", text: $inputValue)
                 .keyboardType(.numberPad)
                 .padding()
+                .padding(.leading, 10)
+                .background(Color.white)
+                .cornerRadius(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.gray, lineWidth: 1)
+                        .padding([.horizontal])
+                )
                 .onChange(of: inputValue) { newValue in
                     inputValue = numberSeperator.formatNumber(inputValue)
                 }
