@@ -391,6 +391,12 @@
         }
       }
     },
+    "IDR %.f" : {
+
+    },
+    "IDR %@" : {
+
+    },
     "IDR %lld" : {
       "localizations" : {
         "id" : {
