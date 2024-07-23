@@ -1,7 +1,7 @@
 
-# WiseBudget
+# WiseWallet
 
-WiseBudget is a budgeting calculator app designed specifically for the elderly. It features an intuitive interface and accessibility options to ensure ease of use for all users.
+WiseWallet is a budgeting calculator app designed specifically for the elderly. It features an intuitive interface and accessibility options to ensure ease of use for all users.
 
 ## Features
 
@@ -16,15 +16,13 @@ WiseBudget is a budgeting calculator app designed specifically for the elderly. 
 
 ## Architecture
 
-WiseBudget follows the MVVM (Model-View-ViewModel) architecture pattern. This architecture helps in maintaining a clean separation of concerns and makes the app easier to manage and test.
+WiseWallet follows the MVVM (Model-View-ViewModel) architecture pattern. This architecture helps in maintaining a clean separation of concerns and makes the app easier to manage and test.
 
 ## User Interface
 
-Here are some of the UI components implemented in WiseBudget:
+Here are some of the UI components implemented in WiseWallet:
 
-- **Home Screen**: Displays an overview of the user's budget, including total income and expenses.
-- **Budget Entry**: Allows users to add and categorize their income and expenses.
-- **Settings**: Provides options for switching themes and languages.
+![Project UI](mockup_wise_wallet.png)
 
 ## Getting Started
 
@@ -54,4 +52,4 @@ We welcome contributions from the community! Please read our [contributing guide
 
 ## License
 
-WiseBudget is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+WiseWallet is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
