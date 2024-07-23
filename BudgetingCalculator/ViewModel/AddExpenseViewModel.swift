@@ -184,8 +184,8 @@ class AddExpenseViewModel: ObservableObject {
             value += convertedIcon
         case .decimal:
             
-            convertedIcon = "."
-            convertedValue += convertedIcon
+            convertedIcon = ","
+            convertedValue += "."
             value += convertedIcon
             
             
@@ -291,19 +291,25 @@ class AddExpenseViewModel: ObservableObject {
     }
     
     func formatNumbersInExpression(_ expression: String) -> String {
-        // Regular expression pattern to match numbers
-        let pattern = "\\d+"
+        // Regular expression pattern to match numbers, including decimal parts
+        let pattern = "\\d+(?:,\\d+)?"
         var formattedExpression = expression
         
         // Function to format a single number
         func formatNumber(_ number: String) -> String? {
+            let components = number.split(separator: ",")
+            let integerPart = String(components[0])
+            let decimalPart = components.count > 1 ? "," + components[1] : ""
+            
             let formatter = NumberFormatter()
             formatter.numberStyle = .decimal
             formatter.groupingSeparator = "."
             formatter.locale = Locale(identifier: "id_ID")
             
-            if let number = Double(number) {
-                return formatter.string(from: NSNumber(value: number))
+            if let integerNumber = Double(integerPart) {
+                if let formattedIntegerPart = formatter.string(from: NSNumber(value: integerNumber)) {
+                    return formattedIntegerPart + decimalPart
+                }
             }
             return nil
         }
@@ -471,7 +477,7 @@ enum CalcButton: String {
     case clear = "AC"
     case doubleZero = "00"
     case del = "delete.left"
-    case decimal = "."
+    case decimal = ","
     
     
     var buttonColor: Color {
