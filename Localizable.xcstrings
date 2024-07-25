@@ -22,7 +22,6 @@
       }
     },
     "." : {
-      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -43,8 +42,10 @@
         }
       }
     },
+    "%lld" : {
+
+    },
     "=" : {
-      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -55,7 +56,6 @@
       }
     },
     "0" : {
-      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -146,6 +146,7 @@
       }
     },
     "Budget Settings" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -160,6 +161,12 @@
           }
         }
       }
+    },
+    "C" : {
+
+    },
+    "Category" : {
+
     },
     "Choose Category" : {
       "localizations" : {
@@ -426,6 +433,16 @@
     },
     "Key" : {
       "extractionState" : "manual"
+    },
+    "Monthly Budget " : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anggaran Bulanan"
+          }
+        }
+      }
     },
     "No Expense" : {
       "localizations" : {

@@ -35,7 +35,7 @@ struct BudgetSettingsView: View {
             .padding(.bottom, 60)
             .frame(height: 600)
             
-            .navigationTitle("Budget Settings").navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Monthly Budget ").navigationBarTitleDisplayMode(.inline)
         }
         
     }

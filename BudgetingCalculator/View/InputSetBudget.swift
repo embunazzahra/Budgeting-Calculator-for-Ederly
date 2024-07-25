@@ -42,15 +42,15 @@ struct InputSetBudget: View {
                         Text("IDR")
                             .bold()
                             .font(.system(size: 48))
-                            .foregroundColor(.black)
+//                            .foregroundColor(.black)
                         Text(modelView.value)
                             .bold()
                             .font(.system(size: 48))
-                            .foregroundColor(.black)
+//                            .foregroundColor(.black)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .background(modelView.calculatorColor(category: category).opacity(0.2))
+                .background(Color.grayF4F4F4)
                 
                 ZStack{
                     
@@ -94,7 +94,7 @@ struct InputSetBudget: View {
             }
             
         }
-        .navigationBarTitle(category.rawValue, displayMode: .inline) // 1
+        .navigationBarTitle(category.localizedString, displayMode: .inline) // 1
         .navigationBarBackButtonHidden(false)
         //        .navigationBarHidden(true)
     }
