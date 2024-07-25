@@ -41,7 +41,7 @@ struct BudgetView: View {
                 }
             .padding(.horizontal)
             .id(viewModel.triggerRefresh)
-            .navigationTitle("WiseWallet")
+            .navigationTitle("SilverSaver")
             .frame(maxHeight: .infinity)
             .frame(width: 425)
             .onAppear(){
