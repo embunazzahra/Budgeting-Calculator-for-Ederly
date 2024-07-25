@@ -24,7 +24,8 @@ class AllHistoryViewModel: ObservableObject {
     
     init(dataSource: SwiftDataService){
         self.dataSource = dataSource
-        initializeExpenses()
+//        initializeExpenses()
+        self.expenses = dataSource.fetchExpenses()
         getFilteredExpense(selectedDate: selectedDate)
         let currentWeek = fetchWeek()
         

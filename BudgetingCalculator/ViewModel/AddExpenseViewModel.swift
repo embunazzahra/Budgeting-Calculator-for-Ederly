@@ -39,7 +39,8 @@ class AddExpenseViewModel: ObservableObject {
     init(dataSource: SwiftDataService, category: ExpenseCategory) {
         self.dataSource = dataSource
         self.category = category
-        initializeDummyExpensesCategories()
+        self.expenses = dataSource.fetchExpenses()
+//        initializeDummyExpensesCategories()
         initializeDummyBudgetCategories()
         initializeProgress(self.category)
     }
@@ -63,10 +64,10 @@ class AddExpenseViewModel: ObservableObject {
     private func initializeDummyBudgetCategories() {
         if dataSource.fetchBudgetCategory().isEmpty{
             let dummyCategories = [
-                BudgetCategory(category: .household, allocatedAmount: 2600000.0),
-                BudgetCategory(category: .health, allocatedAmount: 3000000.0),
-                BudgetCategory(category: .other, allocatedAmount: 5000000.0),
-                BudgetCategory(category: .savings, allocatedAmount: 1500000.0)
+                BudgetCategory(category: .household, allocatedAmount: 0.0),
+                BudgetCategory(category: .health, allocatedAmount: 0.0),
+                BudgetCategory(category: .other, allocatedAmount: 0.0),
+                BudgetCategory(category: .savings, allocatedAmount: 0.0)
             ]
             
             for budget in dummyCategories {
@@ -234,16 +235,17 @@ class AddExpenseViewModel: ObservableObject {
                 if !isCalculating {
                     if (currPage == 1){
                         addExpense(category: category, amount: Double(value) ?? 0.0)
-                        initializeDummyExpensesCategories()
-                        initializeDummyBudgetCategories()
+//                        initializeDummyExpensesCategories()
+//                        initializeDummyBudgetCategories()
                         self.isFinished = true
                     } else {
                         self.isFinished = true
                         dataSource.updateBudgetCategory(category: category, newAllocatedAmount: Double(value) ?? 0.0)
-                        let x = dataSource.fetchBudgetCategory()
-                        for budget in x {
-                            print("Category: \(budget.category), Allocated Amount: \(budget.allocatedAmount)")
-                        }
+//                        print("masuk save budget")
+//                        let x = dataSource.fetchBudgetCategory()
+//                        for budget in x {
+//                            print("Category: \(budget.category), Allocated Amount: \(budget.allocatedAmount)")
+//                        }
                     }
                     
                 }

@@ -435,6 +435,7 @@
       "extractionState" : "manual"
     },
     "Monthly Budget " : {
+      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -554,6 +555,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tetapkan Anggaran untuk %@"
+          }
+        }
+      }
+    },
+    "Set Monthly Budget " : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atur Anggaran Bulanan"
           }
         }
       }
