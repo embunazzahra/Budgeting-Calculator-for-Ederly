@@ -22,7 +22,6 @@
       }
     },
     "." : {
-      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -43,8 +42,10 @@
         }
       }
     },
+    "%lld" : {
+
+    },
     "=" : {
-      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -55,7 +56,6 @@
       }
     },
     "0" : {
-      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -146,6 +146,7 @@
       }
     },
     "Budget Settings" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -160,6 +161,12 @@
           }
         }
       }
+    },
+    "C" : {
+
+    },
+    "Category" : {
+
     },
     "Choose Category" : {
       "localizations" : {
@@ -391,6 +398,12 @@
         }
       }
     },
+    "IDR %.f" : {
+
+    },
+    "IDR %@" : {
+
+    },
     "IDR %lld" : {
       "localizations" : {
         "id" : {
@@ -420,6 +433,17 @@
     },
     "Key" : {
       "extractionState" : "manual"
+    },
+    "Monthly Budget " : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anggaran Bulanan"
+          }
+        }
+      }
     },
     "No Expense" : {
       "localizations" : {
@@ -531,6 +555,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tetapkan Anggaran untuk %@"
+          }
+        }
+      }
+    },
+    "Set Monthly Budget " : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atur Anggaran Bulanan"
           }
         }
       }

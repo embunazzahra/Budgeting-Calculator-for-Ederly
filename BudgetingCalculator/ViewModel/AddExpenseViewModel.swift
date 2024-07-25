@@ -9,46 +9,27 @@ import SwiftUI
 import SwiftData
 
 class AddExpenseViewModel: ObservableObject {
-    @Published var value = "0"
-    @Published var runningNumber = 0
-    @Published var currentOperation: Operation = .none
-    @Published var calcHistory = ""
-    @Published var isCalculating = false
-    var convertedValue = "0"
-    @Published var progress = 0.7
     private let dataSource: SwiftDataService
+    var value = "0"
+    var remainingBudget = 0.0
+    var budgetCategories: [BudgetCategory] = []
+    var isCalculating = false
+    var convertedValue = "0"
+    @Published var runningNumber = 0
+    @Published var calcHistory = ""
+    @Published var progress = 0.7
     @Published var expenses: [Expense] = []
-    @Published var budgetCategories: [BudgetCategory] = []
     @Published var runningExpense = 0.0
     @Published var runningBudget = 0.0
     @Published var category: ExpenseCategory
     @Published var expense = 0.0
     @Published var budget = 0.0
-    @Published var remainingBudget = 0.0
     @Published var isFinished = false
     @Published var currPage = 1 // 1 -> CalcView, 2 -> InputSetBudget
+    @Published var displayText = ""
     private let lightImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
     
-    private var numberFormatter: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.groupingSeparator = ","
-        formatter.locale = Locale(identifier: "id_ID")
-        return formatter
-    }
-    
-    var formattedValue: String {
-        let cleanedNumber = value.replacingOccurrences(of: ",", with: "")
-        guard let numberValue = Int(cleanedNumber) else {
-            return value
-        }
-        
-        return numberFormatter.string(from: NSNumber(value: numberValue)) ?? value
-    }
-    
-    func cleanNumberString(_ numberString: String) -> String {
-        return numberString.replacingOccurrences(of: ",", with: "")
-    }
+
 
     func triggerHapticFeedback() {
         lightImpactFeedbackGenerator.impactOccurred()
@@ -58,7 +39,8 @@ class AddExpenseViewModel: ObservableObject {
     init(dataSource: SwiftDataService, category: ExpenseCategory) {
         self.dataSource = dataSource
         self.category = category
-        initializeDummyExpensesCategories()
+        self.expenses = dataSource.fetchExpenses()
+//        initializeDummyExpensesCategories()
         initializeDummyBudgetCategories()
         initializeProgress(self.category)
     }
@@ -82,10 +64,10 @@ class AddExpenseViewModel: ObservableObject {
     private func initializeDummyBudgetCategories() {
         if dataSource.fetchBudgetCategory().isEmpty{
             let dummyCategories = [
-                BudgetCategory(category: .household, allocatedAmount: 2600000.0),
-                BudgetCategory(category: .health, allocatedAmount: 3000000.0),
-                BudgetCategory(category: .other, allocatedAmount: 5000000.0),
-                BudgetCategory(category: .savings, allocatedAmount: 1500000.0)
+                BudgetCategory(category: .household, allocatedAmount: 0.0),
+                BudgetCategory(category: .health, allocatedAmount: 0.0),
+                BudgetCategory(category: .other, allocatedAmount: 0.0),
+                BudgetCategory(category: .savings, allocatedAmount: 0.0)
             ]
             
             for budget in dummyCategories {
@@ -203,8 +185,8 @@ class AddExpenseViewModel: ObservableObject {
             value += convertedIcon
         case .decimal:
             
-            convertedIcon = "."
-            convertedValue += convertedIcon
+            convertedIcon = ","
+            convertedValue += "."
             value += convertedIcon
             
             
@@ -246,23 +228,24 @@ class AddExpenseViewModel: ObservableObject {
             
         case .equal:
             if !value.isEmpty {
-                calcHistory = value
+                calcHistory = displayText
                 value = calculateExpression(expression: convertedValue)
                 convertedValue = value
                 
                 if !isCalculating {
                     if (currPage == 1){
                         addExpense(category: category, amount: Double(value) ?? 0.0)
-                        initializeDummyExpensesCategories()
-                        initializeDummyBudgetCategories()
+//                        initializeDummyExpensesCategories()
+//                        initializeDummyBudgetCategories()
                         self.isFinished = true
                     } else {
                         self.isFinished = true
                         dataSource.updateBudgetCategory(category: category, newAllocatedAmount: Double(value) ?? 0.0)
-                        let x = dataSource.fetchBudgetCategory()
-                        for budget in x {
-                            print("Category: \(budget.category), Allocated Amount: \(budget.allocatedAmount)")
-                        }
+//                        print("masuk save budget")
+//                        let x = dataSource.fetchBudgetCategory()
+//                        for budget in x {
+//                            print("Category: \(budget.category), Allocated Amount: \(budget.allocatedAmount)")
+//                        }
                     }
                     
                 }
@@ -293,7 +276,7 @@ class AddExpenseViewModel: ObservableObject {
             self.updateRunningExpense(value: 0.0)
         }else{
             isCalculating = false
-            if let convertedValue = Double(cleanNumberString(value)){
+            if let convertedValue = Double(value){
                 print(convertedValue)
                 self.updateRunningExpense(value: convertedValue)
                 self.updateRunningBudget(value: convertedValue)
@@ -304,10 +287,56 @@ class AddExpenseViewModel: ObservableObject {
             
         }
         
-        value = formattedValue // Update the value to formatted value
+        displayText = formatNumbersInExpression(value) // Update the value to formatted value
         
         
     }
+    
+    func formatNumbersInExpression(_ expression: String) -> String {
+        // Regular expression pattern to match numbers, including decimal parts
+        let pattern = "\\d+(?:\\.\\d+)?"
+        var formattedExpression = expression
+        
+        // Function to format a single number
+        func formatNumber(_ number: String) -> String? {
+            let components = number.split(separator: ".")
+            let integerPart = String(components[0])
+            let decimalPart = components.count > 1 ? "," + components[1] : ""
+            
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .decimal
+            formatter.groupingSeparator = "."
+            formatter.locale = Locale(identifier: "id_ID")
+            
+            if let integerNumber = Double(integerPart) {
+                if let formattedIntegerPart = formatter.string(from: NSNumber(value: integerNumber)) {
+                    return formattedIntegerPart + decimalPart
+                }
+            }
+            return nil
+        }
+        
+        // Use NSRegularExpression to find and format numbers
+        do {
+            let regex = try NSRegularExpression(pattern: pattern, options: [])
+            let matches = regex.matches(in: expression, options: [], range: NSRange(location: 0, length: expression.utf16.count))
+            
+            // Iterate over matches in reverse order to avoid messing up the string indices
+            for match in matches.reversed() {
+                if let range = Range(match.range, in: expression) {
+                    let number = String(expression[range])
+                    if let formattedNumber = formatNumber(number) {
+                        formattedExpression.replaceSubrange(range, with: formattedNumber)
+                    }
+                }
+            }
+        } catch {
+            print("Invalid regular expression")
+        }
+        
+        return formattedExpression
+    }
+    
     
     func doubleOperatorChecker(expression: String) -> String {
         var result = expression
@@ -450,7 +479,7 @@ enum CalcButton: String {
     case clear = "AC"
     case doubleZero = "00"
     case del = "delete.left"
-    case decimal = "."
+    case decimal = ","
     
     
     var buttonColor: Color {

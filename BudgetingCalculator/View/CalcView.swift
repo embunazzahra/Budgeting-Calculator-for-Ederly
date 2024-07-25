@@ -42,7 +42,7 @@ struct CalcView: View {
                             .bold()
                             .font(.system(size: 48))
                             .foregroundColor(.font)
-                        Text(modelView.value)
+                        Text(modelView.displayText)
                             .bold()
                             .font(.system(size: 48))
                             .foregroundColor(.font)

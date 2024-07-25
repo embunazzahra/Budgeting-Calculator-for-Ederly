@@ -16,7 +16,7 @@ class BudgetViewModel: ObservableObject {
     @Published var currentNumber: String = "0"
     @Published var isCalculatorSheetPresented = false
     @Published var isPresentCategoryExpense = false
-    @Published var accountBalance = 10000000 // Initial Account Balance
+    @Published var accountBalance = 0 // Initial Account Balance
     @Published var selectedCategory: ExpenseCategory?
     @Published var triggerRefresh: Bool = false
     
@@ -35,7 +35,7 @@ class BudgetViewModel: ObservableObject {
         }
         
         initializeDummyBudgetCategories()
-        initializeDummyExpensesCategories()
+//        initializeDummyExpensesCategories()
     }
     
     func refreshData(){
@@ -49,8 +49,8 @@ class BudgetViewModel: ObservableObject {
             // If balance is not found, you might want to handle this case
             print("Balance not found")
         }
-        initializeDummyBudgetCategories()
-        initializeDummyExpensesCategories()
+//        initializeDummyBudgetCategories()
+//        initializeDummyExpensesCategories()
     }
     func fetchBudgetCategories() {
         self.budgetCategories = dataSource.fetchBudgetCategory()
@@ -91,10 +91,10 @@ class BudgetViewModel: ObservableObject {
     private func initializeDummyBudgetCategories() {
         if dataSource.fetchBudgetCategory().isEmpty{
             let dummyCategories = [
-                BudgetCategory(category: .household, allocatedAmount: 2600000.0),
-                BudgetCategory(category: .health, allocatedAmount: 3000000.0),
-                BudgetCategory(category: .other, allocatedAmount: 5000000.0),
-                BudgetCategory(category: .savings, allocatedAmount: 1500000.0)
+                BudgetCategory(category: .household, allocatedAmount: 0.0),
+                BudgetCategory(category: .health, allocatedAmount: 0.0),
+                BudgetCategory(category: .other, allocatedAmount: 0.0),
+                BudgetCategory(category: .savings, allocatedAmount: 0.0)
             ]
             
             for budget in dummyCategories {
