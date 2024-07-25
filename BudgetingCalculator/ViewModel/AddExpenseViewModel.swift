@@ -292,12 +292,12 @@ class AddExpenseViewModel: ObservableObject {
     
     func formatNumbersInExpression(_ expression: String) -> String {
         // Regular expression pattern to match numbers, including decimal parts
-        let pattern = "\\d+(?:,\\d+)?"
+        let pattern = "\\d+(?:\\.\\d+)?"
         var formattedExpression = expression
         
         // Function to format a single number
         func formatNumber(_ number: String) -> String? {
-            let components = number.split(separator: ",")
+            let components = number.split(separator: ".")
             let integerPart = String(components[0])
             let decimalPart = components.count > 1 ? "," + components[1] : ""
             
